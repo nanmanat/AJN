@@ -29,17 +29,21 @@ public class UI {
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
         }
-        if(gp.gameState == gp.optionsState){
+        else if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
         }
-        if(gp.gameState == gp.dialoguePlayerState){
+        else if(gp.gameState == gp.dialoguePlayerState){
             if(gp.keyH.spacePressed == true){
                 text = "PiggyBooBoo";
                 drawDialogueScreen(text);
                 // gp.keyH.spacePressed = false;
             }
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.playState;
+            }
         }
-
+        
+        
     }
 
     public void drawOptionsScreen(){

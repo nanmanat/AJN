@@ -35,6 +35,7 @@ public class KeyHandler implements KeyListener{
             if(code == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0){
                     gp.gameState = gp.dialoguePlayerState;
+                    enterPressed = false;
                     //music
                 }
                 if(gp.ui.commandNum == 1){
@@ -47,7 +48,7 @@ public class KeyHandler implements KeyListener{
         }
 
         //game
-        if(gp.gameState == gp.playState){
+        else if(gp.gameState == gp.playState){
             if(code == KeyEvent.VK_W) {
                 upPressed = true;
             }
@@ -66,29 +67,30 @@ public class KeyHandler implements KeyListener{
         }
 
         //dialoguePlayerState
-        if(gp.gameState == gp.dialoguePlayerState){
-            if(code != KeyEvent.VK_SPACE){
-                if(code == KeyEvent.VK_W) {
-                    upPressed = true;
-                }
-                if(code == KeyEvent.VK_A) {
-                    leftPressed = true;
-                }
-                if(code == KeyEvent.VK_S) {
-                    downPressed = true;
-                }
-                if(code == KeyEvent.VK_D) {
-                    rightPressed = true;
-                }
-            }
-            else {
+        else if(gp.gameState == gp.dialoguePlayerState){
+            if(code == KeyEvent.VK_SPACE){
                 spacePressed = true;
+            }
+            if(code == KeyEvent.VK_W) {
+                upPressed = true;
+            }
+            if(code == KeyEvent.VK_A) {
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_S) {
+                downPressed = true;
+            }
+            if(code == KeyEvent.VK_D) {
+                rightPressed = true;
+            }
+            if(code == KeyEvent.VK_ENTER){
+                enterPressed = true;
             }
         }
 
 
         //option
-        if(gp.gameState == gp.optionsState){
+        else if(gp.gameState == gp.optionsState){
             if(code == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
             }

@@ -118,7 +118,10 @@ public class TileManager {
                 loadMap("res/maps/mapPlayerStory.txt");
             }
         else if(gp.gameState == gp.dialogueAJN){
-                loadMap("res/maps/map001.txt");
+            loadMap("res/maps/map001.txt");
+        }
+        else if(gp.gameState == gp.playState){
+            loadMap("res/maps/map001.txt");
         }
         
     }
