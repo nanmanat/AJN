@@ -54,10 +54,27 @@ public class UI {
 
         switch (subState) {
             case 0: drawOptionsTop(frameX , frameY); break;
-            //anything
-            default:
-                break;
+            case 1: optionFullScreenNotification(frameX,frameY); break;
+            default: break;
+        }   
+    }
+
+    public void optionFullScreenNotification(int framex , int frameY){
+        //notification
+        int textX = framex + gp.tileSize;
+        int textY = frameY + gp.tileSize*3;
+        text = "The change will take \neffect after restarting\nthe game.";
+        for(String line: text.split("\n")){
+            g2.drawString(line, textX, textY);
+            textY += 40;
         }
+
+        //back
+        textY = frameY + gp.tileSize*9;
+        g2.drawString("Back", textX, textY);
+        g2.drawString(">", textX-25 , textY);
+        if(gp.keyH.enterPressed == true) subState = 0;
+
     }
 
     public void drawOptionsTop(int frameX , int frameY){
@@ -83,6 +100,7 @@ public class UI {
                     gp.fullScreenOn = true;
                 }
                 else gp.fullScreenOn = false;
+                subState = 1;
             }
         }
 
@@ -127,11 +145,15 @@ public class UI {
         x = frameX + gp.tileSize*5;
         y += gp.tileSize;
         g2.drawRect(x, y, 120, 24);
+        int volumeWidth = 24 * gp.sound.volumeScale;
+        g2.fillRect(x, y, volumeWidth, 24);
 
         //SE volume
         x = frameX + gp.tileSize*5;
         y += gp.tileSize;
         g2.drawRect(x, y, 120, 24);
+        // int volumeSEWidth = 24 * gp.se.volumeScale;
+        // g2.fillRect(x, y, volumeSEWidth, 24);
 
     }
 
