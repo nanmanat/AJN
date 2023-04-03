@@ -55,6 +55,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Sound sound = new Sound();
     // public SuperObject obj[] = new SuperObject[10];
+
+    public CollisionChecker cChecker = new CollisionChecker(this);
     
     public GamePanel() {
         // this.panel = panel;
