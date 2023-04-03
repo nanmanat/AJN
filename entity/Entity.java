@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import main.GamePanel;
@@ -22,4 +23,6 @@ public class Entity {
 
     public void setDialogue() {}
     public void speak() {}
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }
