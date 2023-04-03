@@ -88,7 +88,6 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-
         //option
         else if(gp.gameState == gp.optionsState){
             if(code == KeyEvent.VK_W) {
@@ -102,10 +101,37 @@ public class KeyHandler implements KeyListener{
                     enterPressed = true;
                 }
                 if(gp.ui.commandNum == 1){
-                    //music
+                    if(code == KeyEvent.VK_A){
+                        if(gp.ui.subState == 0 && gp.sound.volumeScale > 0){
+                            gp.sound.volumeScale--;
+                            gp.sound.checkVolume();
+                            //gp.playSE();
+                        }
+                    }
+                    if(code == KeyEvent.VK_D){
+                        if(gp.ui.subState == 0 && gp.sound.volumeScale < 5){
+                            gp.sound.volumeScale++;
+                            gp.sound.checkVolume();
+                            //gp.playSE();
+                        }
+                    }
                 }
                 if(gp.ui.commandNum == 2){
-                    //SE
+                    //for SE
+                    // if(code == KeyEvent.VK_A){
+                        // if(gp.ui.subState == 0 && gp.se.volumeScale > 0){
+                        //     gp.se.volumeScale--;
+                        //     gp.se.checkVolume();
+                        //     //gp.splaySE();
+                        // }
+                    // }
+                    // if(code == KeyEvent.VK_D){
+                        // if(gp.ui.subState == 0 && gp.se.volumeScale < 5){
+                        //     gp.se.volumeScale++;
+                        //     gp.se.checkVolume();
+                        //     //gp.splaySE();
+                        // }
+                    // }
                 }
                 if(gp.ui.commandNum == 3){
                     System.exit(0);

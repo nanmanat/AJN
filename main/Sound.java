@@ -9,7 +9,7 @@ public class Sound {
     private Clip clip;
     private URL soundURL[] = new URL[30];
     private FloatControl fc;
-    int volumeScale = 3;
+    public int volumeScale = 3;
     float volume;
 
     public Sound(){
@@ -22,7 +22,8 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
-            // fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN); 
+            fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN); 
+            checkVolume();
         } catch (Exception e) {
         }
     }
@@ -37,6 +38,10 @@ public class Sound {
 
     public void stop(){
         clip.stop();
+    }
+
+    public void setVolumeScale(int volumeScale){
+        this.volumeScale = volumeScale;
     }
 
     public void checkVolume(){
