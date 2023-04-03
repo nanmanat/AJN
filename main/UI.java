@@ -11,6 +11,9 @@ public class UI {
     private Font arial_40 , agencyFB;
     public int subState = 0;
     public int commandNum = 0;
+    public String textDialogue = "";
+    public String text;
+    public int story = 0;
     
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -26,13 +29,21 @@ public class UI {
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
         }
-        if(gp.gameState == gp.optionsState){
+        else if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
         }
-        if(gp.gameState == gp.dialogueState){
-            drawDialogueScreen();
+        else if(gp.gameState == gp.dialoguePlayerState){
+            if(gp.keyH.spacePressed == true){
+                text = "PiggyBooBoo";
+                drawDialogueScreen(text);
+                // gp.keyH.spacePressed = false;
+            }
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.playState;
+            }
         }
-
+        
+        
     }
 
     public void drawOptionsScreen(){
@@ -43,7 +54,7 @@ public class UI {
 
         switch (subState) {
             case 0: drawOptionsTop(frameX , frameY); break;
-        
+            //anything
             default:
                 break;
         }
@@ -134,16 +145,19 @@ public class UI {
         String text = "Game Gou Gou";
         int x = getXforCenteredText(text);
         int y = gp.tileSize*2;
+
         //shadow text
         g2.setColor(Color.DARK_GRAY);
         g2.drawString(text, x+5, y+5);
         //main text
         g2.setColor(Color.white);
         g2.drawString(text, x, y);
+
         //player image
         x = (gp.screenWidth/2) - ((gp.tileSize*2)/2);
         y += gp.tileSize*2;
         g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+
         //new game
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
         text = "New Game";
@@ -154,12 +168,14 @@ public class UI {
             g2.drawString(">", x-gp.tileSize  , y);
             commandNum = 0;
         }
+
         //load game
         text = "Load Game";
         x = getXforCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
         if(commandNum==1) g2.drawString(">", x-gp.tileSize  , y);
+
         //Quit
         text = "Quit";
         x = getXforCenteredText(text);
@@ -182,12 +198,26 @@ public class UI {
         g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
     }
 
-    public void drawDialogueScreen(){
+    public void drawDialogueScreen(String text){
         int x = gp.tileSize * 2;
         int y = gp.tileSize / 2; 
         int width = gp.screenWidth - (gp.tileSize*4);
         int height = gp.tileSize * 5;
         drawSubWindow(x, y, width, height);
+
+        x += gp.tileSize;
+        y += gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
+        g2.drawString(text, x, y);
+        // System.out.println(text);
+    }
+
+    public void playerDialogue(String text){
+        int x = gp.tileSize * 3;
+        int y = gp.tileSize / 2;
+        y += gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
+        g2.drawString(text, x, y);
     }
 
     public int getXforCenteredText(String t){
