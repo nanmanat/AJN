@@ -23,7 +23,6 @@ public class TileManager {
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("res/maps/map001.txt");
     }
 
     public void getTileImage() {
@@ -112,5 +111,15 @@ public class TileManager {
                 worldRow ++;
             }
         }
+    }
+
+    public void update(){
+        if(gp.gameState  == gp.dialoguePlayerState){
+                loadMap("res/maps/mapPlayerStory.txt");
+            }
+        else if(gp.gameState == gp.dialogueAJN){
+                loadMap("res/maps/map001.txt");
+        }
+        
     }
 }

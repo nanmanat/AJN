@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
     
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed , enterPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed , enterPressed , spacePressed;
     
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -34,8 +34,11 @@ public class KeyHandler implements KeyListener{
             }
             if(code == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0){
-                    gp.gameState = gp.playState;
+                    gp.gameState = gp.dialoguePlayerState;
                     //music
+                }
+                if(gp.ui.commandNum == 1){
+                    //load
                 }
                 if(gp.ui.commandNum == 2){
                     System.exit(0);
@@ -61,6 +64,28 @@ public class KeyHandler implements KeyListener{
                 gp.gameState = gp.optionsState;
             }
         }
+
+        //dialoguePlayerState
+        if(gp.gameState == gp.dialoguePlayerState){
+            if(code != KeyEvent.VK_SPACE){
+                if(code == KeyEvent.VK_W) {
+                    upPressed = true;
+                }
+                if(code == KeyEvent.VK_A) {
+                    leftPressed = true;
+                }
+                if(code == KeyEvent.VK_S) {
+                    downPressed = true;
+                }
+                if(code == KeyEvent.VK_D) {
+                    rightPressed = true;
+                }
+            }
+            else {
+                spacePressed = true;
+            }
+        }
+
 
         //option
         if(gp.gameState == gp.optionsState){
@@ -89,12 +114,6 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-        //dialogue
-        if(gp.gameState == gp.dialogueState){
-            // if(code == KeyEvent.VK_SPACE){
-
-            // }
-        }
     }
 
     @Override
@@ -117,6 +136,9 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ENTER){
             enterPressed = false;
         }
+        // if(code == KeyEvent.VK_SPACE){
+        //     spacePressed = false;
+        // }
 
     }
 

@@ -34,7 +34,6 @@ public class GamePanel extends JPanel implements Runnable {
     public BufferedImage tempImage;
     public boolean fullScreenOn = false;
 
-
     //Fps
     final int FPS = 60;
 
@@ -44,7 +43,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
-    public final int dialogueState = 3;
+    public final int dialoguePlayerState = 3;
+    public final int dialogueAJN = 4;
     public final int optionsState = 5;
 
     //system
@@ -105,8 +105,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
-        if(gameState == pauseState)
-            System.out.println("pause");
+        tileM.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -117,12 +116,11 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState  == titleState){
             ui.draw(g2);
         }
-        // if(gameState == playState){
-        else{
+        else if (gameState == dialoguePlayerState){
             tileM.draw(g2);
             player.draw(g2);
+            ui.draw(g2);
         }
-        ui.draw(g2);
         g2.dispose();
     }
 

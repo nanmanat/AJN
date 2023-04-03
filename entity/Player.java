@@ -11,11 +11,13 @@ public class Player extends Entity{
     
     GamePanel gp;
     KeyHandler keyH;
+    
 
     public final int screenX;
     public final int screenY;
 
     public Player(GamePanel gp, KeyHandler keyH) {
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
@@ -103,5 +105,16 @@ public class Player extends Entity{
                 break;
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+    }
+
+    //เมธอดอะไรสักอย่างที่จะส่ง text ออกไปได้
+
+    public void setDialogue() {
+        dialogue[0] = "Hello PiggyBooBoo0";
+        dialogue[1] = "Hello PiggyBooBoo1";
+        dialogue[2] = "Hello PiggyBooBoo2";
+        dialogue[3] = "Hello PiggyBooBoo3";
+        dialogue[4] = "Hello PiggyBooBoo4";
+        
     }
 }
