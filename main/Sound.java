@@ -13,8 +13,8 @@ public class Sound {
     float volume;
 
     public Sound(){
-        soundURL[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
-        soundURL[1] = getClass().getResource("/src/res/sound/cursor.wav");
+        soundURL[0] = getClass().getResource("AJN/sound/BlueBoyAdventure.wav");
+        soundURL[1] = getClass().getResource("AJN/res/sound/cursor.wav");
     }
 
     public void setFile(int i){
