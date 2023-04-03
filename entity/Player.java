@@ -3,9 +3,6 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import main.*;
 
 public class Player extends Entity{
@@ -37,29 +34,16 @@ public class Player extends Entity{
     }
 
     public void getPlayerImage() {
-        up1 = setup("boy_up_1");
-        up2 = setup("boy_up_2");
-        down1 = setup("boy_down_1");
-        down2 = setup("boy_down_2");
-        left1 = setup("boy_left_1");
-        left2 = setup("boy_left_2");
-        right1 = setup("boy_right_1");
-        right2 = setup("boy_right_2");
+        up1 = setup("res/player/boy_up_1");
+        up2 = setup("res/player/boy_up_2");
+        down1 = setup("res/player/boy_down_1");
+        down2 = setup("res/player/boy_down_2");
+        left1 = setup("res/player/boy_left_1");
+        left2 = setup("res/player/boy_left_2");
+        right1 = setup("res/player/boy_right_1");
+        right2 = setup("res/player/boy_right_2");
     }
 
-    public BufferedImage setup(String imageName) {
-
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(new FileInputStream("res/player/" + imageName + ".png"));
-            image = uTool.scaledImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
     public void update() {
         if(keyH.downPressed == true || keyH.upPressed == true 
             || keyH.leftPressed == true || keyH.rightPressed == true) {

@@ -11,8 +11,10 @@ public class Main {
         window.setUndecorated(false);
 
         GamePanel gamePanel = new GamePanel();
+
         window.add(gamePanel);
 
+        gamePanel.setupGame();
         window.pack();
 
         window.setLocationRelativeTo(null);
