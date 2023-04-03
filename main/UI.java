@@ -94,7 +94,7 @@ public class UI {
         if(commandNum==3) g2.drawString(">", x-gp.tileSize/2 , y);
 
         //back
-        text = "back";
+        text = "Back";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
         y += gp.tileSize*2;
         g2.drawString(text, x, y);
