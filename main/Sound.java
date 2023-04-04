@@ -14,7 +14,7 @@ public class Sound {
 
     public Sound(){
         soundURL[0] = getClass().getResource("sound/BlueBoyAdventure.wav");
-        soundURL[1] = getClass().getResource("res/sound/cursor.wav");
+        soundURL[1] = getClass().getResource("sound/cursor.wav");
     }
 
     public void setFile(int i){

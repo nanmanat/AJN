@@ -80,7 +80,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         aSetter.setNPC();
         gameState = titleState;
-        //playMusic(0);
+        if(gameState == dialoguePlayerState)
+            playMusic(0);
 
     }
 
