@@ -61,6 +61,9 @@ public class KeyHandler implements KeyListener{
             if(code == KeyEvent.VK_D) {
                 rightPressed = true;
             }
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.dialogueAJN;
+            }
             if(code == KeyEvent.VK_ESCAPE){
                 gp.gameState = gp.optionsState;
             }
@@ -88,6 +91,27 @@ public class KeyHandler implements KeyListener{
             }
         }
 
+        //dialogue AJN
+        else if(gp.gameState == gp.dialogueAJN){
+            if(code == KeyEvent.VK_SPACE){
+                spacePressed = true;
+            }
+            if(code == KeyEvent.VK_ENTER){
+                enterPressed = true;
+            }
+            if(code == KeyEvent.VK_W) {
+                upPressed = true;
+            }
+            if(code == KeyEvent.VK_A) {
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_S) {
+                downPressed = true;
+            }
+            if(code == KeyEvent.VK_D) {
+                rightPressed = true;
+            }
+        }
         //option
         else if(gp.gameState == gp.optionsState){
             if(code == KeyEvent.VK_W) {

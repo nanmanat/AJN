@@ -127,14 +127,14 @@ public class GamePanel extends JPanel implements Runnable {
         }
         else {
             tileM.draw(g2);
-            player.draw(g2);
-            ui.draw(g2);
             //NPC
             for(int i = 0; i < npc.length; i++) {
                 if(npc[i] != null) {
                     npc[i].draw(g2);
                 }
             }
+            player.draw(g2);
+            ui.draw(g2);
         }
         g2.dispose();
     }

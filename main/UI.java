@@ -33,7 +33,7 @@ public class UI {
             drawOptionsScreen();
         }
         else if(gp.gameState == gp.dialoguePlayerState){
-            if(gp.keyH.spacePressed == true){
+            if(gp.keyH.spacePressed == true){ //check map
                 text = "PiggyBooBoo";
                 drawDialogueScreen(text);
                 // gp.keyH.spacePressed = false;
@@ -41,6 +41,20 @@ public class UI {
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.playState;
             }
+        }
+        else if(gp.gameState == gp.dialogueAJN){
+            if(gp.keyH.spacePressed == true){ //check AJN
+                text = "Hi AJN";
+                drawDialogueScreen(text);
+            }
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.playState;
+            }
+        }
+        else if(gp.gameState == gp.playState){
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.dialogueAJN;
+            } 
         }
         
         
