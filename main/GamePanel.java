@@ -118,6 +118,15 @@ public class GamePanel extends JPanel implements Runnable {
         }
         else {
             tileM.draw(g2);
+<<<<<<< Updated upstream
+=======
+            //npc
+            for(int i = 0; i < npc.length; i++) {
+                if(npc[i] != null) {
+                    npc[i].draw(g2);
+                }
+            }
+>>>>>>> Stashed changes
             player.draw(g2);
             ui.draw(g2);
         }

@@ -11,11 +11,11 @@ public class KeyHandler implements KeyListener{
         this.gp = gp;
     }
 
-    public void playState (int code){
-        if(code == KeyEvent.VK_ESCAPE){
-            gp.gameState = gp.optionsState;
-        }
-    }
+    // public void playState (int code){
+    //     if(code == KeyEvent.VK_ESCAPE){
+    //         gp.gameState = gp.optionsState;
+    //     }
+    // }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -26,10 +26,10 @@ public class KeyHandler implements KeyListener{
         int code = e.getKeyCode();
         //title
         if(gp.gameState == gp.titleState){
-            if(code == KeyEvent.VK_W) {
+            if(code == KeyEvent.VK_PAGE_UP) {
                 gp.ui.commandNum--;
             }
-            if(code == KeyEvent.VK_S) {
+            if(code == KeyEvent.VK_PAGE_DOWN) {
                 gp.ui.commandNum++;
             }
             if(code == KeyEvent.VK_ENTER) {
