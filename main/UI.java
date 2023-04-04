@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 public class UI {
     private GamePanel gp;
     private Graphics2D g2;
-    private Font arial_40 , agencyFB;
+    private Font agencyFB;
     public int subState = 0;
     public int commandNum = 0;
     public String textDialogue = "";
@@ -17,7 +17,6 @@ public class UI {
     
     public UI(GamePanel gp) {
         this.gp = gp;
-        arial_40 = new Font("Arial", Font.PLAIN, 25);
         agencyFB = new Font("Calibri" , Font.PLAIN , 25);
         gp.keyH.enterPressed = false;
     }

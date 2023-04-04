@@ -26,10 +26,10 @@ public class KeyHandler implements KeyListener{
         int code = e.getKeyCode();
         //title
         if(gp.gameState == gp.titleState){
-            if(code == KeyEvent.VK_W) {
+            if(code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
             }
-            if(code == KeyEvent.VK_S) {
+            if(code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
             }
             if(code == KeyEvent.VK_ENTER) {
@@ -114,10 +114,10 @@ public class KeyHandler implements KeyListener{
         }
         //option
         else if(gp.gameState == gp.optionsState){
-            if(code == KeyEvent.VK_W) {
+            if(code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
             }
-            if(code == KeyEvent.VK_S) {
+            if(code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
             }
             if(code == KeyEvent.VK_ENTER) {
