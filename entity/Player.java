@@ -119,6 +119,9 @@ public class Player extends Entity{
     }
 
     //เมธอดอะไรสักอย่างที่จะส่ง text ออกไปได้
+    public void speak() {
+        
+    }
 
     public void setDialogue() {
         dialogue[0] = "Hello PiggyBooBoo0";

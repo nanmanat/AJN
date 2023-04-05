@@ -71,21 +71,29 @@ public class KeyHandler implements KeyListener{
 
         //dialoguePlayerState
         else if(gp.gameState == gp.dialoguePlayerState){
-            if(code == KeyEvent.VK_SPACE){
-                spacePressed = true;
+            if(gp.ui.showDialog == false){
+                if(code == KeyEvent.VK_W) {
+                    upPressed = true;
+                }
+                if(code == KeyEvent.VK_A) {
+                    leftPressed = true;
+                }
+                if(code == KeyEvent.VK_S) {
+                    downPressed = true;
+                }
+                if(code == KeyEvent.VK_D) {
+                    rightPressed = true;
+                }
+                if(code == KeyEvent.VK_SPACE){
+                    gp.ui.showDialog = true;
+                }
+            } else {
+                if(code == KeyEvent.VK_SPACE){
+                    // spacePressed = false;
+                    gp.ui.showDialog = false;
+                }
             }
-            if(code == KeyEvent.VK_W) {
-                upPressed = true;
-            }
-            if(code == KeyEvent.VK_A) {
-                leftPressed = true;
-            }
-            if(code == KeyEvent.VK_S) {
-                downPressed = true;
-            }
-            if(code == KeyEvent.VK_D) {
-                rightPressed = true;
-            }
+            // Check the conditions to continue.
             if(code == KeyEvent.VK_ENTER){
                 enterPressed = true;
             }
@@ -93,23 +101,30 @@ public class KeyHandler implements KeyListener{
 
         //dialogue AJN
         else if(gp.gameState == gp.dialogueAJN){
-            if(code == KeyEvent.VK_SPACE){
-                spacePressed = true;
+            if(gp.ui.showDialog == false){
+                if(code == KeyEvent.VK_W) {
+                    upPressed = true;
+                }
+                if(code == KeyEvent.VK_A) {
+                    leftPressed = true;
+                }
+                if(code == KeyEvent.VK_S) {
+                    downPressed = true;
+                }
+                if(code == KeyEvent.VK_D) {
+                    rightPressed = true;
+                }
+                if(code == KeyEvent.VK_SPACE){
+                    gp.ui.showDialog = true;
+                }
+            } else {
+                if(code == KeyEvent.VK_SPACE){
+                    gp.ui.showDialog = false;
+                }
             }
+            // Check the conditions to continue.
             if(code == KeyEvent.VK_ENTER){
                 enterPressed = true;
-            }
-            if(code == KeyEvent.VK_W) {
-                upPressed = true;
-            }
-            if(code == KeyEvent.VK_A) {
-                leftPressed = true;
-            }
-            if(code == KeyEvent.VK_S) {
-                downPressed = true;
-            }
-            if(code == KeyEvent.VK_D) {
-                rightPressed = true;
             }
         }
         //option
@@ -188,9 +203,9 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ENTER){
             enterPressed = false;
         }
-        // if(code == KeyEvent.VK_SPACE){
-        //     spacePressed = false;
-        // }
+        if(code == KeyEvent.VK_SPACE){
+            spacePressed = false;
+        }
 
     }
 

@@ -11,9 +11,10 @@ public class UI {
     private Font agencyFB;
     public int subState = 0;
     public int commandNum = 0;
-    public String textDialogue = "";
+    public String[] textDialogue;
     public String text;
     public int story = 0;
+    public boolean showDialog = false;
     
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -32,17 +33,18 @@ public class UI {
             drawOptionsScreen();
         }
         else if(gp.gameState == gp.dialoguePlayerState){
-            if(gp.keyH.spacePressed == true){ //check map
+            if(showDialog == true){
+                //condition for next text
                 text = "PiggyBooBoo";
                 drawDialogueScreen(text);
-                // gp.keyH.spacePressed = false;
             }
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.playState;
             }
         }
         else if(gp.gameState == gp.dialogueAJN){
-            if(gp.keyH.spacePressed == true){ //check AJN
+            if(showDialog == true){
+                //condition for next text
                 text = "Hi AJN";
                 drawDialogueScreen(text);
             }
@@ -260,4 +262,5 @@ public class UI {
         int x = gp.screenWidth/2 - length/2;
         return x;
     }
+
 }
