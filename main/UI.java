@@ -4,11 +4,16 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import object.OBJ_Heart;
+import object.SuperObject;
 
 public class UI {
     private GamePanel gp;
     private Graphics2D g2;
     private Font agencyFB;
+    private BufferedImage heart_full, heart_half, heart_blank;
     public int subState = 0;
     public int commandNum = 0;
     public String[] textDialogue;
@@ -20,6 +25,12 @@ public class UI {
         this.gp = gp;
         agencyFB = new Font("Calibri" , Font.PLAIN , 25);
         gp.keyH.enterPressed = false;
+
+        //CREATE HUB OBJ
+        SuperObject heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
     }
 
     public void draw(Graphics2D g2){
@@ -53,12 +64,38 @@ public class UI {
             }
         }
         else if(gp.gameState == gp.playState){
+            drawPlayerLife();
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.dialogueAJN;
             } 
         }
-        
-        
+    }
+
+    public void drawPlayerLife() {
+
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
+        //DRAW MAX LIFE
+        while (i < gp.player.maxLife/2) {
+            g2.drawImage(heart_blank, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+        //RESET
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+        //DRAW CURRENT LIFE
+        while (i < gp.player.life) {
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if(i<gp.player.life) {
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
     }
 
     public void drawOptionsScreen(){
