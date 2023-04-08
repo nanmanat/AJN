@@ -72,7 +72,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame(){
         gameState = titleState;
+<<<<<<< Updated upstream
         playMusic(0);
+=======
+
+>>>>>>> Stashed changes
     }
 
     @Override
