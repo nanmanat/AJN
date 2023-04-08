@@ -20,6 +20,7 @@ public class UI {
     public String text;
     public int story = 0;
     public boolean showDialog = false;
+    public String currentDialogue;
     
     public UI(GamePanel gp) {
         this.gp = gp;

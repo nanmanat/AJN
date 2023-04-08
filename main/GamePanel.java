@@ -51,10 +51,11 @@ public class GamePanel extends JPanel implements Runnable {
     //system
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
-    public Thread gameThread;
     public UI ui = new UI(this);
     public Sound sound = new Sound();
     public AssetSetter aSetter = new AssetSetter(this);
+    public EventHandler eHandler = new EventHandler(this);
+    public Thread gameThread;
 
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
@@ -109,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println(player.life);
 
         }
     }
