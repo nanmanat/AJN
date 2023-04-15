@@ -24,7 +24,7 @@ public class EventHandler {
     public void checkEvent() {
 
         if(hit(27,16,"right") == true) {
-            spike(0);
+            spike(gp.dialogueSpike);
         }
 
     }
