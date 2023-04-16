@@ -70,7 +70,7 @@ public class UI {
                 gp.gameState = gp.dialogueAJN;
             } 
         }
-        else if(gp.gameState == gp.dialogueSpike){
+        else if(gp.gameState == gp.dialoguePopup){
             drawDialogueScreen(currentDialogue);
         }
     }

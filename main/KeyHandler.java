@@ -181,8 +181,8 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-        //dialoge spike
-        else if(gp.gameState == gp.dialogueSpike){
+        //dialoge popUp
+        else if(gp.gameState == gp.dialoguePopup){
             if(code == KeyEvent.VK_W) {
                 upPressed = true;
                 gp.gameState = gp.playState;
