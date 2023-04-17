@@ -24,7 +24,7 @@ public class EventHandler {
     public void checkEvent() {
 
         if(hit(27,16,"right") == true) {
-            spike(0);
+            spike(gp.dialoguePopup);
         }
 
     }
@@ -52,7 +52,7 @@ public class EventHandler {
 
     public void spike(int gameStates) {
         gp.gameState = gameStates;
-        gp.ui.currentDialogue = "You got hit by a spike!";
+        gp.ui.currentDialogue = "You got hit by a balls!";
         gp.player.life -= 1;
     }
 

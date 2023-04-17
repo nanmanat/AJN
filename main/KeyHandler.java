@@ -166,6 +166,26 @@ public class KeyHandler implements KeyListener{
             }
         }
 
+        //dialoge popUp
+        else if(gp.gameState == gp.dialoguePopup){
+            if(code == KeyEvent.VK_W) {
+                upPressed = true;
+                gp.gameState = gp.playState;
+            }
+            if(code == KeyEvent.VK_A) {
+                leftPressed = true;
+                gp.gameState = gp.playState;
+            }
+            if(code == KeyEvent.VK_S) {
+                downPressed = true;
+                gp.gameState = gp.playState;
+            }
+            if(code == KeyEvent.VK_D) {
+                rightPressed = true;
+                gp.gameState = gp.playState;
+            }
+        }
+
     }
 
     @Override

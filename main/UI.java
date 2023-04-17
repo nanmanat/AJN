@@ -49,7 +49,7 @@ public class UI {
                 //condition for next text
                 text = "PiggyBooBoo";
                 drawDialogueScreen(text);
-            }
+            } 
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.playState;
             }
@@ -69,6 +69,9 @@ public class UI {
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.dialogueAJN;
             } 
+        }
+        else if(gp.gameState == gp.dialoguePopup){
+            drawDialogueScreen(currentDialogue);
         }
     }
 
@@ -275,7 +278,7 @@ public class UI {
 
     public void drawDialogueScreen(String text){
         int x = gp.tileSize * 2;
-        int y = gp.tileSize / 2; 
+        int y = gp.tileSize * 6; 
         int width = gp.screenWidth - (gp.tileSize*4);
         int height = gp.tileSize * 5;
         drawSubWindow(x, y, width, height);
@@ -284,7 +287,6 @@ public class UI {
         y += gp.tileSize;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
         g2.drawString(text, x, y);
-        // System.out.println(text);
     }
 
     public void playerDialogue(String text){
