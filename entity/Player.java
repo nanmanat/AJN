@@ -41,14 +41,14 @@ public class Player extends Entity{
     }
 
     public void getPlayerImage() {
-        up1 = setup("res/player/boy_up_1");
-        up2 = setup("res/player/boy_up_2");
-        down1 = setup("res/player/16Jae");
-        down2 = setup("res/player/mon-1");
-        left1 = setup("res/player/boy_left_1");
-        left2 = setup("res/player/boy_left_2");
-        right1 = setup("res/player/boy_right_1");
-        right2 = setup("res/player/boy_right_2");
+        up1 = setup("res/player/16Jae-11");
+        up2 = setup("res/player/16Jae-12");
+        down1 = setup("res/player/16Jae-2");
+        down2 = setup("res/player/16Jae-3");
+        left1 = setup("res/player/16Jae-8");
+        left2 = setup("res/player/16Jae-9");
+        right1 = setup("res/player/16Jae-5");
+        right2 = setup("res/player/16Jae-6");
     }
 
     public void update() {
