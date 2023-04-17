@@ -12,6 +12,7 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
+    int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -21,6 +22,8 @@ public class Player extends Entity{
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
         
         solidArea = new Rectangle(8, 16, 32, 32);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
@@ -40,8 +43,8 @@ public class Player extends Entity{
     public void getPlayerImage() {
         up1 = setup("res/player/boy_up_1");
         up2 = setup("res/player/boy_up_2");
-        down1 = setup("res/player/boy_down_1");
-        down2 = setup("res/player/boy_down_2");
+        down1 = setup("res/player/16Jae");
+        down2 = setup("res/player/mon-1");
         left1 = setup("res/player/boy_left_1");
         left2 = setup("res/player/boy_left_2");
         right1 = setup("res/player/boy_right_1");
@@ -49,24 +52,25 @@ public class Player extends Entity{
     }
 
     public void update() {
-        if(keyH.downPressed == true || keyH.upPressed == true 
-            || keyH.leftPressed == true || keyH.rightPressed == true) {
-            if(keyH.upPressed == true) {
-                direction = "up"; 
-            }
-            else if(keyH.downPressed == true) {
+        if (keyH.downPressed == true || keyH.upPressed == true
+                || keyH.leftPressed == true || keyH.rightPressed == true) {
+            if (keyH.upPressed == true) {
+                direction = "up";
+            } else if (keyH.downPressed == true) {
                 direction = "down";
-            }
-            else if(keyH.leftPressed == true) {
+            } else if (keyH.leftPressed == true) {
                 direction = "left";
-            }
-            else if (keyH.rightPressed == true) {
+            } else if (keyH.rightPressed == true) {
                 direction = "right";
             }
-            
+
             // check tile collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
+
+            // check object collision
+            int objIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objIndex);
 
             //check event
             gp.eHandler.checkEvent();
@@ -88,16 +92,35 @@ public class Player extends Entity{
                         break;
                 }
             }
-    
+
             spriteCounter++;
             if (spriteCounter > 12) {
-                if (spriteNum == 1) spriteNum = 2;
-                else if (spriteNum == 2) spriteNum = 1;
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 1;
                 spriteCounter = 0;
             }
         }
-        
+
     }
+    
+    public void pickUpObject(int i) {
+
+        if (i != 999) {
+            
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "Key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    System.out.println("Key: " + hasKey);
+                    break;
+            }
+        }
+    }
+
     public void draw(Graphics2D g2) {
         // g2.setColor(Color.white);
         // g2.fillRect(x, y, gp.tileSize, gp.tileSize);
@@ -126,9 +149,6 @@ public class Player extends Entity{
     }
 
     //เมธอดอะไรสักอย่างที่จะส่ง text ออกไปได้
-    public void speak() {
-        
-    }
 
     public void setDialogue() {
         dialogue[0] = "Hello PiggyBooBoo0";
