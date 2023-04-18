@@ -28,7 +28,6 @@ public class TileManager {
 
     public void getTileImage() {
 
-<<<<<<< HEAD
         setup(0, "Piskel-4", false);
         setup(1, "Piskel-3", false);
         setup(2, "Piskel-29", true);
@@ -71,14 +70,6 @@ public class TileManager {
         setup(39, "Piskel-40", false);
         setup(40, "Piskel-41", false);
         setup(41, "Piskel-42", false);
-=======
-        setup(0, "grass", false);
-        setup(1, "wall", true);
-        setup(2, "water", true);
-        setup(3, "earth", false);
-        setup(4, "tree", true);
-        setup(5, "sand", false);
->>>>>>> parent of f3e14a5 (update player & map)
 
     }
     public void setup(int index, String imagePath, boolean collision) {
