@@ -7,7 +7,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -15,7 +17,6 @@ public class GamePanel extends JPanel implements Runnable {
     //SCREEN SETTINGS
     final int originalTileSize = 16; // 16x16 tile size
     final int scale = 3;
-
     public final int tileSize = originalTileSize * scale; // 48x48 tile size
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
@@ -23,8 +24,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixel height
 
     //WORLD SETTINGS
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
+    public final int maxWorldCol = 60;
+    public final int maxWorldRow = 29;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
@@ -34,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
     public BufferedImage tempImage;
     public boolean fullScreenOn = false;
 
-    //Fps
+    //FPS
     final int FPS = 60;
 
     //game state
@@ -46,15 +47,22 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialoguePlayerState = 3;
     public final int dialogueAJN = 4;
     public final int optionsState = 5;
+    public final int dialoguePopup = 6;
 
     //system
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
-    public Thread gameThread;
     public UI ui = new UI(this);
-    public Player player = new Player(this, keyH);
     public Sound sound = new Sound();
-    // public SuperObject obj[] = new SuperObject[10];
+    public AssetSetter aSetter = new AssetSetter(this);
+    public EventHandler eHandler = new EventHandler(this);
+    public Thread gameThread;
+
+    public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10];
+    public Entity npc[] = new Entity[10];
+
+    public CollisionChecker cChecker = new CollisionChecker(this);
     
     public GamePanel() {
         // this.panel = panel;
@@ -71,12 +79,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame(){
-        gameState = titleState;
-<<<<<<< Updated upstream
-        playMusic(0);
-=======
 
->>>>>>> Stashed changes
+        aSetter.setNPC();
+        aSetter.setObject();
+        gameState = titleState;
+        if(gameState == dialoguePlayerState)
+            playMusic(0);
+
     }
 
     @Override
@@ -103,6 +112,7 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            // System.out.println(player.life);
 
         }
     }
@@ -122,15 +132,17 @@ public class GamePanel extends JPanel implements Runnable {
         }
         else {
             tileM.draw(g2);
-<<<<<<< Updated upstream
-=======
-            //npc
-            for(int i = 0; i < npc.length; i++) {
-                if(npc[i] != null) {
+            //NPC
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
                     npc[i].draw(g2);
                 }
             }
->>>>>>> Stashed changes
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
+            }
             player.draw(g2);
             ui.draw(g2);
         }

@@ -1,28 +1,29 @@
 package entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import main.*;
 
 public class Player extends Entity{
     
-    GamePanel gp;
     KeyHandler keyH;
     
 
     public final int screenX;
     public final int screenY;
+    int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
-        this.gp = gp;
         this.keyH = keyH;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
-        screenY = gp.screenHeight/2 - (gp.tileSize/2);
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+        
+        solidArea = new Rectangle(8, 16, 32, 32);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
@@ -33,53 +34,93 @@ public class Player extends Entity{
         worldY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
+
+        //player status
+        maxLife = 6;
+        life = maxLife;
     }
 
     public void getPlayerImage() {
-        try {
-            up1 = ImageIO.read(new FileInputStream("res/player/boy_up_1.png"));
-            up2 = ImageIO.read(new FileInputStream("res/player/boy_up_2.png"));
-            down1 = ImageIO.read(new FileInputStream("res/player/boy_down_1.png"));
-            down2 = ImageIO.read(new FileInputStream("res/player/boy_down_2.png"));
-            left1 = ImageIO.read(new FileInputStream("res/player/boy_left_1.png"));
-            left2 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
-            right1 = ImageIO.read(new FileInputStream("res/player/boy_right_1.png"));
-            right2 = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
-
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        up1 = setup("res/player/16Jae-11");
+        up2 = setup("res/player/16Jae-12");
+        down1 = setup("res/player/16Jae-2");
+        down2 = setup("res/player/16Jae-3");
+        left1 = setup("res/player/16Jae-8");
+        left2 = setup("res/player/16Jae-9");
+        right1 = setup("res/player/16Jae-5");
+        right2 = setup("res/player/16Jae-6");
     }
 
     public void update() {
-        if(keyH.downPressed == true || keyH.upPressed == true 
-            || keyH.leftPressed == true || keyH.rightPressed == true) {
-            if(keyH.upPressed == true) {
+        if (keyH.downPressed == true || keyH.upPressed == true
+                || keyH.leftPressed == true || keyH.rightPressed == true) {
+            if (keyH.upPressed == true) {
                 direction = "up";
-               worldY -= speed;
-            }
-            else if(keyH.downPressed == true) {
+            } else if (keyH.downPressed == true) {
                 direction = "down";
-               worldY += speed;
-            }
-            else if(keyH.leftPressed == true) {
+            } else if (keyH.leftPressed == true) {
                 direction = "left";
-                worldX -= speed;
-            }
-            else if(keyH.rightPressed == true) {
+            } else if (keyH.rightPressed == true) {
                 direction = "right";
-                worldX += speed;
             }
-    
+
+            // check tile collision
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
+            // check object collision
+            int objIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objIndex);
+
+            //check event
+            gp.eHandler.checkEvent();
+
+            // if collision is false, player can move
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+
             spriteCounter++;
             if (spriteCounter > 12) {
-                if (spriteNum == 1) spriteNum = 2;
-                else if (spriteNum == 2) spriteNum = 1;
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 1;
                 spriteCounter = 0;
             }
         }
-        
+
     }
+    
+    public void pickUpObject(int i) {
+
+        if (i != 999) {
+            
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "Key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    System.out.println("Key: " + hasKey);
+                    break;
+            }
+        }
+    }
+
     public void draw(Graphics2D g2) {
         // g2.setColor(Color.white);
         // g2.fillRect(x, y, gp.tileSize, gp.tileSize);
@@ -104,7 +145,7 @@ public class Player extends Entity{
                 else if (spriteNum == 2) image = right2;
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY,null);
     }
 
     //เมธอดอะไรสักอย่างที่จะส่ง text ออกไปได้

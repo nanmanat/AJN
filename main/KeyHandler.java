@@ -26,11 +26,11 @@ public class KeyHandler implements KeyListener{
         int code = e.getKeyCode();
         //title
         if(gp.gameState == gp.titleState){
-            if(code == KeyEvent.VK_W) {
+            if(code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 gp.playSE(1);
             }
-            if(code == KeyEvent.VK_S) {
+            if(code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
                 gp.playSE(1);
             }
@@ -62,6 +62,9 @@ public class KeyHandler implements KeyListener{
             if(code == KeyEvent.VK_D) {
                 rightPressed = true;
             }
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.dialogueAJN;
+            }
             if(code == KeyEvent.VK_ESCAPE){
                 gp.gameState = gp.optionsState;
             }
@@ -89,12 +92,33 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-        //option
-        else if(gp.gameState == gp.optionsState){
+        //dialogue AJN
+        else if(gp.gameState == gp.dialogueAJN){
+            if(code == KeyEvent.VK_SPACE){
+                spacePressed = true;
+            }
+            if(code == KeyEvent.VK_ENTER){
+                enterPressed = true;
+            }
             if(code == KeyEvent.VK_W) {
-                gp.ui.commandNum--;
+                upPressed = true;
+            }
+            if(code == KeyEvent.VK_A) {
+                leftPressed = true;
             }
             if(code == KeyEvent.VK_S) {
+                downPressed = true;
+            }
+            if(code == KeyEvent.VK_D) {
+                rightPressed = true;
+            }
+        }
+        //option
+        else if(gp.gameState == gp.optionsState){
+            if(code == KeyEvent.VK_UP) {
+                gp.ui.commandNum--;
+            }
+            if(code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
             }
             if(code == KeyEvent.VK_ENTER) {
@@ -140,6 +164,26 @@ public class KeyHandler implements KeyListener{
                 if(gp.ui.commandNum == 4){
                     gp.gameState = gp.playState;
                 }
+            }
+        }
+
+        //dialoge popUp
+        else if(gp.gameState == gp.dialoguePopup){
+            if(code == KeyEvent.VK_W) {
+                upPressed = true;
+                gp.gameState = gp.playState;
+            }
+            if(code == KeyEvent.VK_A) {
+                leftPressed = true;
+                gp.gameState = gp.playState;
+            }
+            if(code == KeyEvent.VK_S) {
+                downPressed = true;
+                gp.gameState = gp.playState;
+            }
+            if(code == KeyEvent.VK_D) {
+                rightPressed = true;
+                gp.gameState = gp.playState;
             }
         }
 

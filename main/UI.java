@@ -4,22 +4,34 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import object.OBJ_Heart;
+import object.SuperObject;
 
 public class UI {
     private GamePanel gp;
     private Graphics2D g2;
-    private Font arial_40 , agencyFB;
+    private Font agencyFB;
+    private BufferedImage heart_full, heart_half, heart_blank;
     public int subState = 0;
     public int commandNum = 0;
-    public String textDialogue = "";
+    public String[] textDialogue;
     public String text;
     public int story = 0;
+    public boolean showDialog = false;
+    public String currentDialogue;
     
     public UI(GamePanel gp) {
         this.gp = gp;
-        arial_40 = new Font("Arial", Font.PLAIN, 25);
         agencyFB = new Font("Calibri" , Font.PLAIN , 25);
         gp.keyH.enterPressed = false;
+
+        //CREATE HUB OBJ
+        SuperObject heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
     }
 
     public void draw(Graphics2D g2){
@@ -33,17 +45,61 @@ public class UI {
             drawOptionsScreen();
         }
         else if(gp.gameState == gp.dialoguePlayerState){
-            if(gp.keyH.spacePressed == true){
+            if(showDialog == true){
+                //condition for next text
                 text = "PiggyBooBoo";
                 drawDialogueScreen(text);
-                // gp.keyH.spacePressed = false;
+            } 
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.playState;
+            }
+        }
+        else if(gp.gameState == gp.dialogueAJN){
+            if(showDialog == true){
+                //condition for next text
+                text = "Hi AJN";
+                drawDialogueScreen(text);
             }
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.playState;
             }
         }
-        
-        
+        else if(gp.gameState == gp.playState){
+            drawPlayerLife();
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.dialogueAJN;
+            } 
+        }
+        else if(gp.gameState == gp.dialoguePopup){
+            drawDialogueScreen(currentDialogue);
+        }
+    }
+
+    public void drawPlayerLife() {
+
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
+        //DRAW MAX LIFE
+        while (i < gp.player.maxLife/2) {
+            g2.drawImage(heart_blank, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+        //RESET
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+        //DRAW CURRENT LIFE
+        while (i < gp.player.life) {
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if(i<gp.player.life) {
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
     }
 
     public void drawOptionsScreen(){
@@ -222,7 +278,7 @@ public class UI {
 
     public void drawDialogueScreen(String text){
         int x = gp.tileSize * 2;
-        int y = gp.tileSize / 2; 
+        int y = gp.tileSize * 6; 
         int width = gp.screenWidth - (gp.tileSize*4);
         int height = gp.tileSize * 5;
         drawSubWindow(x, y, width, height);
@@ -231,7 +287,6 @@ public class UI {
         y += gp.tileSize;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
         g2.drawString(text, x, y);
-        // System.out.println(text);
     }
 
     public void playerDialogue(String text){
@@ -247,4 +302,5 @@ public class UI {
         int x = gp.screenWidth/2 - length/2;
         return x;
     }
+
 }
