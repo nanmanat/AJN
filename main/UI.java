@@ -16,9 +16,7 @@ public class UI {
     private BufferedImage heart_full, heart_half, heart_blank;
     public int subState = 0;
     public int commandNum = 0;
-    public String[] textDialogue;
     public String text;
-    public int story = 0;
     public boolean showDialog = false;
     public String currentDialogue;
     
@@ -37,7 +35,6 @@ public class UI {
     public void draw(Graphics2D g2){
         this.g2 = g2;
         g2.setFont(agencyFB);
-        // g2.drawImage(settingImage, gp.tileSize/2 , gp.tileSize/2, gp.tileSize , gp.tileSize , null);
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
         }
@@ -104,7 +101,7 @@ public class UI {
 
     public void drawOptionsScreen(){
         //sub window
-        int frameX = gp.tileSize*4;
+        int frameX = gp.tileSize*6;
         int frameY = gp.tileSize;
         drawSubWindow(frameX ,frameY ,gp.tileSize*8,gp.tileSize*10);
 
@@ -115,9 +112,9 @@ public class UI {
         }   
     }
 
-    public void optionFullScreenNotification(int framex , int frameY){
+    public void optionFullScreenNotification(int frameX , int frameY){
         //notification
-        int textX = framex + gp.tileSize;
+        int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize*3;
         text = "The change will take \neffect after restarting\nthe game.";
         for(String line: text.split("\n")){
@@ -289,13 +286,13 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    public void playerDialogue(String text){
-        int x = gp.tileSize * 3;
-        int y = gp.tileSize / 2;
-        y += gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
-        g2.drawString(text, x, y);
-    }
+    // public void playerDialogue(String text){
+    //     int x = gp.tileSize * 3;
+    //     int y = gp.tileSize / 2;
+    //     y += gp.tileSize;
+    //     g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
+    //     g2.drawString(text, x, y);
+    // }
 
     public int getXforCenteredText(String t){
         int length = (int) g2.getFontMetrics().getStringBounds(t, g2).getWidth();
