@@ -274,7 +274,6 @@ public class UI {
             commandNum = 1;
         }
 
-
     }
 
     public void drawTitleScreen(){
