@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -7,7 +8,7 @@ import main.*;
 
 public class Player extends Entity{
     
-    KeyHandler keyH;
+    public KeyHandler keyH;
     
 
     public final int screenX;
@@ -72,6 +73,10 @@ public class Player extends Entity{
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+            // check monster collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             //check event
             gp.eHandler.checkEvent();
 
@@ -103,12 +108,20 @@ public class Player extends Entity{
             }
         }
 
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
+
     }
     
     public void pickUpObject(int i) {
 
         if (i != 999) {
-            
+
             String objectName = gp.obj[i].name;
 
             switch (objectName) {
@@ -120,6 +133,17 @@ public class Player extends Entity{
             }
         }
     }
+    
+    public void contactMonster(int i) {
+        if (i != 999) {
+            if (invincible == false)
+            {
+                life -= 1;
+                invincible = true;
+            }
+
+        }
+    }
 
     public void draw(Graphics2D g2) {
         // g2.setColor(Color.white);
@@ -127,25 +151,40 @@ public class Player extends Entity{
 
         BufferedImage image = null;
 
-        switch(direction) {
+        switch (direction) {
             case "up":
-                if (spriteNum == 1) image = up1;
-                else if (spriteNum == 2) image = up2;
+                if (spriteNum == 1)
+                    image = up1;
+                else if (spriteNum == 2)
+                    image = up2;
                 break;
             case "down":
-                if (spriteNum == 1) image = down1;
-                else if (spriteNum == 2) image = down2;
+                if (spriteNum == 1)
+                    image = down1;
+                else if (spriteNum == 2)
+                    image = down2;
                 break;
             case "left":
-                if (spriteNum == 1) image = left1;
-                else if (spriteNum == 2) image = left2;
+                if (spriteNum == 1)
+                    image = left1;
+                else if (spriteNum == 2)
+                    image = left2;
                 break;
             case "right":
-                if (spriteNum == 1) image = right1;
-                else if (spriteNum == 2) image = right2;
+                if (spriteNum == 1)
+                    image = right1;
+                else if (spriteNum == 2)
+                    image = right2;
                 break;
         }
-        g2.drawImage(image, screenX, screenY,null);
+        if (invincible == true) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+        g2.drawImage(image, screenX, screenY, null);
+        
+        //reset alpha
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        
     }
 
     //เมธอดอะไรสักอย่างที่จะส่ง text ออกไปได้

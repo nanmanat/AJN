@@ -18,11 +18,16 @@ public class Entity {
 
     public BufferedImage up1, up2, down1 ,down2, left1, left2, right1, right2;
     public String direction;
+    public String name;
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+    public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
+    public int type; // 0 = player, 1 = npc, 2 = monster
 
     public String dialogue[] = new String[20];
 
@@ -35,7 +40,50 @@ public class Entity {
     }
 
     public void setAction() { }
-    public void update() { }
+
+    public void update() {
+        setAction();
+
+        collisionOn = false;
+        gp.cChecker.checkTile(this);
+        gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
+        if (this.type == 2 && contactPlayer == true) {
+            if (gp.player.invincible == false) {
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
+
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+            }
+        }
+
+        spriteCounter++;
+        if (spriteCounter > 12) {
+            if (spriteNum == 1)
+                spriteNum = 2;
+            else if (spriteNum == 2)
+                spriteNum = 1;
+            spriteCounter = 0;
+        }
+    }
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;

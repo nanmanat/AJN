@@ -24,6 +24,7 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
+        // System.out.println(gp.gameState);
         //title
         if(gp.gameState == gp.titleState){
             if(code == KeyEvent.VK_UP) {
@@ -168,22 +169,22 @@ public class KeyHandler implements KeyListener{
 
         //dialoge popUp
         else if(gp.gameState == gp.dialoguePopup){
-            if(code == KeyEvent.VK_W) {
-                upPressed = true;
+            if(code == KeyEvent.VK_ENTER) {
+                // upPressed = true;
                 gp.gameState = gp.playState;
             }
-            if(code == KeyEvent.VK_A) {
-                leftPressed = true;
-                gp.gameState = gp.playState;
-            }
-            if(code == KeyEvent.VK_S) {
-                downPressed = true;
-                gp.gameState = gp.playState;
-            }
-            if(code == KeyEvent.VK_D) {
-                rightPressed = true;
-                gp.gameState = gp.playState;
-            }
+            // if(code == KeyEvent.VK_A) {
+            //     leftPressed = true;
+            //     gp.gameState = gp.playState;
+            // }
+            // if(code == KeyEvent.VK_S) {
+            //     downPressed = true;
+            //     gp.gameState = gp.playState;
+            // }
+            // if(code == KeyEvent.VK_D) {
+            //     rightPressed = true;
+            //     gp.gameState = gp.playState;
+            // }
         }
 
     }
