@@ -95,7 +95,6 @@ public class GamePanel extends JPanel implements Runnable {
             playMusic(0);
         tempScreen = new BufferedImage( screenWidth , screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
-        // setFullScreen();
 
     }
 
@@ -108,9 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
             //1.Update: update information such as character position
             update();
             //2.Draw: draw the screen with updated info
-            // repaint();
-            drawToTempScreen(); //draw everything to the buffered image
-            drawToScreen(); //draw the buffered image to the screen
+            repaint();
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime/1000000;
@@ -142,24 +139,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
     
-    public void setFullScreen(){
-        //get local screen device
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        gd.setFullScreenWindow(Main.window);
-
-        //get full screen width and height
-        screenWidth2 = Main.window.getWidth();
-        screenHeight2 = Main.window.getHeight();
-    }
-
-    public void drawToScreen(){
-        Graphics g = getGraphics();
-        g.drawImage(tempScreen, 0, 0, screenWidth2 , screenHeight2 , null);
-        g.dispose();
-    }
-
-    public void drawToTempScreen(){
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
         //title screen
         if(gameState  == titleState){
             ui.draw(g2);
@@ -209,6 +191,7 @@ public class GamePanel extends JPanel implements Runnable {
             entityList.clear();
             
             ui.draw(g2);
+            g2.dispose();
         }
     }
 
