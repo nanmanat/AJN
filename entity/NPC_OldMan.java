@@ -24,5 +24,18 @@ public class NPC_OldMan extends Entity {
         right2 = setup("res/npc/oldman_right_2");
     }
 
+    @Override
+    public void setDialogue() {
+        dialogue[0] = "Hello PiggyBooBoo";
+        dialogue[1] = "Egy Chop Pen Sa-Goy";
+        dialogue[2] = "Pai Gub Pu Boi Pu Pa Pai Skrt!";
+    }
+
+    @Override
+    public void speak() {
+        // super.speak();
+        gp.ui.currentDialogue = dialogue[dialogueIndex];
+        dialogueIndex++;
+    }
 
 }   
