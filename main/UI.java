@@ -36,7 +36,7 @@ public class UI {
         this.g2 = g2;
         g2.setFont(agencyFB);
         if(gp.gameState == gp.titleState){
-            drawBlackJack();
+            drawTitleScreen();
         }
         else if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
