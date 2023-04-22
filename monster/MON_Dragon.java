@@ -6,9 +6,12 @@ import entity.Entity;
 import main.GamePanel;
 
 public class MON_Dragon extends Entity {
+    GamePanel gp;
 
     public MON_Dragon(GamePanel gp) {
         super(gp);
+
+        this.gp = gp;
 
         type = 2;
         name = "Dragon";
@@ -23,14 +26,15 @@ public class MON_Dragon extends Entity {
     }
     
     public void getImage() {
-        up1 = setup("res/monster/mon_1");
-        up2 = setup("res/monster/mon_1");
-        down1 = setup("res/monster/mon_1");
-        down2 = setup("res/monster/mon_1");
-        left1 = setup("res/monster/mon_1");
-        left2 = setup("res/monster/mon_1");
-        right1 = setup("res/monster/mon_1");
-        right2 = setup("res/monster/mon_1");
+        int i = 2;
+        up1 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        up2 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        down1 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        down2 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        left1 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        left2 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        right1 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
+        right2 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
     }
 
     public void setAction() {
@@ -58,5 +62,6 @@ public class MON_Dragon extends Entity {
 
         
     }
+    
     
 }

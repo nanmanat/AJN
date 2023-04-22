@@ -1,22 +1,17 @@
 package object;
 
-import java.io.FileInputStream;
-import javax.imageio.ImageIO;
-
+import entity.Entity;
 import main.GamePanel;
 
 //ไม่ใช้ละ
-public class OBJ_Setting extends SuperObject{
+public class OBJ_Setting extends Entity{
     
-    public OBJ_Setting(GamePanel gp){
+    public OBJ_Setting(GamePanel gp) {
+        super(gp);
         worldX = gp.tileSize/2;
         worldY = gp.tileSize/2;
         name = "setting";
-        try {
-            image = ImageIO.read(new FileInputStream("src/res/objects/setting.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        image = setup("/res/objects/setting", gp.tileSize, gp.tileSize);
     }
 
 }

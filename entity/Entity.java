@@ -3,7 +3,6 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -17,8 +16,7 @@ public class Entity {
     public int speed;
 
     public BufferedImage up1, up2, down1 ,down2, left1, left2, right1, right2;
-    public String direction;
-    public String name;
+    public String direction = "down";
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -28,6 +26,9 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter = 0;
     public int type; // 0 = player, 1 = npc, 2 = monster
+    public BufferedImage image, image2, image3;
+    public String name;
+    public boolean collision = false;
 
     public int dialogueIndex = 0;
     public String dialogue[] = new String[20];
@@ -118,14 +119,14 @@ public class Entity {
             }
     }
 
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage setup(String imagePath, int width, int height) {
 
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(new FileInputStream(imagePath + ".png"));
-            image = uTool.scaledImage(image, gp.tileSize, gp.tileSize);
+            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = uTool.scaledImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }

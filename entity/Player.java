@@ -42,14 +42,14 @@ public class Player extends Entity{
     }
 
     public void getPlayerImage() {
-        up1 = setup("res/player/16Jae-11");
-        up2 = setup("res/player/16Jae-12");
-        down1 = setup("res/player/16Jae-2");
-        down2 = setup("res/player/16Jae-3");
-        left1 = setup("res/player/16Jae-8");
-        left2 = setup("res/player/16Jae-9");
-        right1 = setup("res/player/16Jae-5");
-        right2 = setup("res/player/16Jae-6");
+        up1 = setup("/res/player/16Jae-11", gp.tileSize, gp.tileSize);
+        up2 = setup("/res/player/16Jae-12", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/player/16Jae-2", gp.tileSize, gp.tileSize);
+        down2 = setup("/res/player/16Jae-3", gp.tileSize, gp.tileSize);
+        left1 = setup("/res/player/16Jae-8", gp.tileSize, gp.tileSize);
+        left2 = setup("/res/player/16Jae-9", gp.tileSize, gp.tileSize);
+        right1 = setup("/res/player/16Jae-5", gp.tileSize, gp.tileSize);
+        right2 = setup("/res/player/16Jae-6", gp.tileSize, gp.tileSize);
     }
 
     public void update() {
