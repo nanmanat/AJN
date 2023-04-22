@@ -16,11 +16,15 @@ public class BlackJack {
     } 
     
     public void addBotCard() {
-        botList.add(deckList.get(randCard()));
+        int index = randCard();
+        botList.add(deckList.get(index));
+        deckList.remove(index);
     }
     
     public void addUserCard() {
-        userList.add(deckList.get(randCard()));
+        int index = randCard();
+        userList.add(deckList.get(index));
+        deckList.remove(index);
     }
     
 
@@ -39,18 +43,16 @@ public class BlackJack {
     public int randCard() {
         Random rand = new Random();
         int tmp = rand.nextInt(deckList.size());
-        index = deckList.get(tmp);
-        deckList.remove(tmp);
-        return index;
+        return tmp;
     }    
 
     public static void main(String[] args) {
         BlackJack bj = new BlackJack();
-        for (int j = 0; j < 1; j++) {
-            System.out.println(bj.getDeckCard());
+        for (int j = 0; j < 12; j++) {
             bj.addBotCard();
             System.out.println(bj.getBotCard());
-            System.out.println(bj.getDeckCard());
+            bj.addUserCard();
+            System.out.println(bj.getUserCard());
             System.out.println();
         }
     }
