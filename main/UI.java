@@ -39,7 +39,7 @@ public class UI {
         g2.setFont(agencyFB);
         // g2.drawImage(settingImage, gp.tileSize/2 , gp.tileSize/2, gp.tileSize , gp.tileSize , null);
         if(gp.gameState == gp.titleState){
-            drawTitleScreen();
+            drawBlackJack();
         }
         else if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
@@ -217,6 +217,69 @@ public class UI {
 
     }
 
+    public void drawBlackJack(){
+        //background
+        Color green = new Color(0,100,0);
+        Color gold = new Color(224,183,0);
+        g2.setColor(green);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        //title
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,22F));
+        String text = "Black Jack";
+        int x = getXforCenteredText(text);
+        int y = (gp.tileSize / 2)+5;
+
+        //shadow text
+        g2.setColor(Color.DARK_GRAY);
+        g2.drawString(text, x+3, y+3);
+        //main text
+        g2.setColor(gold);
+        g2.drawString(text, x, y);
+
+        //bot card
+        //y for bot card rows
+        y += gp.tileSize*2;
+        x = (gp.screenWidth/2)/6 - ((gp.tileSize*2)) + 30;
+        for (int i = 0; i < 6; i++) {
+            x += (gp.tileSize*2);
+            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        }
+
+        //player card
+        //y for player card rows
+        y += gp.tileSize*4;
+        x = (gp.screenWidth/2)/6 - ((gp.tileSize*2)) + 30;
+        for (int i = 0; i < 6; i++) {
+            x += (gp.tileSize*2);
+            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        }
+
+        //interaction
+        //y for interaction
+        y += gp.tileSize*4;
+
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
+        text = "Hit me!";
+        x = getXforCenteredText(text)/2;
+        g2.drawString(text, x, y);
+        if(commandNum<=0){
+            g2.drawString(">", x-gp.tileSize  , y);
+            commandNum = 0;
+        }
+
+        //load game
+        text = "I'm gonna stay.";
+        x = getXforCenteredText(text) + (getXforCenteredText(text)/2);
+        g2.drawString(text, x, y);
+        if(commandNum>=1) {
+            g2.drawString(">", x-gp.tileSize  , y);
+            commandNum = 1;
+        }
+
+
+    }
+
     public void drawTitleScreen(){
         //background
         g2.setColor(Color.BLACK);
@@ -242,7 +305,7 @@ public class UI {
 
         //new game
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
-        text = "New Game";
+        text = "Start";
         x = getXforCenteredText(text);
         y += gp.tileSize*4;
         g2.drawString(text, x, y);
