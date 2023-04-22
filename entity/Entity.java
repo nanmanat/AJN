@@ -29,6 +29,7 @@ public class Entity {
     public int invincibleCounter = 0;
     public int type; // 0 = player, 1 = npc, 2 = monster
 
+    public int dialogueIndex = 0;
     public String dialogue[] = new String[20];
 
     // CHARACTER STATUS

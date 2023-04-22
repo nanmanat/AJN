@@ -29,15 +29,16 @@ public class KeyHandler implements KeyListener{
         if(gp.gameState == gp.titleState){
             if(code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
+                gp.playSE(1);
             }
             if(code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
+                gp.playSE(1);
             }
             if(code == KeyEvent.VK_ENTER) {
                 if(gp.ui.commandNum == 0){
                     gp.gameState = gp.dialoguePlayerState;
                     enterPressed = false;
-                    //music
                 }
                 if(gp.ui.commandNum == 1){
                     //load
