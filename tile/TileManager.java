@@ -152,21 +152,21 @@ public class TileManager {
         if(gp.gameState == gp.playState){
             loadMap("res/maps/map001.txt");
         }
-        else if(gp.gameState == gp.miniGameMaze){
-            loadMap("res/maps/mapMaze.txt");
-        }
-        else if(gp.gameState  == gp.miniGameCode){
-            loadMap("res/maps/mapPlayerStory.txt");
-        }
-        else if(gp.gameState == gp.miniGamePuzzle){
-            loadMap("res/maps/mapAJN.txt");
-        }
-        else if(gp.gameState == gp.miniGamePokemon){
-            loadMap("res/maps/map001.txt");
-        }
-        else if(gp.gameState == gp.miniGameBlackJack){
-            loadMap("res/maps/map001.txt");
-        }
+        // else if(gp.gameState == gp.miniGameMaze){
+        //     loadMap("res/maps/mapMaze.txt");
+        // }
+        // else if(gp.gameState  == gp.miniGameCode){
+        //     loadMap("res/maps/mapPlayerStory.txt");
+        // }
+        // else if(gp.gameState == gp.miniGamePuzzle){
+        //     loadMap("res/maps/mapAJN.txt");
+        // }
+        // else if(gp.gameState == gp.miniGamePokemon){
+        //     loadMap("res/maps/map001.txt");
+        // }
+        // else if(gp.gameState == gp.miniGameBlackJack){
+        //     loadMap("res/maps/map001.txt");
+        // }
 
     }
 }
