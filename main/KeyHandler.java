@@ -17,6 +17,7 @@ public class KeyHandler implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         int code = e.getKeyCode();
         // Title State
         if(gp.gameState == gp.titleState){
@@ -43,24 +44,11 @@ public class KeyHandler implements KeyListener{
         }
         //dialoge popUp
         else if(gp.gameState == gp.dialoguePopup){
-            if(code == KeyEvent.VK_ENTER) {
-                // upPressed = true;
-                gp.gameState = gp.playState;
-            }
-            // if(code == KeyEvent.VK_A) {
-            //     leftPressed = true;
-            //     gp.gameState = gp.playState;
-            // }
-            // if(code == KeyEvent.VK_S) {
-            //     downPressed = true;
-            //     gp.gameState = gp.playState;
-            // }
-            // if(code == KeyEvent.VK_D) {
-            //     rightPressed = true;
-            //     gp.gameState = gp.playState;
-            // }
+            popUp(code);
         }
-
+        else if(gp.gameState == gp.miniGameBlackJack){
+            blackJack(code);
+        }
     }
 
     public void titleState(int code) {
@@ -230,5 +218,40 @@ public class KeyHandler implements KeyListener{
 
     }
 
+    public void dialoguePlayerState(int code) {
+        if(code == KeyEvent.VK_SPACE){
+            spacePressed = true;
+        }
+        if(code == KeyEvent.VK_W) {
+            upPressed = true;
+        }
+        if(code == KeyEvent.VK_A) {
+            leftPressed = true;
+        }
+        if(code == KeyEvent.VK_S) {
+            downPressed = true;
+        }
+        if(code == KeyEvent.VK_D) {
+            rightPressed = true;
+        }
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+    }
+
+    public void popUp(int code){
+        if(code == KeyEvent.VK_ENTER) {
+            gp.gameState = gp.playState;
+        }
+    }
+
+    public void blackJack(int code) {
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.optionsState;
+        }
+    }
     
 }

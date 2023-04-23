@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 import entity.Entity;
 import object.OBJ_Heart;
+import game.BlackJack;
 
 public class UI {
     private GamePanel gp;
@@ -54,22 +55,25 @@ public class UI {
         else if(gp.gameState == gp.playState){
             drawPlayerLife();
         }
-        else if(gp.gameState == gp.dialoguePopup){
-            drawDialogueScreen(currentDialogue);
+        else if(gp.gameState == gp.playState){
+            drawPlayerLife();
+            // if(gp.keyH.enterPressed == true){
+            //     gp.gameState = gp.dialogueAJN;
+            // } 
         }
-        if(gp.gameState == gp.dialogueState){
-            drawDialogueScreen(text);
+        else if(gp.gameState == gp.dialoguePopup){
+            drawPlayerLife();
+            drawDialogueScreen(currentDialogue);
         }
         if(gp.gameState == gp.gameOverState){
             drawGameOverScreen();
         }
+        else if(gp.gameState == gp.miniGameBlackJack){
+            drawBlackJack();
+        }
     }
 
     public void drawPlayerLife() {
-
-        // gp.player.life = 3;
-
-        // System.out.println(gp.player.life);
 
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
@@ -162,64 +166,17 @@ public class UI {
     }
 
     public void drawBlackJack(){
-        //background
-        Color green = new Color(0,100,0);
-        Color gold = new Color(224,183,0);
-        g2.setColor(green);
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        //title
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,22F));
-        String text = "Black Jack";
-        int x = getXforCenteredText(text);
-        int y = (gp.tileSize / 2)+5;
-
-        //shadow text
-        g2.setColor(Color.DARK_GRAY);
-        g2.drawString(text, x+3, y+3);
-        //main text
-        g2.setColor(gold);
-        g2.drawString(text, x, y);
-
-        //bot card
-        //y for bot card rows
-        y += gp.tileSize*2;
-        x = (gp.screenWidth/2)/6 - ((gp.tileSize*2)) + 30;
-        for (int i = 0; i < 6; i++) {
-            x += (gp.tileSize*2);
-            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
-        }
-
-        //player card
-        //y for player card rows
-        y += gp.tileSize*4;
-        x = (gp.screenWidth/2)/6 - ((gp.tileSize*2)) + 30;
-        for (int i = 0; i < 6; i++) {
-            x += (gp.tileSize*2);
-            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
-        }
-
-        //interaction
-        //y for interaction
-        y += gp.tileSize*4;
 
         g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
-        text = "Hit me!";
-        x = getXforCenteredText(text)/2;
-        g2.drawString(text, x, y);
-        if(commandNum<=0){
-            g2.drawString(">", x-gp.tileSize  , y);
-            commandNum = 0;
-        }
-
-        //load game
-        text = "I'm gonna stay.";
-        x = getXforCenteredText(text) + (getXforCenteredText(text)/2);
-        g2.drawString(text, x, y);
-        if(commandNum>=1) {
-            g2.drawString(">", x-gp.tileSize  , y);
-            commandNum = 1;
-        }
+        g2.setFont(g2.getFont().deriveFont(32F));
+        
+        //SUB WINDOW
+        int frameX = gp.tileSize*2;
+        int frameY = gp.tileSize;
+        int framWidth = gp.tileSize*16;
+        int framHeight = gp.tileSize*10;
+        Color background = new Color(11, 69, 26);
+        drawSubWindow(frameX, frameY, framWidth, framHeight, background);
 
     }
 
@@ -318,7 +275,16 @@ public class UI {
         }
     }
 
-    public void drawSubWindow(int x , int y , int width , int height){
+    public void drawSubWindow(int x , int y , int width , int height, Color color) {
+        g2.setColor(color);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+        color = Color.white;
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+    }
+
+    public void drawSubWindow(int x , int y , int width , int height) {
         Color c = new Color(0,0,0,190);
         g2.setColor(c);
         g2.fillRoundRect(x, y, width, height, 35, 35);

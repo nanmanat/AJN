@@ -53,7 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int miniGamePuzzle = 7;
     public final int miniGameCode = 8;
     public final int miniGamePokemon = 9;
-    public final int miniGamePoker = 10;
+    public final int miniGameBlackJack = 10;
     public final int gameOverState = 12;
 
     //system
@@ -135,7 +135,12 @@ public class GamePanel extends JPanel implements Runnable {
         //monster
         for (int i = 0; i < monster.length; i++) {
             if (monster[i] != null) {
-                monster[i].update();
+                if (monster[i].alive == true && monster[i].dying == false) {
+                    monster[i].update();
+                }
+                if (monster[i].alive == false) {
+                    monster[i] = null;
+                }
             }
         }
         if(gameState == pauseState){

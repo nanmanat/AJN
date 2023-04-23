@@ -164,7 +164,7 @@ public class TileManager {
         else if(gp.gameState == gp.miniGamePokemon){
             loadMap("res/maps/map001.txt");
         }
-        else if(gp.gameState == gp.miniGamePoker){
+        else if(gp.gameState == gp.miniGameBlackJack){
             loadMap("res/maps/map001.txt");
         }
 
