@@ -48,17 +48,6 @@ public class Player extends Entity{
         projectile = new OBJ_Fireball(gp);
     }
 
-    public void setDefaultPositions() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
-        direction = "down";
-    }
-
-    public void restoreLife() {
-        life = maxLife;
-        invincible = false;
-    }
-
     public void getPlayerImage() {
         up1 = setup("/res/player/16Jae-11", gp.tileSize, gp.tileSize);
         up2 = setup("/res/player/16Jae-12", gp.tileSize, gp.tileSize);
@@ -351,6 +340,11 @@ public class Player extends Entity{
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         
     }
+
+    //เมธอดอะไรสักอย่างที่จะส่ง text ออกไปได้
+    // public void speak(){
+
+    // }
 
     public void setDialogue() {
         dialogue[0] = "Hello PiggyBooBoo0";
