@@ -90,19 +90,19 @@ public class BlackJack {
         for (int i = 0; start; i++) {
             if (i == 0) {
                 game.addBotCard();
-                System.out.println(game.getBotCard());
-                System.out.println(game.getBotScore());
+                // System.out.println(game.getBotCard());
+                // System.out.println(game.getBotScore());
                 game.addUserCard();
-                System.out.println(game.getUserCard());
-                System.out.println(game.getuserScore());
+                // System.out.println(game.getUserCard());
+                // System.out.println(game.getuserScore());
             }
 
             if (bot) {
                 if (game.botScore >= 19) {
-                    System.out.println("Stay.");
+                    // System.out.println("Stay.");
                     bot = false;
                 } else {
-                    System.out.println("Give me another.");
+                    // System.out.println("Give me another.");
                     game.addBotCard();
                     game.showStat();
                 }
