@@ -132,6 +132,13 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    public void retry() {
+        player.restoreLife();
+        player.setDefaultPositions();
+        aSetter.setNPC();
+        aSetter.setMonster();
+    }
+
     public void update() {
         tileM.update();
         // player
@@ -178,6 +185,12 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    entityList.add(projectileList.get(i));
+                }
+            }
+            
             // draw entity
             for (int i = 0; i < entityList.size(); i++) {
                 entityList.get(i).draw(g2);
