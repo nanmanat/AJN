@@ -3,9 +3,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,6 +11,7 @@ import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
+import environment.EnvironmentManager;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -28,16 +26,14 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixel height
 
     //WORLD SETTINGS
-    public final int maxWorldCol = 60;
-    public final int maxWorldRow = 29;
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
     //for full Screen
     public int screenWidth2 = screenWidth;
     public int screenHeight2 = screenHeight;
-    public BufferedImage tempScreen;
-    public boolean fullScreenOn = false;
     Graphics2D g2;
 
     //FPS
@@ -46,13 +42,19 @@ public class GamePanel extends JPanel implements Runnable {
     //game state
     // private JFrame panel;
     public int gameState;
+    public int tmpState;
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
-    public final int dialoguePlayerState = 3;
-    public final int dialogueAJN = 4;
-    public final int optionsState = 5;
-    public final int dialoguePopup = 6;
+    public final int dialogueState = 3;
+    public final int optionsState = 4;
+    public final int dialoguePopup = 5;
+    public final int miniGameMaze = 6;
+    public final int miniGamePuzzle = 7;
+    public final int miniGameCode = 8;
+    public final int miniGamePokemon = 9;
+    public final int miniGamePoker = 10;
+    public final int gameOverState = 12;
 
     //system
     public TileManager tileM = new TileManager(this);
@@ -62,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public EventHandler eHandler = new EventHandler(this);
     public Thread gameThread;
+    public EnvironmentManager eManager = new EnvironmentManager(this);
 
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10];
@@ -91,11 +94,9 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setMonster();
         gameState = titleState;
-        if(gameState == dialoguePlayerState)
+        if(gameState == playState)
             playMusic(0);
-        tempScreen = new BufferedImage( screenWidth , screenHeight, BufferedImage.TYPE_INT_ARGB);
-        g2 = (Graphics2D) tempScreen.getGraphics();
-
+        eManager.setup();
     }
 
     @Override
@@ -137,6 +138,9 @@ public class GamePanel extends JPanel implements Runnable {
                 monster[i].update();
             }
         }
+        if(gameState == pauseState){
+            //nothing
+        }
     }
     
     public void paintComponent(Graphics g) {
@@ -145,6 +149,32 @@ public class GamePanel extends JPanel implements Runnable {
         //title screen
         if(gameState  == titleState){
             ui.draw(g2);
+        }
+        //mini game Maze
+        else if(gameState == miniGameMaze){
+
+            tileM.draw(g2);
+            entityList.add(player);
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    entityList.add(monster[i]);
+                }
+            }
+
+            // draw entity
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.get(i).draw(g2);
+            }
+
+            // empty entity list
+            entityList.clear();
+
+            // Enviroment (lightning)
+            eManager.draw(g2);
+
+            //UI
+            ui.draw(g2);
+            g2.dispose();
         }
         else {
             tileM.draw(g2);
@@ -161,12 +191,6 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < obj.length; i++) {
                 if (obj[i] != null) {
                     entityList.add(obj[i]);
-                }
-            }
-
-            for (int i = 0; i < monster.length; i++) {
-                if (monster[i] != null) {
-                    entityList.add(monster[i]);
                 }
             }
 
@@ -189,7 +213,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             // empty entity list
             entityList.clear();
-            
+
+            //UI
             ui.draw(g2);
             g2.dispose();
         }

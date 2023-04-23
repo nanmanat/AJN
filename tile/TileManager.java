@@ -149,14 +149,24 @@ public class TileManager {
     }
 
     public void update(){
-        if(gp.gameState  == gp.dialoguePlayerState){
-            loadMap("res/maps/mapPlayerStory.txt");
-        }
-        else if(gp.gameState == gp.dialogueAJN){
-            loadMap("res/maps/mapAJN.txt");
-        }
-        else if(gp.gameState == gp.playState){
+        if(gp.gameState == gp.playState){
             loadMap("res/maps/map001.txt");
         }
+        else if(gp.gameState == gp.miniGameMaze){
+            loadMap("res/maps/mapMaze.txt");
+        }
+        else if(gp.gameState  == gp.miniGameCode){
+            loadMap("res/maps/mapPlayerStory.txt");
+        }
+        else if(gp.gameState == gp.miniGamePuzzle){
+            loadMap("res/maps/mapAJN.txt");
+        }
+        else if(gp.gameState == gp.miniGamePokemon){
+            loadMap("res/maps/map001.txt");
+        }
+        else if(gp.gameState == gp.miniGamePoker){
+            loadMap("res/maps/map001.txt");
+        }
+
     }
 }
