@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     public KeyHandler keyH = new KeyHandler(this);
     public UI ui = new UI(this);
     public Sound sound = new Sound();
+    public Sound se = new Sound();
     public AssetSetter aSetter = new AssetSetter(this);
     public EventHandler eHandler = new EventHandler(this);
     public Thread gameThread;
@@ -98,7 +99,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setMonster();
         gameState = titleState;
-        if(gameState == playState)
+        if(gameState == titleState)
             playMusic(0);
         eManager.setup();
     }
@@ -176,7 +177,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
         //mini game Maze
         else if(gameState == miniGameMaze){
-
             tileM.draw(g2);
             entityList.add(player);
             for (int i = 0; i < monster.length; i++) {
@@ -184,58 +184,47 @@ public class GamePanel extends JPanel implements Runnable {
                     entityList.add(monster[i]);
                 }
             }
-
             for (int i = 0; i < projectileList.size(); i++) {
                 if (projectileList.get(i) != null) {
                     entityList.add(projectileList.get(i));
                 }
             }
-            
             // draw entity
             for (int i = 0; i < entityList.size(); i++) {
                 entityList.get(i).draw(g2);
             }
-
             // empty entity list
             entityList.clear();
-
             // Enviroment (lightning)
             eManager.draw(g2);
-
             //UI
             ui.draw(g2);
             g2.dispose();
         }
-        else {
+        else if(gameState == playState){
             tileM.draw(g2);
-
             // add entities to entity list
             entityList.add(player);
-            
             for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
                     entityList.add(npc[i]);
                 }
             }
-
             for (int i = 0; i < obj.length; i++) {
                 if (obj[i] != null) {
                     entityList.add(obj[i]);
                 }
             }
-
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
                     entityList.add(monster[i]);
                 }
             }
-
             for (int i = 0; i < projectileList.size(); i++) {
                 if (projectileList.get(i) != null) {
                     entityList.add(projectileList.get(i));
                 }
             }
-
             //sort
             Collections.sort(entityList, new Comparator<Entity>(){
 
@@ -245,18 +234,41 @@ public class GamePanel extends JPanel implements Runnable {
                     int result = Integer.compare(e1.worldY, e2.worldY);
                     return result;
                 }
-                
+    
             });
 
             // draw entity
             for (int i = 0; i < entityList.size(); i++) {
                 entityList.get(i).draw(g2);
             }
-
             // empty entity list
             entityList.clear();
-
             //UI
+            ui.draw(g2);
+            g2.dispose();
+        }
+        else if(gameState == miniGameCode){
+            tileM.draw(g2);
+            entityList.add(player);
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    entityList.add(obj[i]);
+                }
+            }
+            // draw entity
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.get(i).draw(g2);
+            }
+            // empty entity list
+            entityList.clear();
+            // Enviroment (lightning)
+            eManager.draw(g2);
+            //UI
+            ui.draw(g2);
+            g2.dispose();
+        }
+        else if(gameState == miniGameBlackJack || gameState == blackjackScore){
+            tileM.draw(g2);
             ui.draw(g2);
             g2.dispose();
         }
@@ -273,9 +285,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playSE(int i){
-        sound.setFile(i);
-        sound.play();
+        se.setFile(i);
+        se.play();
     }
-
 }
 

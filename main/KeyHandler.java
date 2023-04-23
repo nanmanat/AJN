@@ -65,43 +65,45 @@ public class KeyHandler implements KeyListener{
     public void optionState(int code) {
         if(code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
+            gp.playSE(1);
         }
         if(code == KeyEvent.VK_DOWN) {
             gp.ui.commandNum++;
+            gp.playSE(1);
         }
         if(code == KeyEvent.VK_ENTER) {
             if(gp.ui.commandNum == 0){
-                if(code == KeyEvent.VK_A){
+                if(code == KeyEvent.VK_LEFT){
                     if(gp.sound.volumeScale > 0){
                         gp.sound.volumeScale--;
                         gp.sound.checkVolume();
-                        //gp.playSE();
+                        gp.playSE(1);
                     }
                 }
-                if(code == KeyEvent.VK_D){
+                if(code == KeyEvent.VK_RIGHT){
                     if(gp.sound.volumeScale < 5){
                         gp.sound.volumeScale++;
                         gp.sound.checkVolume();
-                        //gp.playSE();
+                        gp.playSE(1);
                     }
                 }
             }
             if(gp.ui.commandNum == 1){
                 //for SE
-                // if(code == KeyEvent.VK_A){
-                    // if(gp.ui.subState == 0 && gp.se.volumeScale > 0){
-                    //     gp.se.volumeScale--;
-                    //     gp.se.checkVolume();
-                    //     //gp.splaySE();
-                    // }
-                // }
-                // if(code == KeyEvent.VK_D){
-                    // if(gp.ui.subState == 0 && gp.se.volumeScale < 5){
-                    //     gp.se.volumeScale++;
-                    //     gp.se.checkVolume();
-                    //     //gp.splaySE();
-                    // }
-                // }
+                if(code == KeyEvent.VK_LEFT){
+                    if(gp.ui.subState == 0 && gp.se.volumeScale > 0){
+                        gp.se.volumeScale--;
+                        gp.se.checkVolume();
+                        gp.playSE(1);
+                    }
+                }
+                if(code == KeyEvent.VK_RIGHT){
+                    if(gp.ui.subState == 0 && gp.se.volumeScale < 5){
+                        gp.se.volumeScale++;
+                        gp.se.checkVolume();
+                        gp.playSE(1);
+                    }
+                }
             }
             if(gp.ui.commandNum == 2){
                 System.exit(0);
@@ -139,9 +141,11 @@ public class KeyHandler implements KeyListener{
     public void gameOverState(int code) {
         if(code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
+            gp.playSE(1);
         }
         if(code == KeyEvent.VK_DOWN) {
             gp.ui.commandNum++;
+            gp.playSE(1);
         }
         if(code == KeyEvent.VK_ENTER) {
             if(gp.ui.commandNum == 0){
@@ -228,10 +232,11 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_M){
             gp.gameState = gp.miniGameMaze;
+            gp.retry();
         }
-        // if(code == KeyEvent.VK_ENTER){
-        //     gp.gameState = gp.dialogueAJN;
-        // }
+        if(code == KeyEvent.VK_C){
+            gp.gameState = gp.miniGameCode;
+        }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
         }

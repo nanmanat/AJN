@@ -48,18 +48,12 @@ public class UI {
                 gp.tmpState = gp.miniGameMaze;
                 gp.gameState = gp.gameOverState;
             }
-            // if(gp.keyH.enterPressed == true){
-            //     gp.gameState = gp.playState;
-            // }
         }
         else if(gp.gameState == gp.playState){
             drawPlayerLife();
         }
         else if(gp.gameState == gp.playState){
             drawPlayerLife();
-            // if(gp.keyH.enterPressed == true){
-            //     gp.gameState = gp.dialogueAJN;
-            // } 
         }
         else if(gp.gameState == gp.dialoguePopup){
             drawPlayerLife();
@@ -75,6 +69,9 @@ public class UI {
         else if(gp.gameState == gp.blackjackScore){
             drawBlackJackScore();
             drawPlayerLife();
+        }
+        else if(gp.gameState == gp.miniGameCode){
+            
         }
     }
 
