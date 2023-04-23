@@ -108,8 +108,11 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_S) {
             downPressed = true;
         }
-        if(code == KeyEvent.VK_D) {
+        if (code == KeyEvent.VK_D) {
             rightPressed = true;
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
         }
         // if(code == KeyEvent.VK_ENTER){
         //     gp.gameState = gp.dialogueAJN;

@@ -1,5 +1,7 @@
 package entity;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -15,20 +17,29 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
-    public BufferedImage up1, up2, down1 ,down2, left1, left2, right1, right2;
+    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1,
+            attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
     public String direction = "down";
-    public int spriteCounter = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
-    public int actionLockCounter = 0;
     public boolean invincible = false;
-    public int invincibleCounter = 0;
     public int type; // 0 = player, 1 = npc, 2 = monster
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
+    public boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
+
+    // counter
+    public int invincibleCounter = 0;
+    public int actionLockCounter = 0;
+    public int spriteCounter = 0;
+    int dyingCounter = 0;
 
     public int dialogueIndex = 0;
     public String dialogue[] = new String[20];
@@ -41,7 +52,9 @@ public class Entity {
         this.gp = gp;
     }
 
-    public void setAction() { }
+    public void setAction() {
+    }
+    public void damageReaction() {}
 
     public void update() {
         setAction();
@@ -85,6 +98,14 @@ public class Entity {
                 spriteNum = 1;
             spriteCounter = 0;
         }
+
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     public void draw(Graphics2D g2) {
@@ -93,30 +114,98 @@ public class Entity {
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
         if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-            worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-            worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-            worldY - gp.tileSize < gp.player.worldY + gp.player.screenY ) {
+                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-                switch(direction) {
-                    case "up":
-                        if (spriteNum == 1) image = up1;
-                        else if (spriteNum == 2) image = up2;
-                        break;
-                    case "down":
-                        if (spriteNum == 1) image = down1;
-                        else if (spriteNum == 2) image = down2;
-                        break;
-                    case "left":
-                        if (spriteNum == 1) image = left1;
-                        else if (spriteNum == 2) image = left2;
-                        break;
-                    case "right":
-                        if (spriteNum == 1) image = right1;
-                        else if (spriteNum == 2) image = right2;
-                        break;
-                }
-                g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            switch (direction) {
+                case "up":
+                    if (spriteNum == 1)
+                        image = up1;
+                    else if (spriteNum == 2)
+                        image = up2;
+                    break;
+                case "down":
+                    if (spriteNum == 1)
+                        image = down1;
+                    else if (spriteNum == 2)
+                        image = down2;
+                    break;
+                case "left":
+                    if (spriteNum == 1)
+                        image = left1;
+                    else if (spriteNum == 2)
+                        image = left2;
+                    break;
+                case "right":
+                    if (spriteNum == 1)
+                        image = right1;
+                    else if (spriteNum == 2)
+                        image = right2;
+                    break;
             }
+
+            // Monster HP bar
+            if (type == 2) {
+
+                double oneScale = (double) gp.tileSize / maxLife;
+                double hpBarValue = oneScale * life;
+
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+            }
+
+
+            if (invincible == true) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+            }
+            if (dying == true) {
+                dyingAnimation(g2);
+            }
+            g2.drawImage(image, screenX, screenY, null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+    }
+    
+    public void dyingAnimation(Graphics2D g2) {
+
+        dyingCounter++;
+
+        if (dyingCounter <= 5) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 5 && dyingCounter <= 10) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 10 && dyingCounter <= 15) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 15 && dyingCounter <= 20) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 20 && dyingCounter <= 25) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 25 && dyingCounter <= 30) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 30 && dyingCounter <= 35) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 35 && dyingCounter <= 40) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 40) {
+            dying = false;
+            alive = false;
+        }
+    }
+
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 
     public BufferedImage setup(String imagePath, int width, int height) {
