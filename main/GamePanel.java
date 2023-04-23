@@ -3,8 +3,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +13,7 @@ import javax.swing.JPanel;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
+import game.BlackJack;
 
 public class GamePanel extends JPanel implements Runnable {
     
@@ -54,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int optionsState = 5;
     public final int dialoguePopup = 6;
     public final int blackjack = 7;
+    public final int blackjackScore = 8;
 
     //system
     public TileManager tileM = new TileManager(this);
@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public EventHandler eHandler = new EventHandler(this);
     public Thread gameThread;
+    public BlackJack game = new BlackJack();
 
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10];

@@ -2,6 +2,8 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import game.BlackJack;
+
 public class KeyHandler implements KeyListener{
     
     GamePanel gp;
@@ -46,6 +48,9 @@ public class KeyHandler implements KeyListener{
         }
         else if(gp.gameState == gp.blackjack){
             blackJack(code);
+        }
+        else if (gp.gameState == gp.blackjackScore) {
+            blackJackScore(code);
         }
     }
 
@@ -122,6 +127,8 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_J){
             gp.gameState = gp.blackjack;
+            gp.game.reset();
+            gp.game.addBotCard();
         }
     }
 
@@ -226,12 +233,49 @@ public class KeyHandler implements KeyListener{
         }
     }
 
-    public void blackJack(int code) {
-        if(code == KeyEvent.VK_ENTER){
-            enterPressed = true;
+    public void blackJackScore(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            gp.gameState = gp.playState;
         }
-        if(code == KeyEvent.VK_ESCAPE){
-            gp.gameState = gp.optionsState;
+    }
+
+    public void blackJack(int code) {
+        BlackJack game = new BlackJack();
+        int maxCommandNum = 0;
+        switch(gp.ui.bjState) {
+            case 0: maxCommandNum = 1; break;
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
+            }
+        }
+        if(code == KeyEvent.VK_LEFT){
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.commandNum == 0) {
+                game.addUserCard();
+                game.addBotCard();
+            }
+            if(gp.ui.commandNum == 1) {
+                while (game.botScore() < 18) {
+                    game.addBotCard();
+                }
+                int tmp = game.returnWinner();
+                if (tmp == 0) {
+                    gp.player.life -= 1;
+                    gp.gameState = gp.blackjackScore;
+                } else if (tmp == 1) {
+                    gp.gameState = gp.blackjackScore;
+                } else {
+                    gp.gameState = gp.blackjackScore;
+                }
+            }
         }
     }
     

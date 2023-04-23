@@ -2,7 +2,6 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 import main.GamePanel;
 
@@ -10,11 +9,13 @@ public class BlackJack {
     private GamePanel gp;
 
     private ArrayList<Integer> deckList = new ArrayList<Integer>();
-    private ArrayList<Integer> botList = new ArrayList<Integer>();
-    private ArrayList<Integer> userList = new ArrayList<Integer>();
-    private int index;
-    private int botScore = 0;
-    private int userScore = 0;
+    public static ArrayList<Integer> botList = new ArrayList<Integer>();
+    public static ArrayList<Integer> userList = new ArrayList<Integer>();
+    private int botScore;
+    private int userScore;
+    public static boolean turn = true;
+    public boolean bot = true;
+    public boolean player = true;
 
     public BlackJack() {
         for (int i = 1; i <= 12; i++) {
@@ -22,19 +23,97 @@ public class BlackJack {
         }
     } 
     
-    public void addBotCard() {
-        int index = randCard();
-        botList.add(deckList.get(index));
-        botScore += deckList.get(index);
-        deckList.remove(index);
+    public boolean botCheck() {
+        botScore = 0;
+        for (int i = 0; i < game.BlackJack.botList.size(); i++) {
+            botScore += game.BlackJack.botList.get(i);
+        }
+        if (botScore >= 18) {
+            return false;
+        }
+        return true;
     }
+
+    public int botScore() {
+        botScore = 0;
+        for (int i = 0; i < game.BlackJack.botList.size(); i++) {
+            botScore += game.BlackJack.botList.get(i);
+        } 
+        return botScore;
+    }
+    
+    public int playerScore() {
+        userScore = 0;
+        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
+            userScore += game.BlackJack.userList.get(i);
+        } 
+        return userScore;
+    }
+    
+    public int getWinner() {
+        int botScore = botScore();
+        int userScore = playerScore();
+    
+        if (botScore > 21 && userScore > 21) {
+            // Both scores are over 21, nobody wins
+            if (botScore < userScore) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else if (botScore > 21) {
+            return 1; // Player wins
+        } else if (userScore > 21) {
+            return 0; // Bot wins
+        } else if (botScore == userScore) {
+            return 2;
+        } else {
+            if (botScore > userScore) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+    }
+    
+
+    public int returnWinner() {
+        System.out.println("botscore "+ botScore());
+        System.out.println("playerscore "+ playerScore());
+        if (getWinner() == 0) {
+            System.out.println("Bot Wins");
+            return 0;
+        } else if (getWinner() == 1){
+            System.out.println("Player wins!");
+            return 1;
+        } else {
+            System.out.println("Drawn!");
+        }
+        return 2;
+    }
+
+    public void addBotCard() {
+        if (botCheck() == true) {
+            int index = randCard();
+            botList.add(deckList.get(index));
+            deckList.remove(index);
+        } else {
+            bot = false;
+        }
+    }    
     
     public void addUserCard() {
         int index = randCard();
         userList.add(deckList.get(index));
-        userScore += deckList.get(index);
+        userScore = 0;
+        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
+            userScore += game.BlackJack.userList.get(i);
+        }
         deckList.remove(index);
-    }
+        if (bot == false && player == false) {
+            return;
+        }
+    }    
     
     public int getBotScore() {
         return botScore;
@@ -73,84 +152,11 @@ public class BlackJack {
         deckList.clear();
         userList.clear();
         botList.clear();
-        for (int i = 1; i <= 12; i++) {
+        turn = true;
+        bot = true;
+        player = true;
+        for (int i = 0; i < 12; i++) {
             deckList.add(i);
         }
-    }
-
-    public void start() {
-        int health = 3;
-        boolean start = true;
-        boolean bot = true;
-        boolean user = true;
-        Scanner scan = new Scanner(System.in);
-        String text = "";
-        BlackJack game = new BlackJack();
-        
-        for (int i = 0; start; i++) {
-            if (i == 0) {
-                game.addBotCard();
-                // System.out.println(game.getBotCard());
-                // System.out.println(game.getBotScore());
-                game.addUserCard();
-                // System.out.println(game.getUserCard());
-                // System.out.println(game.getuserScore());
-            }
-
-            if (bot) {
-                if (game.botScore >= 19) {
-                    // System.out.println("Stay.");
-                    bot = false;
-                } else {
-                    // System.out.println("Give me another.");
-                    game.addBotCard();
-                    game.showStat();
-                }
-            }
-
-            if (user) {
-                System.out.print("-" );
-                text = scan.next();
-                if (text.equals("y")) {
-                    game.addUserCard();
-                    game.showStat();
-                } else {
-                    user = false;
-                }
-            }
-
-            if (user == false && bot == false) {
-                System.out.println("The winner is");
-                System.out.println("Hoffman: " + game.getBotScore());
-                System.out.println("You: " + game.getuserScore());
-
-                // Check which number is closer to 21 and not greater than 21
-                if (game.getBotScore() <= 21 && (game.getBotScore() > game.getuserScore() || game.getuserScore() > 21) || (game.getuserScore() <= 21 && game.getuserScore() > game.getBotScore())) {
-                    if (game.getBotScore() <= 21 && (game.getBotScore() > game.getuserScore() || game.getuserScore() > 21)) {
-                        System.out.println("Hoffman");
-                    } else {
-                        System.out.println("You");
-                    }
-                } else if (game.getBotScore() > 21) {
-                    System.out.println("You");
-                }
-                else if (game.getuserScore() > 21) {
-                    System.out.println("Hoffman");
-                }
-                else {
-                    System.out.println("Draw");
-                }
-
-                reset();
-                bot = true;
-                user = true;
-                health = health-1;
-                if (health == 0) {
-                    break;
-                }
-            }
-
-        }
-
     }
 }

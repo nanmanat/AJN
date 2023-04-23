@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 import entity.Entity;
 import object.OBJ_Heart;
-import game.BlackJack;
 
 public class UI {
     private GamePanel gp;
@@ -16,6 +15,7 @@ public class UI {
     private Font agencyFB;
     private BufferedImage heart_full, heart_half, heart_blank;
     public int subState = 0;
+    public int bjState = 0;
     public int commandNum = 0;
     public String text;
     public boolean showDialog = false;
@@ -74,6 +74,11 @@ public class UI {
         }
         else if(gp.gameState == gp.blackjack){
             drawBlackJack();
+            drawPlayerLife();
+        }
+        else if(gp.gameState == gp.blackjackScore){
+            drawBlackJackScore();
+            drawPlayerLife();
         }
     }
 
@@ -228,6 +233,133 @@ public class UI {
         Color background = new Color(11, 69, 26);
         drawSubWindow(frameX, frameY, framWidth, framHeight, background);
 
+        switch(bjState) {
+            case 0: blackjack_top(frameX, frameY); break;
+            case 1: break;
+        }
+    }
+
+    public void blackjack_top(int frameX, int frameY) {
+        // BlackJack game = new BlackJack();
+        int textX, textY;
+        //TITLE
+        String text = "BLACKJACK";
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        Color gold = new Color(255,179,26);
+        g2.setColor(gold);
+        g2.drawString(text, textX, textY);
+        //bot cards
+        int x = (gp.screenWidth/6) - ((gp.tileSize*2) + 30);
+        int y = gp.tileSize*3;
+        for (int i = 0; i < game.BlackJack.botList.size(); i++) {
+            x += ((gp.tileSize*2) + 20);
+            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        }
+        //bot score
+        g2.setColor(Color.white);
+        textY = frameY + gp.tileSize;
+        textX = frameX + gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(18F));
+        int sum = 0;
+        for (int i = 0; i < game.BlackJack.botList.size(); i++) {
+            sum += game.BlackJack.botList.get(i);
+        }
+        if(gp.game.player == false && gp.game.bot == false) {
+            g2.drawString(String.format("Hoffman: %s/21", sum), textX, textY);
+        } else {
+            g2.drawString(String.format("Hoffman: ??+%s/21", sum-game.BlackJack.botList.get(0)), textX, textY);
+        }  
+        //player score
+        g2.setColor(Color.white);
+        textY = frameY + gp.tileSize;
+        textX = (getXforCenteredText(text)*2) - gp.tileSize*3;
+        g2.setFont(g2.getFont().deriveFont(18F));
+        int playerSum = 0;
+        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
+            playerSum += game.BlackJack.userList.get(i);
+        }
+        g2.drawString(String.format("You: %s/21", playerSum), textX, textY);
+        //player cards
+        x = (gp.screenWidth/6) - ((gp.tileSize*2) + 30);
+        y += gp.tileSize*4;
+        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
+            x += ((gp.tileSize*2) + 20);
+            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        }
+        //hit
+        g2.setFont(g2.getFont().deriveFont(25F));
+        g2.setColor(Color.white);
+        textY += gp.tileSize*8;
+        textX = frameX + gp.tileSize*2;
+        g2.drawString("Hit me.", textX, textY);
+        if(commandNum == 0) {
+            g2.drawString(">", textX-25, textY);
+        }
+        //stay
+        textX = frameX + gp.tileSize*9;
+        g2.drawString("I'm gonna stay.", textX, textY);
+        if(commandNum == 1) {
+            g2.drawString(">", textX-25, textY);
+        }
+    }
+
+    public void drawBlackJackScore(){
+
+        //sub window
+        int frameX = gp.tileSize*6;
+        int frameY = gp.tileSize;
+        drawSubWindow(frameX ,frameY ,gp.tileSize*8,gp.tileSize*10);
+
+        switch (subState) {
+            case 0: drawBlackJackScoreTop(frameX , frameY); break;
+            case 1: break;
+            default: break;
+        }   
+    }
+
+    public void drawBlackJackScoreTop(int frameX ,int frameY){
+        //setting
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
+        String text = "RESULT";
+        int x = getXforCenteredText(text);
+        int y = (int)(gp.tileSize*2.5);
+        g2.drawString(text, x, y);
+        //HoffmanScore
+        text = "Hoffman: ";
+        g2.setFont(g2.getFont().deriveFont(25F));
+        y += gp.tileSize*2;
+        int sum = 0;
+        for (int i = 0; i < game.BlackJack.botList.size(); i++) {
+            sum += game.BlackJack.botList.get(i);
+        }
+        g2.drawString(text+sum, x, y);
+        //PlayerScore
+        text = "You: ";
+        g2.setFont(g2.getFont().deriveFont(25F));
+        y += gp.tileSize;
+        int sum1 = 0;
+        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
+            sum1 += game.BlackJack.userList.get(i);
+        }
+        g2.drawString(text+sum1, x, y);
+        //Winner 
+        y += gp.tileSize;
+        switch(gp.game.returnWinner()) {
+            case 0: g2.drawString("Hoffman!", x, y); break;
+            case 1: g2.drawString("You!", x, y); break;
+            case 2: g2.drawString("Drawn!", x, y); break;
+        }
+        //back
+        text = "Back";
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
+        y += gp.tileSize*2;
+        g2.drawString(text, x, y);
+        if(commandNum>=0) {
+            g2.drawString(">", x-gp.tileSize/2 , y);
+            commandNum = 0;
+        }
     }
 
     public void drawTitleScreen(){

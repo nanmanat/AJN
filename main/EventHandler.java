@@ -1,9 +1,6 @@
 package main;
 
 import java.awt.Rectangle;
-import java.util.Scanner;
-
-import game.BlackJack;
 
 public class EventHandler {
     
@@ -60,12 +57,4 @@ public class EventHandler {
         gp.ui.currentDialogue = "You got hit by a balls!";
         gp.player.life -= 1;
     }
-
-    public void blackjack() {
-        System.out.println("hit");
-        BlackJack game = new BlackJack();
-        game.start();
-    }
-
-
 }
