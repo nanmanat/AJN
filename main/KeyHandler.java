@@ -7,7 +7,7 @@ import game.BlackJack;
 public class KeyHandler implements KeyListener{
     
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed , enterPressed , spacePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed , enterPressed , spacePressed, shotKeyPressed;
     
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -71,8 +71,11 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_D) {
             rightPressed = false;
         }
-        if(code == KeyEvent.VK_ENTER){
+        if (code == KeyEvent.VK_ENTER) {
             enterPressed = false;
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = false;
         }
         // if(code == KeyEvent.VK_SPACE){
         //     spacePressed = false;
@@ -118,6 +121,9 @@ public class KeyHandler implements KeyListener{
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
         }
         // if(code == KeyEvent.VK_ENTER){
         //     gp.gameState = gp.dialogueAJN;

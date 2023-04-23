@@ -34,11 +34,17 @@ public class Entity {
     public boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
+    public Projectile projectile;
+    public int maxMana;
+    public int mana;
+    public int useCost;
+    public int attack;
 
     // counter
     public int invincibleCounter = 0;
     public int actionLockCounter = 0;
     public int spriteCounter = 0;
+    public int shotAvailableCounter = 0;
     int dyingCounter = 0;
 
     public int dialogueIndex = 0;
@@ -199,7 +205,6 @@ public class Entity {
             changeAlpha(g2, 1f);
         }
         if (dyingCounter > 40) {
-            dying = false;
             alive = false;
         }
     }

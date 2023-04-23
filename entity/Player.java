@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import main.*;
+import object.OBJ_Fireball;
 
 public class Player extends Entity{
     
@@ -25,6 +26,7 @@ public class Player extends Entity{
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        attack = 1;
 
         attackArea.width = 36;
         attackArea.height = 36;
@@ -43,6 +45,7 @@ public class Player extends Entity{
         //player status
         maxLife = 6;
         life = maxLife;
+        projectile = new OBJ_Fireball(gp);
     }
 
     public void getPlayerImage() {
@@ -135,12 +138,25 @@ public class Player extends Entity{
             }
         }
 
+        if (gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30) {
+            
+            projectile.set(worldX, worldY, direction, true, this);
+
+            gp.projectileList.add(projectile);
+
+            shotAvailableCounter = 0;
+        }
+
         if (invincible == true) {
             invincibleCounter++;
             if (invincibleCounter > 60) {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
         }
 
     }
@@ -182,7 +198,7 @@ public class Player extends Entity{
 
             // Check m0onster collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             // Set back
             worldX = currentworldX;
@@ -219,7 +235,7 @@ public class Player extends Entity{
     
     public void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false) {
+            if (invincible == false && gp.monster[i].dying == false) {
                 life -= 1;
                 invincible = true;
             }
@@ -227,10 +243,10 @@ public class Player extends Entity{
         }
     }
     
-    public void damageMonster(int i) {
+    public void damageMonster(int i, int attack) {
         if (i != 999) {
             if (gp.monster[i].invincible == false) {
-                gp.monster[i].life -= 1;
+                gp.monster[i].life -= attack;
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
 
