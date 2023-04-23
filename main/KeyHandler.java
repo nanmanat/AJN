@@ -54,6 +54,9 @@ public class KeyHandler implements KeyListener{
         else if (gp.gameState == gp.blackjackScore) {
             blackJackScore(code);
         }
+        else if(gp.gameState == gp.miniGameCode){
+            miniGameCode(code);
+        }
     }
 
     public void dialogueState (int code) {
@@ -91,14 +94,14 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 1){
                 //for SE
                 if(code == KeyEvent.VK_LEFT){
-                    if(gp.ui.subState == 0 && gp.se.volumeScale > 0){
+                    if(gp.se.volumeScale > 0){
                         gp.se.volumeScale--;
                         gp.se.checkVolume();
                         gp.playSE(1);
                     }
                 }
                 if(code == KeyEvent.VK_RIGHT){
-                    if(gp.ui.subState == 0 && gp.se.volumeScale < 5){
+                    if(gp.se.volumeScale < 5){
                         gp.se.volumeScale++;
                         gp.se.checkVolume();
                         gp.playSE(1);
@@ -138,6 +141,48 @@ public class KeyHandler implements KeyListener{
         }
     }
 
+    public void miniGameCode(int code){
+        if(code == KeyEvent.VK_LEFT){
+            gp.ui.commandNum--;
+            gp.playSE(1);
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            gp.ui.commandNum++;
+            gp.playSE(1);
+        }
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.indexCodeGame <= 9){
+                if(gp.ui.commandNum == 0) {
+                    gp.code.addMove(0, gp.ui.indexCodeGame, true);
+                }
+                if(gp.ui.commandNum == 1) {
+                    gp.code.addMove(1, gp.ui.indexCodeGame, true);
+                }
+                if(gp.ui.commandNum == 2) {
+                    gp.code.addMove(2, gp.ui.indexCodeGame, true);
+                }
+                if(gp.ui.commandNum == 3) {
+                    gp.code.addMove(3, gp.ui.indexCodeGame, true);
+                }
+                gp.ui.indexCodeGame++;
+                if(gp.ui.commandNum == 4) {
+                    gp.code.print();
+                    gp.code.movePlayer();
+                    gp.code.resetMove();
+                    gp.ui.indexCodeGame = 0;
+                }
+            }
+            else {
+                if(gp.ui.commandNum == 4) {
+                    gp.code.print();
+                    gp.code.movePlayer();
+                    gp.code.resetMove();
+                    gp.ui.indexCodeGame = 0;
+                }
+            }
+        }
+    }
+
     public void gameOverState(int code) {
         if(code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
@@ -151,10 +196,12 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 0){
                 //before mini game state
                 gp.gameState = gp.tmpState;
-                gp.retry();
+                gp.retry(1,1);
             }
             if(gp.ui.commandNum == 1){
                 gp.gameState = gp.playState;
+                gp.tmpState = gp.playState;
+                gp.retry(23,21);
             }
         }
     }
@@ -178,13 +225,17 @@ public class KeyHandler implements KeyListener{
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = false;
+            leftPressed = false;
+            downPressed = false;
+            upPressed = false;
+            rightPressed = false;
         }
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = false;
         }
-        // if(code == KeyEvent.VK_SPACE){
-        //     spacePressed = false;
-        // }
+        if(code == KeyEvent.VK_SPACE){
+            spacePressed = false;
+        }
 
     }
 
@@ -232,13 +283,14 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_M){
             gp.gameState = gp.miniGameMaze;
-            gp.retry();
+            gp.retry(1,1);
         }
         if(code == KeyEvent.VK_C){
             gp.gameState = gp.miniGameCode;
         }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
+            gp.tmpState = gp.playState;
         }
         if(code == KeyEvent.VK_J){
             gp.gameState = gp.miniGameBlackJack;
@@ -257,6 +309,7 @@ public class KeyHandler implements KeyListener{
 
     public void blackJackScore(int code) {
         if (code == KeyEvent.VK_ENTER) {
+            gp.playSE(1);
             gp.gameState = gp.playState;
         }
     }
@@ -269,17 +322,20 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_RIGHT){
             gp.ui.commandNum++;
+            gp.playSE(1);
             if(gp.ui.commandNum > maxCommandNum) {
                 gp.ui.commandNum = 0;
             }
         }
         if(code == KeyEvent.VK_LEFT){
             gp.ui.commandNum--;
+            gp.playSE(1);
             if(gp.ui.commandNum < 0) {
                 gp.ui.commandNum = maxCommandNum;
             }
         }
         if(code == KeyEvent.VK_ENTER){
+            gp.playSE(1);
             if(gp.ui.commandNum == 0) {
                 game.addUserCard();
                 game.addBotCard();

@@ -48,9 +48,9 @@ public class Player extends Entity{
         projectile = new OBJ_Fireball(gp);
     }
 
-    public void setDefaultPositions() {
-        worldX = gp.tileSize * 1;
-        worldY = gp.tileSize * 1;
+    public void setDefaultPositions(int x , int y) {
+        worldX = gp.tileSize * x;
+        worldY = gp.tileSize * y;
         direction = "down";
     }
 
@@ -359,5 +359,20 @@ public class Player extends Entity{
         dialogue[3] = "Hello PiggyBooBoo3";
         dialogue[4] = "Hello PiggyBooBoo4";
         
+    }
+
+    public void setMove(String direction){
+        // this.direction = direction;
+        // if (collisionOn == false) {
+        if(direction.equals("up"))
+            worldY -= gp.tileSize;
+        if(direction.equals("down"))
+            worldY += gp.tileSize;
+        if(direction.equals("left"))
+            worldX -= gp.tileSize;
+        if(direction.equals("right"))
+            worldX += gp.tileSize;
+        
+        // }
     }
 }

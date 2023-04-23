@@ -3,10 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Random;
 
-import main.GamePanel;
-
 public class BlackJack {
-    private GamePanel gp;
 
     private ArrayList<Integer> deckList = new ArrayList<Integer>();
     public static ArrayList<Integer> botList = new ArrayList<Integer>();

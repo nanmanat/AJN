@@ -20,6 +20,8 @@ public class UI {
     public String text;
     public boolean showDialog = false;
     public String currentDialogue;
+    public int indexCodeGame = 0;
+    public boolean error = false;
     
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -59,9 +61,6 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen(currentDialogue);
         }
-        if(gp.gameState == gp.gameOverState){
-            drawGameOverScreen();
-        }
         else if(gp.gameState == gp.miniGameBlackJack){
             drawBlackJack();
             drawPlayerLife();
@@ -71,7 +70,10 @@ public class UI {
             drawPlayerLife();
         }
         else if(gp.gameState == gp.miniGameCode){
-            
+            drawDialogueCode();
+        }
+        if(gp.gameState == gp.gameOverState){
+            drawGameOverScreen();
         }
     }
 
@@ -165,6 +167,81 @@ public class UI {
         // int volumeSEWidth = 24 * gp.se.volumeScale;
         // g2.fillRect(x, y, volumeSEWidth, 24);
 
+    }
+
+    public void drawDialogueCode(){
+        int x = gp.tileSize *2;
+        int y = gp.tileSize * 6; 
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        y += gp.tileSize*2;
+        x += gp.tileSize;
+        g2.drawImage(gp.code.up1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        if(commandNum <= 0) {
+            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2 );
+            if(indexCodeGame>=1){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 15;
+                text = String.format("%d",indexCodeGame);
+                g2.drawString(text, x2, y2);
+            }
+            commandNum = 0;
+        }
+
+        x += gp.tileSize*3;
+        g2.drawImage(gp.code.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        if(commandNum == 1) {
+            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
+            if(indexCodeGame>=1){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 15;
+                text = String.format("%d",indexCodeGame);
+                g2.drawString(text, x2, y2);
+            }
+        }
+
+        x += gp.tileSize*3;
+        g2.drawImage(gp.code.left1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        if(commandNum == 2) {
+            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
+            if(indexCodeGame>=1){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 15;
+                text = String.format("%d",indexCodeGame);
+                g2.drawString(text, x2, y2);
+            }
+        }
+
+        x += gp.tileSize*3;
+        g2.drawImage(gp.code.right1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        if(commandNum == 3) {
+            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
+            if(indexCodeGame>=1){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 15;
+                text = String.format("%d",indexCodeGame);
+                g2.drawString(text, x2, y2);
+            }
+        }
+
+        x += gp.tileSize*3;
+        g2.drawImage(gp.code.enter, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        if(indexCodeGame>9){
+            int y2 = y - 20;
+            int x2 = x + (gp.tileSize / 2) + 8;
+            g2.drawString("full", x2, y2);
+        }
+        if(error){
+            int y2 = y - 20;
+            int x2 = x + (gp.tileSize / 2);
+            g2.drawString("put here", x2, y2);
+        }
+        if(commandNum >= 4) {
+            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
+            commandNum = 4;
+        }
     }
 
     public void drawBlackJack(){

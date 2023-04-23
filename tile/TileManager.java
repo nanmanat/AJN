@@ -32,7 +32,7 @@ public class TileManager {
         setup(1, "Piskel-3", false);
         setup(2, "Piskel-29", false);
         setup(3, "Piskel-41", false);
-        setup(4, "Piskel-13", false);
+        setup(4, "Piskel-13", true);
         setup(5, "Piskel-20", false);
         setup(6, "Piskel-19", false);
         setup(7, "Piskel-16", false);
