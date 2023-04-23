@@ -2,10 +2,12 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import game.BlackJack;
+
 public class KeyHandler implements KeyListener{
     
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed , enterPressed , spacePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed , enterPressed , spacePressed, shotKeyPressed;
     
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -49,51 +51,8 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.miniGameBlackJack){
             blackJack(code);
         }
-    }
-
-    public void titleState(int code) {
-        if(code == KeyEvent.VK_UP) {
-            gp.ui.commandNum--;
-            // gp.playSE(1);
-        }
-        if(code == KeyEvent.VK_DOWN) {
-            gp.ui.commandNum++;
-            // gp.playSE(1);
-        }
-        if(code == KeyEvent.VK_ENTER) {
-            if(gp.ui.commandNum == 0){
-                gp.gameState = gp.playState;
-                enterPressed = false;
-            }
-            if(gp.ui.commandNum == 1){
-                //load
-            }
-            if(gp.ui.commandNum == 2){
-                System.exit(0);
-            }
-        }
-        
-    }
-    
-    public void playState(int code) {
-        if(code == KeyEvent.VK_W) {
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_A) {
-            leftPressed = true;
-        }
-        if(code == KeyEvent.VK_S) {
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_D) {
-            rightPressed = true;
-        }
-        if(code == KeyEvent.VK_ESCAPE){
-            gp.gameState = gp.optionsState;
-        }
-        // door
-        if(code == KeyEvent.VK_ENTER){
-            gp.gameState = gp.miniGameMaze;
+        else if (gp.gameState == gp.blackjackScore) {
+            blackJackScore(code);
         }
     }
 
@@ -209,8 +168,11 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_D) {
             rightPressed = false;
         }
-        if(code == KeyEvent.VK_ENTER){
+        if (code == KeyEvent.VK_ENTER) {
             enterPressed = false;
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = false;
         }
         // if(code == KeyEvent.VK_SPACE){
         //     spacePressed = false;
@@ -218,10 +180,30 @@ public class KeyHandler implements KeyListener{
 
     }
 
-    public void dialoguePlayerState(int code) {
-        if(code == KeyEvent.VK_SPACE){
-            spacePressed = true;
+    public void titleState(int code) {
+        if(code == KeyEvent.VK_UP) {
+            gp.ui.commandNum--;
+            gp.playSE(1);
         }
+        if(code == KeyEvent.VK_DOWN) {
+            gp.ui.commandNum++;
+            gp.playSE(1);
+        }
+        if(code == KeyEvent.VK_ENTER) {
+            if(gp.ui.commandNum == 0){
+                gp.gameState = gp.playState;
+                enterPressed = false;
+            }
+            if(gp.ui.commandNum == 1){
+                //load
+            }
+            if(gp.ui.commandNum == 2){
+                System.exit(0);
+            }
+        }
+    }
+
+    public void playState (int code){
         if(code == KeyEvent.VK_W) {
             upPressed = true;
         }
@@ -231,13 +213,28 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_S) {
             downPressed = true;
         }
-        if(code == KeyEvent.VK_D) {
+        if (code == KeyEvent.VK_D) {
             rightPressed = true;
         }
-        if(code == KeyEvent.VK_ENTER){
+        if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
+        }
+        // if(code == KeyEvent.VK_ENTER){
+        //     gp.gameState = gp.dialogueAJN;
+        // }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.optionsState;
+        }
+        if(code == KeyEvent.VK_J){
+            gp.gameState = gp.miniGameBlackJack;
+            gp.game.reset();
+            gp.game.addBotCard();
+        }
     }
+
 
     public void popUp(int code){
         if(code == KeyEvent.VK_ENTER) {
@@ -245,12 +242,50 @@ public class KeyHandler implements KeyListener{
         }
     }
 
-    public void blackJack(int code) {
-        if(code == KeyEvent.VK_ENTER){
-            enterPressed = true;
+
+    public void blackJackScore(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            gp.gameState = gp.playState;
         }
-        if(code == KeyEvent.VK_ESCAPE){
-            gp.gameState = gp.optionsState;
+    }
+
+    public void blackJack(int code) {
+        BlackJack game = new BlackJack();
+        int maxCommandNum = 0;
+        switch(gp.ui.bjState) {
+            case 0: maxCommandNum = 1; break;
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
+            }
+        }
+        if(code == KeyEvent.VK_LEFT){
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.commandNum == 0) {
+                game.addUserCard();
+                game.addBotCard();
+            }
+            if(gp.ui.commandNum == 1) {
+                while (game.botScore() < 18) {
+                    game.addBotCard();
+                }
+                int tmp = game.returnWinner();
+                if (tmp == 0) {
+                    gp.player.life -= 1;
+                    gp.gameState = gp.blackjackScore;
+                } else if (tmp == 1) {
+                    gp.gameState = gp.blackjackScore;
+                } else {
+                    gp.gameState = gp.blackjackScore;
+                }
+            }
         }
     }
     
