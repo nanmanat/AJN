@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import main.GamePanel;
+
 public class BlackJack {
+    private GamePanel gp;
+
     private ArrayList<Integer> deckList = new ArrayList<Integer>();
     private ArrayList<Integer> botList = new ArrayList<Integer>();
     private ArrayList<Integer> userList = new ArrayList<Integer>();
@@ -40,12 +44,12 @@ public class BlackJack {
         return userScore;
     }
 
-    public String getBotCard() {
-        return botList.toString();
+    public ArrayList<Integer> getBotCard() {
+        return botList;
     }
 
-    public String getUserCard() {
-        return userList.toString();
+    public ArrayList<Integer> getUserCard() {
+        return userList;
     }
 
     public String getDeckCard() {
@@ -65,7 +69,16 @@ public class BlackJack {
         System.out.println(getuserScore());
     }
 
-    public static void main(String[] args) {
+    public void reset() {
+        deckList.clear();
+        userList.clear();
+        botList.clear();
+        for (int i = 1; i <= 12; i++) {
+            deckList.add(i);
+        }
+    }
+
+    public void start() {
         int health = 3;
         boolean start = true;
         boolean bot = true;
@@ -128,6 +141,7 @@ public class BlackJack {
                     System.out.println("Draw");
                 }
 
+                reset();
                 bot = true;
                 user = true;
                 health = health-1;

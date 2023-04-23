@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialogueAJN = 4;
     public final int optionsState = 5;
     public final int dialoguePopup = 6;
+    public final int blackjack = 7;
 
     //system
     public TileManager tileM = new TileManager(this);

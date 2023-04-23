@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 import entity.Entity;
 import object.OBJ_Heart;
+import game.BlackJack;
 
 public class UI {
     private GamePanel gp;
@@ -41,42 +42,39 @@ public class UI {
         else if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
         }
-        else if(gp.gameState == gp.dialoguePlayerState){
-            if(showDialog == true){
-                //condition for next text
-                text = "PiggyBooBoo";
-                drawDialogueScreen(text);
-            } 
-            if(gp.keyH.enterPressed == true){
-                gp.gameState = gp.playState;
-            }
-        }
-        else if(gp.gameState == gp.dialogueAJN){
-            if(showDialog == true){
-                //condition for next text
-                text = "Hi AJN";
-                drawDialogueScreen(text);
-            }
-            if(gp.keyH.enterPressed == true){
-                gp.gameState = gp.playState;
-            }
-        }
+        //else if(gp.gameState == gp.dialoguePlayerState){
+            // if(showDialog == true){
+            //     //condition for next text
+            //     text = "PiggyBooBoo";
+            //     drawDialogueScreen(text);
+            // } 
+            // if(gp.keyH.enterPressed == true){
+            //     gp.gameState = gp.playState;
+            // }
+        //}
+        // else if(gp.gameState == gp.dialogueAJN){
+        //     if(showDialog == true){
+        //         //condition for next text
+        //         text = "Hi AJN";
+        //         drawDialogueScreen(text);
+        //     }
+        //     if(gp.keyH.enterPressed == true){
+        //         gp.gameState = gp.playState;
+        //     }
+        // }
         else if(gp.gameState == gp.playState){
             drawPlayerLife();
-            if(gp.keyH.enterPressed == true){
-                gp.gameState = gp.dialogueAJN;
-            } 
+            // if(gp.keyH.enterPressed == true){
+            //     gp.gameState = gp.dialogueAJN;
+            // } 
         }
         else if(gp.gameState == gp.dialoguePopup){
+            drawPlayerLife();
             drawDialogueScreen(currentDialogue);
         }
     }
 
     public void drawPlayerLife() {
-
-        // gp.player.life = 3;
-
-        // System.out.println(gp.player.life);
 
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
@@ -215,6 +213,8 @@ public class UI {
     }
 
     public void drawBlackJack(){
+        //BJgame
+        BlackJack game = new BlackJack();
         //background
         Color green = new Color(0,100,0);
         Color gold = new Color(224,183,0);
@@ -237,7 +237,8 @@ public class UI {
         //y for bot card rows
         y += gp.tileSize*2;
         x = (gp.screenWidth/2)/6 - ((gp.tileSize*2)) + 30;
-        for (int i = 0; i < 6; i++) {
+        //Bot card 
+        for (int i = 0; i < game.getBotCard().size(); i++) {
             x += (gp.tileSize*2);
             g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         }
@@ -246,7 +247,8 @@ public class UI {
         //y for player card rows
         y += gp.tileSize*4;
         x = (gp.screenWidth/2)/6 - ((gp.tileSize*2)) + 30;
-        for (int i = 0; i < 6; i++) {
+        //Player card
+        for (int i = 0; i < game.getUserCard().size(); i++) {
             x += (gp.tileSize*2);
             g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         }
