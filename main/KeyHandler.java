@@ -131,6 +131,9 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_D) {
             rightPressed = true;
         }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
+        }
     }
 
     public void gameOverState(int code) {
@@ -144,6 +147,7 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 0){
                 //before mini game state
                 gp.gameState = gp.tmpState;
+                gp.retry();
             }
             if(gp.ui.commandNum == 1){
                 gp.gameState = gp.playState;
@@ -221,6 +225,9 @@ public class KeyHandler implements KeyListener{
         }
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = true;
+        }
+        if(code == KeyEvent.VK_M){
+            gp.gameState = gp.miniGameMaze;
         }
         // if(code == KeyEvent.VK_ENTER){
         //     gp.gameState = gp.dialogueAJN;
