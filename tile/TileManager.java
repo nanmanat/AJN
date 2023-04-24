@@ -20,7 +20,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[42];
+        tile = new Tile[46];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -70,6 +70,10 @@ public class TileManager {
         setup(39, "Piskel-40", false);
         setup(40, "Piskel-41", false);
         setup(41, "Piskel-42", false);
+        setup(42, "0", true);
+        setup(43, "1", false);
+        setup(44, "2", false);
+        setup(45, "3", false);
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -151,6 +155,7 @@ public class TileManager {
     public void update(){
         if(gp.gameState == gp.playState){
             loadMap("res/maps/map001.txt");
+            // loadMap("res/maps/mapMill.txt");
         }
         // else if(gp.gameState == gp.miniGameMaze){
         //     loadMap("res/maps/mapMaze.txt");
