@@ -69,8 +69,8 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eHandler = new EventHandler(this);
     public Thread gameThread;
     public EnvironmentManager eManager = new EnvironmentManager(this);
-    public BlackJack game = new BlackJack();
-    public CodeGame code = new CodeGame(this);
+    public BlackJack blackJack = new BlackJack(this);
+
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10];
     public Entity npc[] = new Entity[10];
