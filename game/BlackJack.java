@@ -12,7 +12,7 @@ public class BlackJack extends Entity {
 
     private ArrayList<Integer> deckList = new ArrayList<Integer>();
     public static ArrayList<Integer> botList = new ArrayList<Integer>();
-    public static ArrayList<Integer> userList = new ArrayList<Integer>();
+    public ArrayList<Integer> userList = new ArrayList<Integer>();
     private int botScore;
     private int userScore;
     public static boolean turn = true;
@@ -90,8 +90,8 @@ public class BlackJack extends Entity {
     
     public int playerScore() {
         userScore = 0;
-        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
-            userScore += game.BlackJack.userList.get(i);
+        for (int i = 0; i < gp.blackJack.userList.size(); i++) {
+            userScore += gp.blackJack.userList.get(i);
         } 
         return userScore;
     }
@@ -155,19 +155,21 @@ public class BlackJack extends Entity {
         int index = randCard();
         userList.add(deckList.get(index));
         userScore = 0;
-        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
-            userScore += game.BlackJack.userList.get(i);
+        for (int i = 0; i < gp.blackJack.userList.size(); i++) {
+            userScore += gp.blackJack.userList.get(i);
         }
         deckList.remove(index);
         if (bot == false && player == false) {
             return;
         }
-        getDeck();
     }
 
     public int randCard() {
         Random rand = new Random();
-        int tmp = rand.nextInt(deckList.size());
+        int tmp = 0;
+        while (tmp == 0) {
+            tmp = rand.nextInt(deckList.size());
+        }
         return tmp;
     }    
 
@@ -178,7 +180,7 @@ public class BlackJack extends Entity {
         turn = true;
         bot = true;
         player = true;
-        for (int i = 0; i < 12; i++) {
+        for (int i = 1; i <= 12; i++) {
             deckList.add(i);
         }
     }

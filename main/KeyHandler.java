@@ -239,6 +239,7 @@ public class KeyHandler implements KeyListener{
             gp.gameState = gp.miniGameBlackJack;
             gp.blackJack.reset();
             gp.blackJack.addBotCard();
+            gp.blackJack.getDeck();
         }
     }
 
@@ -274,7 +275,8 @@ public class KeyHandler implements KeyListener{
             }
         }
         if(code == KeyEvent.VK_ENTER){
-            if(gp.ui.commandNum == 0) {
+            if(gp.ui.commandNum == 0 && gp.blackJack.userList.size() <= 5) {
+                System.out.println("THIS " + gp.blackJack.userList.size());
                 gp.blackJack.addUserCard();
                 gp.blackJack.addBotCard();
             }

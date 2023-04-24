@@ -229,16 +229,16 @@ public class UI {
         textX = (getXforCenteredText(text)*2) - gp.tileSize*3;
         g2.setFont(g2.getFont().deriveFont(18F));
         int playerSum = 0;
-        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
-            playerSum += game.BlackJack.userList.get(i);
+        for (int i = 0; i < gp.blackJack.userList.size(); i++) {
+            playerSum += gp.blackJack.userList.get(i);
         }
         g2.drawString(String.format("You: %s/21", playerSum), textX, textY);
         //player cards
         x = (gp.screenWidth/6) - ((gp.tileSize*2) + 30);
         y += gp.tileSize*4;
-        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
+        for (int i = 0; i < gp.blackJack.userList.size(); i++) {
             x += ((gp.tileSize*2) + 20);
-            g2.drawImage(gp.blackJack.getCard(game.BlackJack.userList.get(i)), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+            g2.drawImage(gp.blackJack.getCard(gp.blackJack.userList.get(i)), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         }
         //hit
         g2.setFont(g2.getFont().deriveFont(25F));
@@ -293,8 +293,8 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(25F));
         y += gp.tileSize;
         int sum1 = 0;
-        for (int i = 0; i < game.BlackJack.userList.size(); i++) {
-            sum1 += game.BlackJack.userList.get(i);
+        for (int i = 0; i < gp.blackJack.userList.size(); i++) {
+            sum1 += gp.blackJack.userList.get(i);
         }
         g2.drawString(text+sum1, x, y);
         //Winner 
