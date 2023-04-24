@@ -72,18 +72,18 @@ public class Player extends Entity{
 
     public void getPlayerAttack() {
 
-        attackUp1 = setup("/res/player/16Jae-11", gp.tileSize, gp.tileSize * 2);
-        attackUp2 = setup("/res/player/16Jae-12", gp.tileSize, gp.tileSize * 2);
-        attackUp3 = setup("/res/player/16Jae-12", gp.tileSize, gp.tileSize * 2);
-        attackDown1 = setup("/res/player/16Jae-2", gp.tileSize, gp.tileSize * 2);
-        attackDown2 = setup("/res/player/16Jae-3", gp.tileSize, gp.tileSize * 2);
-        attackDown3 = setup("/res/player/16Jae-3", gp.tileSize, gp.tileSize * 2);
-        attackLeft1 = setup("/res/player/16Jae-8", gp.tileSize * 2, gp.tileSize);
-        attackLeft2 = setup("/res/player/16Jae-9", gp.tileSize * 2, gp.tileSize);
-        attackLeft3 = setup("/res/player/16Jae-9", gp.tileSize * 2, gp.tileSize);
-        attackRight1 = setup("/res/player/16Jae-5", gp.tileSize * 2, gp.tileSize);
-        attackRight2 = setup("/res/player/16Jae-6", gp.tileSize * 2, gp.tileSize);
-        attackRight3 = setup("/res/player/16Jae-6", gp.tileSize * 2, gp.tileSize);
+        attackUp1 = setup("/res/player/attack_up_1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("/res/player/attack_up_2", gp.tileSize, gp.tileSize * 2);
+        attackUp3 = setup("/res/player/attack_up_3", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("/res/player/attack_down_1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("/res/player/attack_down_2", gp.tileSize, gp.tileSize * 2);
+        attackDown3 = setup("/res/player/attack_down_3", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("/res/player/attack_left_1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("/res/player/attack_left_2", gp.tileSize * 2, gp.tileSize);
+        attackLeft3 = setup("/res/player/attack_left_3", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("/res/player/attack_right_1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("/res/player/attack_right_2", gp.tileSize * 2, gp.tileSize);
+        attackRight3 = setup("/res/player/attack_right_3", gp.tileSize * 2, gp.tileSize);
     }
 
     public void update() {
