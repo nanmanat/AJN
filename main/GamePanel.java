@@ -28,8 +28,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixel height
 
     //WORLD SETTINGS
-    public final int maxWorldCol = 60;
-    public final int maxWorldRow = 29;
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
@@ -58,7 +58,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int miniGameBlackJack = 10;
     public final int blackjackScore = 11;
     public final int gameOverState = 12;
-    // public final int miniGameDialoge = 13;
 
     //system
     public TileManager tileM = new TileManager(this);
@@ -203,6 +202,24 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             g2.dispose();
         }
+        else if(gameState == miniGameCode){
+            tileM.draw(g2);
+            entityList.add(player);
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    entityList.add(obj[i]);
+                }
+            }
+            // draw entity
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.get(i).draw(g2);
+            }
+            // empty entity list
+            entityList.clear();
+            //UI
+            ui.draw(g2);
+            g2.dispose();
+        }
         else if(gameState == playState || tmpState == playState){
             tileM.draw(g2);
             // add entities to entity list
@@ -239,24 +256,6 @@ public class GamePanel extends JPanel implements Runnable {
     
             });
 
-            // draw entity
-            for (int i = 0; i < entityList.size(); i++) {
-                entityList.get(i).draw(g2);
-            }
-            // empty entity list
-            entityList.clear();
-            //UI
-            ui.draw(g2);
-            g2.dispose();
-        }
-        else if(gameState == miniGameCode || tmpState == miniGameCode){
-            tileM.draw(g2);
-            entityList.add(player);
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    entityList.add(obj[i]);
-                }
-            }
             // draw entity
             for (int i = 0; i < entityList.size(); i++) {
                 entityList.get(i).draw(g2);

@@ -41,6 +41,7 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.gameOverState){
             gameOverState(code);
         }
+        // option state
         else if(gp.gameState == gp.optionsState){
             optionState(code);
         }
@@ -166,7 +167,7 @@ public class KeyHandler implements KeyListener{
                 }
                 gp.ui.indexCodeGame++;
                 if(gp.ui.commandNum == 4) {
-                    gp.code.print();
+                    // gp.code.print();
                     gp.code.movePlayer();
                     gp.code.resetMove();
                     gp.ui.indexCodeGame = 0;
@@ -225,10 +226,6 @@ public class KeyHandler implements KeyListener{
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = false;
-            leftPressed = false;
-            downPressed = false;
-            upPressed = false;
-            rightPressed = false;
         }
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = false;
@@ -283,9 +280,11 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_M){
             gp.gameState = gp.miniGameMaze;
+            gp.tmpState = gp.miniGameMaze;
             gp.retry(1,1);
         }
         if(code == KeyEvent.VK_C){
+            gp.tmpState = gp.miniGameCode;
             gp.gameState = gp.miniGameCode;
         }
         if(code == KeyEvent.VK_ESCAPE){

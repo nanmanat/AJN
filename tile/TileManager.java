@@ -29,7 +29,7 @@ public class TileManager {
     public void getTileImage() {
 
         setup(0, "Piskel-4", false);
-        setup(1, "Piskel-3", true);
+        setup(1, "Piskel-3", false);
         setup(2, "Piskel-29", false);
         setup(3, "Piskel-41", false);
         setup(4, "Piskel-13", true);
@@ -149,7 +149,7 @@ public class TileManager {
     }
 
     public void update(){
-        if(gp.gameState == gp.playState){
+        if(gp.gameState == gp.playState || gp.tmpState == gp.playState){
             loadMap("res/maps/map001.txt");
         }
         else if(gp.gameState == gp.miniGameMaze){

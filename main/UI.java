@@ -42,6 +42,7 @@ public class UI {
             drawTitleScreen();
         }
         else if(gp.gameState == gp.optionsState){
+            gp.tmpState = gp.playState;
             drawOptionsScreen();
         }
         else if(gp.gameState == gp.miniGameMaze){
@@ -52,14 +53,8 @@ public class UI {
             }
         }
         else if(gp.gameState == gp.playState){
+            gp.tmpState = gp.playState;
             drawPlayerLife();
-        }
-        else if(gp.gameState == gp.playState){
-            drawPlayerLife();
-        }
-        else if(gp.gameState == gp.dialoguePopup){
-            drawPlayerLife();
-            drawDialogueScreen(currentDialogue);
         }
         else if(gp.gameState == gp.miniGameBlackJack){
             drawBlackJack();
@@ -74,6 +69,10 @@ public class UI {
         }
         if(gp.gameState == gp.gameOverState){
             drawGameOverScreen();
+        }
+        if(gp.gameState == gp.dialoguePopup){
+            drawPlayerLife();
+            drawDialogueScreen(currentDialogue);
         }
     }
 
