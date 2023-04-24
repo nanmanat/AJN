@@ -364,15 +364,22 @@ public class Player extends Entity{
     public void setMove(String direction){
         // this.direction = direction;
         // if (collisionOn == false) {
-        if(direction.equals("up"))
+        if(direction.equals("up")){
+            this.direction = direction;
             worldY -= gp.tileSize;
-        if(direction.equals("down"))
+        }
+        if(direction.equals("down")){
+            this.direction = direction;
             worldY += gp.tileSize;
-        if(direction.equals("left"))
+        }
+        if(direction.equals("left")){
+            this.direction = direction;
             worldX -= gp.tileSize;
-        if(direction.equals("right"))
+        }
+        if(direction.equals("right")){
+            this.direction = direction;
             worldX += gp.tileSize;
-        
+        }
         // }
     }
 }

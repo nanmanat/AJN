@@ -29,7 +29,7 @@ public class TileManager {
     public void getTileImage() {
 
         setup(0, "Piskel-4", false);
-        setup(1, "Piskel-3", false);
+        setup(1, "Piskel-3", true);
         setup(2, "Piskel-29", false);
         setup(3, "Piskel-41", false);
         setup(4, "Piskel-13", true);
