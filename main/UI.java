@@ -190,7 +190,6 @@ public class UI {
     }
 
     public void blackjack_top(int frameX, int frameY) {
-        // BlackJack game = new BlackJack();
         int textX, textY;
         //TITLE
         String text = "BLACKJACK";
@@ -204,7 +203,11 @@ public class UI {
         int y = gp.tileSize*3;
         for (int i = 0; i < game.BlackJack.botList.size(); i++) {
             x += ((gp.tileSize*2) + 20);
-            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+            if (i == 0) {
+                g2.drawImage(gp.blackJack.getCard(0), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+            } else {
+                g2.drawImage(gp.blackJack.getCard(game.BlackJack.botList.get(i)), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+            }
         }
         //bot score
         g2.setColor(Color.white);
@@ -215,7 +218,7 @@ public class UI {
         for (int i = 0; i < game.BlackJack.botList.size(); i++) {
             sum += game.BlackJack.botList.get(i);
         }
-        if(gp.game.player == false && gp.game.bot == false) {
+        if(gp.blackJack.player == false && gp.blackJack.bot == false) {
             g2.drawString(String.format("Hoffman: %s/21", sum), textX, textY);
         } else {
             g2.drawString(String.format("Hoffman: ??+%s/21", sum-game.BlackJack.botList.get(0)), textX, textY);
@@ -235,7 +238,7 @@ public class UI {
         y += gp.tileSize*4;
         for (int i = 0; i < game.BlackJack.userList.size(); i++) {
             x += ((gp.tileSize*2) + 20);
-            g2.drawImage(gp.player.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+            g2.drawImage(gp.blackJack.getCard(game.BlackJack.userList.get(i)), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         }
         //hit
         g2.setFont(g2.getFont().deriveFont(25F));
@@ -296,7 +299,7 @@ public class UI {
         g2.drawString(text+sum1, x, y);
         //Winner 
         y += gp.tileSize;
-        switch(gp.game.returnWinner()) {
+        switch(gp.blackJack.returnWinner()) {
             case 0: g2.drawString("Hoffman!", x, y); break;
             case 1: g2.drawString("You!", x, y); break;
             case 2: g2.drawString("Drawn!", x, y); break;
@@ -438,14 +441,6 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
         g2.drawString(text, x, y);
     }
-
-    // public void playerDialogue(String text){
-    //     int x = gp.tileSize * 3;
-    //     int y = gp.tileSize / 2;
-    //     y += gp.tileSize;
-    //     g2.setFont(g2.getFont().deriveFont(Font.PLAIN , 32F));
-    //     g2.drawString(text, x, y);
-    // }
 
     public int getXforCenteredText(String t){
         int length = (int) g2.getFontMetrics().getStringBounds(t, g2).getWidth();

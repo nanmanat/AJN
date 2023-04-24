@@ -237,8 +237,8 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_J){
             gp.gameState = gp.miniGameBlackJack;
-            gp.game.reset();
-            gp.game.addBotCard();
+            gp.blackJack.reset();
+            gp.blackJack.addBotCard();
         }
     }
 
@@ -257,7 +257,6 @@ public class KeyHandler implements KeyListener{
     }
 
     public void blackJack(int code) {
-        BlackJack game = new BlackJack();
         int maxCommandNum = 0;
         switch(gp.ui.bjState) {
             case 0: maxCommandNum = 1; break;
@@ -276,14 +275,14 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_ENTER){
             if(gp.ui.commandNum == 0) {
-                game.addUserCard();
-                game.addBotCard();
+                gp.blackJack.addUserCard();
+                gp.blackJack.addBotCard();
             }
             if(gp.ui.commandNum == 1) {
-                while (game.botScore() < 18) {
-                    game.addBotCard();
+                while (gp.blackJack.botScore() < 18) {
+                    gp.blackJack.addBotCard();
                 }
-                int tmp = game.returnWinner();
+                int tmp = gp.blackJack.returnWinner();
                 if (tmp == 0) {
                     gp.player.life -= 1;
                     gp.gameState = gp.blackjackScore;
