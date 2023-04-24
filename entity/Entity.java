@@ -61,7 +61,12 @@ public class Entity {
 
     public void setAction() {
     }
-    public void damageReaction() {}
+
+    public void damageReaction() {
+    }
+    
+    public void move(String direction) {
+    }
 
     public void update() {
         setAction();
