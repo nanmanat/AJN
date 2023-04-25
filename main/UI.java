@@ -54,6 +54,10 @@ public class UI {
         else if(gp.gameState == gp.playState){
             gp.tmpState = gp.playState;
             drawPlayerLife();
+            if(gp.player.life <= 0){
+                gp.tmpState = gp.miniGameMaze;
+                gp.gameState = gp.gameOverState;
+            }
         }
         else if(gp.gameState == gp.miniGameBlackJack){
             drawBlackJack();

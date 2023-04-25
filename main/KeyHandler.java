@@ -183,7 +183,7 @@ public class KeyHandler implements KeyListener{
             }
             else {
                 if(gp.ui.commandNum == 4) {
-                    gp.code.print();
+                    // gp.code.print();
                     gp.code.movePlayer();
                     gp.code.resetMove();
                     gp.ui.indexCodeGame = 0;
@@ -303,7 +303,6 @@ public class KeyHandler implements KeyListener{
             gp.gameState = gp.miniGameBlackJack;
             gp.blackJack.reset();
             gp.blackJack.addBotCard();
-            gp.blackJack.getDeck();
         }
     }
 

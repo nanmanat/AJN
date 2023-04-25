@@ -22,7 +22,6 @@ public class BlackJack extends Entity {
     public BlackJack(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        System.out.println("TEST");
         if (turn == true) {
             for (int i = 1; i <= 12; i++) {
                 deckList.add(i);
@@ -122,21 +121,13 @@ public class BlackJack extends Entity {
         }
     }
     
-    public void getDeck() {
-        System.out.println(deckList.toString());
-    }
 
     public int returnWinner() {
-        System.out.println("botscore "+ botScore());
-        System.out.println("playerscore "+ playerScore());
         if (getWinner() == 0) {
-            System.out.println("Bot Wins");
             return 0;
         } else if (getWinner() == 1){
-            System.out.println("Player wins!");
             return 1;
         } else {
-            System.out.println("Drawn!");
         }
         return 2;
     }
