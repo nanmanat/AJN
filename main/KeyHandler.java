@@ -2,9 +2,6 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.SwingUtilities;
-
-import game.BlackJack;
 
 public class KeyHandler implements KeyListener{
     
@@ -358,12 +355,19 @@ public class KeyHandler implements KeyListener{
                 gp.blackJack.addUserCard();
                 gp.blackJack.addBotCard();
             }
-            if(gp.ui.commandNum == 1 && gp.blackJack.playerScore() >= 16) {
-                while (gp.blackJack.botScore() < 17) {
-                    gp.blackJack.addBotCard();
+            if(gp.ui.commandNum == 1 && (gp.blackJack.playerScore() >= 16 || gp.blackJack.botScore() >= 20)) {
+                if(gp.blackJack.botScore() < 17)
+                {
+                    while (gp.blackJack.botScore() < 17) {
+                        gp.blackJack.addBotCard();
+                    }
+                } else {
+                    gp.blackJack.end();
                 }
-                gp.blackJack.end();
             }
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.playState;
         }
     }
     

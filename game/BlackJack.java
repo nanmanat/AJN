@@ -13,7 +13,7 @@ public class BlackJack extends Entity {
     private ArrayList<Integer> deckList = new ArrayList<Integer>();
     public static ArrayList<Integer> botList = new ArrayList<Integer>();
     public ArrayList<Integer> userList = new ArrayList<Integer>();
-    private int elfLife = 3;
+    private int elfLife;
     private int botScore;
     private int userScore;
     public static boolean turn = true;
@@ -25,10 +25,11 @@ public class BlackJack extends Entity {
         super(gp);
         this.gp = gp;
         if (turn == true) {
-            for (int i = 1; i <= 12; i++) {
+            for (int i = 1; i <= 13; i++) {
                 deckList.add(i);
             }
             turn = false;
+            elfLife = 3;
         }
         setCard();
     } 
@@ -153,7 +154,7 @@ public class BlackJack extends Entity {
 
     public void addBotCard() {
         if (botCheck() == true) {
-            int index = randCard();
+            int index = randBotCard();
             botList.add(deckList.get(index));
             deckList.remove(index);
         } else {
@@ -162,7 +163,7 @@ public class BlackJack extends Entity {
     }    
     
     public void addUserCard() {
-        int index = randCard();
+        int index = randPlayerCard();
         userList.add(deckList.get(index));
         userScore = 0;
         for (int i = 0; i < gp.blackJack.userList.size(); i++) {
@@ -174,14 +175,19 @@ public class BlackJack extends Entity {
         }
     }
 
-    public int randCard() {
+    public int randBotCard() {
         Random rand = new Random();
         int tmp = 0;
-        while (tmp == 0) {
-            tmp = rand.nextInt(deckList.size());
-        }
+        tmp = rand.nextInt(deckList.size());
         return tmp;
     }    
+
+    public int randPlayerCard() {
+        Random rand = new Random();
+        int tmp = 0;
+        tmp = rand.nextInt(deckList.size());
+        return tmp;
+    } 
 
     public void reset() {
         deckList.clear();
@@ -191,7 +197,7 @@ public class BlackJack extends Entity {
         bot = true;
         player = true;
         stay = false;
-        for (int i = 1; i <= 12; i++) {
+        for (int i = 1; i <= 13; i++) {
             deckList.add(i);
         }
     }

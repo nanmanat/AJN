@@ -354,7 +354,7 @@ public class UI {
         String text = "RESULT";
         int x = getXforCenteredText(text);
         int y = (int)(gp.tileSize*2.5);
-        g2.drawString(text, x, y);
+        g2.drawString(text, getXforCenteredText(text), y);
         //HoffmanScore
         text = "Hoffman: ";
         g2.setFont(g2.getFont().deriveFont(25F));
@@ -363,7 +363,7 @@ public class UI {
         for (int i = 0; i < game.BlackJack.botList.size(); i++) {
             sum += game.BlackJack.botList.get(i);
         }
-        g2.drawString(text+sum, x, y);
+        g2.drawString(text+sum, getXforCenteredText(text+sum), y);
         //PlayerScore
         text = "You: ";
         g2.setFont(g2.getFont().deriveFont(25F));
@@ -372,22 +372,23 @@ public class UI {
         for (int i = 0; i < gp.blackJack.userList.size(); i++) {
             sum1 += gp.blackJack.userList.get(i);
         }
-        g2.drawString(text+sum1, x, y);
+        g2.drawString(text+sum1, getXforCenteredText(text+sum1), y);
         //Winner 
         y += gp.tileSize;
         switch(gp.blackJack.returnWinner()) {
-            case 0: g2.drawString("Hoffman!", x, y); break;
-            case 1: g2.drawString("You!", x, y); break;
-            case 2: g2.drawString("Drawn!", x, y); break;
+            case 0: text = "Hoffman!"; g2.drawString(text, getXforCenteredText(text), y); break;
+            case 1: text = "You!"; g2.drawString(text, getXforCenteredText(text), y); break;
+            case 2: text = "Drawn!"; g2.drawString(text, getXforCenteredText(text), y); break;
         }
         //Elflife
         y += gp.tileSize;
-        g2.drawString(String.format("ElfLife: %s", gp.blackJack.getElfLife()), x, y);
+        text = "Hoffman Life: %s";
+        g2.drawString(String.format(text, gp.blackJack.getElfLife()), getXforCenteredText(text), y);
         //back
         text = "Back";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
         y += gp.tileSize*2;
-        g2.drawString(text, x, y);
+        g2.drawString(text, getXforCenteredText(text), y);
         if(commandNum>=0) {
             g2.drawString(">", x-gp.tileSize/2 , y);
             commandNum = 0;
