@@ -13,11 +13,13 @@ public class BlackJack extends Entity {
     private ArrayList<Integer> deckList = new ArrayList<Integer>();
     public static ArrayList<Integer> botList = new ArrayList<Integer>();
     public ArrayList<Integer> userList = new ArrayList<Integer>();
+    private int elfLife = 3;
     private int botScore;
     private int userScore;
     public static boolean turn = true;
     public boolean bot = true;
     public boolean player = true;
+    public boolean stay = false;
 
     public BlackJack(GamePanel gp) {
         super(gp);
@@ -30,6 +32,14 @@ public class BlackJack extends Entity {
         }
         setCard();
     } 
+
+    public int getElfLife() {
+        return elfLife;
+    }
+
+    public void hurtElf() {
+        elfLife--;
+    }
 
     public void setCard() {
         card0 = setup("/res/objects/card0", gp.tileSize, gp.tileSize);
@@ -73,7 +83,7 @@ public class BlackJack extends Entity {
         for (int i = 0; i < game.BlackJack.botList.size(); i++) {
             botScore += game.BlackJack.botList.get(i);
         }
-        if (botScore >= 18) {
+        if (botScore >= 17) {
             return false;
         }
         return true;
@@ -95,17 +105,26 @@ public class BlackJack extends Entity {
         return userScore;
     }
     
+    public void end() {
+        int tmp = gp.blackJack.returnWinner();
+                if (tmp == 0) {
+                    gp.player.life -= 1;
+                    gp.gameState = gp.blackjackScore;
+                } else if (tmp == 1) {
+                    gp.gameState = gp.blackjackScore;
+                    gp.blackJack.hurtElf();
+                } else {
+                    gp.gameState = gp.blackjackScore;
+                }
+    }
+
     public int getWinner() {
         int botScore = botScore();
         int userScore = playerScore();
     
         if (botScore > 21 && userScore > 21) {
             // Both scores are over 21, nobody wins
-            if (botScore < userScore) {
-                return 0;
-            } else {
-                return 1;
-            }
+            return 2;
         } else if (botScore > 21) {
             return 1; // Player wins
         } else if (userScore > 21) {
@@ -171,6 +190,7 @@ public class BlackJack extends Entity {
         turn = true;
         bot = true;
         player = true;
+        stay = false;
         for (int i = 1; i <= 12; i++) {
             deckList.add(i);
         }

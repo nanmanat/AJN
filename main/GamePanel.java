@@ -288,5 +288,14 @@ public class GamePanel extends JPanel implements Runnable {
         se.setFile(i);
         se.play();
     }
+
+    public void wait(int i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -2,6 +2,8 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.SwingUtilities;
+
 import game.BlackJack;
 
 public class KeyHandler implements KeyListener{
@@ -317,7 +319,18 @@ public class KeyHandler implements KeyListener{
     public void blackJackScore(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gp.playSE(1);
-            gp.gameState = gp.playState;
+            if (gp.blackJack.getElfLife() == 0) {
+                gp.gameState = gp.playState;
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = " Oh no I'm dead! *dead elf sound* ";
+            } else if(gp.player.life == 0) {
+                gp.gameState = gp.gameOverState;
+                gp.gameState = gp.playState;
+            } else {
+                gp.gameState = gp.miniGameBlackJack;
+                gp.blackJack.reset();
+                gp.blackJack.addBotCard();
+            }
         }
     }
 
@@ -342,23 +355,14 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_ENTER){
             if(gp.ui.commandNum == 0 && gp.blackJack.userList.size() <= 5) {
-                System.out.println("THIS " + gp.blackJack.userList.size());
                 gp.blackJack.addUserCard();
                 gp.blackJack.addBotCard();
             }
-            if(gp.ui.commandNum == 1) {
-                while (gp.blackJack.botScore() < 18) {
+            if(gp.ui.commandNum == 1 && gp.blackJack.playerScore() >= 16) {
+                while (gp.blackJack.botScore() < 17) {
                     gp.blackJack.addBotCard();
                 }
-                int tmp = gp.blackJack.returnWinner();
-                if (tmp == 0) {
-                    gp.player.life -= 1;
-                    gp.gameState = gp.blackjackScore;
-                } else if (tmp == 1) {
-                    gp.gameState = gp.blackjackScore;
-                } else {
-                    gp.gameState = gp.blackjackScore;
-                }
+                gp.blackJack.end();
             }
         }
     }

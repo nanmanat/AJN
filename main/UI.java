@@ -302,7 +302,7 @@ public class UI {
         //player score
         g2.setColor(Color.white);
         textY = frameY + gp.tileSize;
-        textX = (getXforCenteredText(text)*2) - gp.tileSize*3;
+        textX = (getXforCenteredText(text)*2) - gp.tileSize*4;
         g2.setFont(g2.getFont().deriveFont(18F));
         int playerSum = 0;
         for (int i = 0; i < gp.blackJack.userList.size(); i++) {
@@ -320,7 +320,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(25F));
         g2.setColor(Color.white);
         textY += gp.tileSize*8;
-        textX = frameX + gp.tileSize*2;
+        textX = frameX + gp.tileSize*3;
         g2.drawString("Hit me.", textX, textY);
         if(commandNum == 0) {
             g2.drawString(">", textX-25, textY);
@@ -380,6 +380,9 @@ public class UI {
             case 1: g2.drawString("You!", x, y); break;
             case 2: g2.drawString("Drawn!", x, y); break;
         }
+        //Elflife
+        y += gp.tileSize;
+        g2.drawString(String.format("ElfLife: %s", gp.blackJack.getElfLife()), x, y);
         //back
         text = "Back";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
