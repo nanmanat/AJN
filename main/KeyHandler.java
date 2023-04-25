@@ -316,13 +316,13 @@ public class KeyHandler implements KeyListener{
     public void blackJackScore(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gp.playSE(1);
-            if (gp.blackJack.getElfLife() == 0) {
+            if (gp.player.life == 0) {
+                gp.gameState = gp.gameOverState;
+                gp.gameState = gp.playState;
+            } else if (gp.blackJack.getElfLife() == 0) {
                 gp.gameState = gp.playState;
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = " Oh no I'm dead! *dead elf sound* ";
-            } else if(gp.player.life == 0) {
-                gp.gameState = gp.gameOverState;
-                gp.gameState = gp.playState;
             } else {
                 gp.gameState = gp.miniGameBlackJack;
                 gp.blackJack.reset();
