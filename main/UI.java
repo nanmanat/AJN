@@ -42,7 +42,6 @@ public class UI {
             drawTitleScreen();
         }
         else if(gp.gameState == gp.optionsState){
-            gp.tmpState = gp.playState;
             drawOptionsScreen();
         }
         else if(gp.gameState == gp.miniGameMaze){

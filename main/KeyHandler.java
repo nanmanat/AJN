@@ -113,7 +113,7 @@ public class KeyHandler implements KeyListener{
                 System.exit(0);
             }
             if(gp.ui.commandNum == 3){
-                gp.gameState = gp.playState;
+                gp.gameState = gp.tmpState;
             }
         }
     }
@@ -140,12 +140,20 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = true;
         }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.optionsState;
+            gp.tmpState = gp.miniGameMaze;
+        }
     }
 
     public void miniGameCode(int code){
         if(code == KeyEvent.VK_LEFT){
             gp.ui.commandNum--;
             gp.playSE(1);
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.optionsState;
+            gp.tmpState = gp.miniGameCode;
         }
         if(code == KeyEvent.VK_RIGHT){
             gp.ui.commandNum++;

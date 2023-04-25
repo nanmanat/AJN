@@ -202,7 +202,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             g2.dispose();
         }
-        else if(gameState == miniGameCode){
+        else if(gameState == miniGameCode || tmpState == miniGameCode){
             tileM.draw(g2);
             entityList.add(player);
             for (int i = 0; i < obj.length; i++) {

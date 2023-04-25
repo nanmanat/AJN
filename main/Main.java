@@ -9,7 +9,7 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("เกมโก่วๆ");
-        window.setUndecorated(true);
+        window.setUndecorated(false);
 
         GamePanel gamePanel = new GamePanel();
         
