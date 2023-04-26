@@ -49,6 +49,7 @@ public class UI {
             if(gp.player.life <= 0){
                 gp.tmpState = gp.miniGameMaze;
                 gp.gameState = gp.gameOverState;
+                gp.playSE(2);
             }
         }
         else if(gp.gameState == gp.playState){

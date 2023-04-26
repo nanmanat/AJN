@@ -165,14 +165,15 @@ public class BlackJack extends Entity {
     public void addUserCard() {
         int index = randPlayerCard();
         userList.add(deckList.get(index));
-        userScore = 0;
-        for (int i = 0; i < gp.blackJack.userList.size(); i++) {
-            userScore += gp.blackJack.userList.get(i);
-        }
+        // userScore = 0;
+        // for (int i = 0; i < gp.blackJack.userList.size(); i++) {
+        //     userScore += gp.blackJack.userList.get(i);
+        // }
+        gp.playSE(4);
         deckList.remove(index);
-        if (bot == false && player == false) {
-            return;
-        }
+        // if (bot == false && player == false) {
+        //     return;
+        // }
     }
 
     public int randBotCard() {
