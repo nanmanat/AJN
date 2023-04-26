@@ -22,6 +22,8 @@ public class UI {
     public String currentDialogue;
     public int indexCodeGame = 0;
     public boolean error = false;
+    public int worldX;
+    public int worldY;
     
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -58,6 +60,7 @@ public class UI {
                 gp.tmpState = gp.miniGameMaze;
                 gp.gameState = gp.gameOverState;
             }
+            drawPoint();
         }
         else if(gp.gameState == gp.miniGameBlackJack){
             drawBlackJack();
@@ -69,6 +72,7 @@ public class UI {
         }
         else if(gp.gameState == gp.miniGameCode){
             drawDialogueCode();
+            drawPoint();
         }
         if(gp.gameState == gp.gameOverState){
             drawGameOverScreen();
@@ -229,7 +233,7 @@ public class UI {
         }
 
         x += gp.tileSize*3;
-        g2.drawImage(gp.code.enter, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        g2.drawString("Enter", x+(gp.tileSize/2)-5, y+(gp.tileSize)+10);
         if(indexCodeGame>9){
             int y2 = y - 20;
             int x2 = x + (gp.tileSize / 2) + 8;
@@ -241,9 +245,21 @@ public class UI {
             g2.drawString("put here", x2, y2);
         }
         if(commandNum >= 4) {
-            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
+            g2.drawRect(x, y+(gp.tileSize/2),gp.tileSize*2 , gp.tileSize);
             commandNum = 4;
         }
+    }
+
+    public void drawPoint(){
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(20F));
+        int x = 20;
+        int y = 500;
+        int lineHeight = 20;
+        g2.drawString("X: " + gp.player.worldX, x , y); y+=lineHeight;
+        g2.drawString("Y: " + gp.player.worldY, x , y); y+=lineHeight;
+        g2.drawString("Col: " + (gp.player.worldX+gp.player.solidArea.x)/gp.tileSize, x , y); y+=lineHeight;
+        g2.drawString("Row: " + (gp.player.worldY+gp.player.solidArea.y)/gp.tileSize, x , y); y+=lineHeight;
     }
 
     public void drawBlackJack(){
