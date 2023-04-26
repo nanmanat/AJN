@@ -383,12 +383,13 @@ public class KeyHandler implements KeyListener{
                 gp.blackJack.addUserCard();
                 gp.blackJack.addBotCard();
             }
-            if(gp.ui.commandNum == 1 && (gp.blackJack.playerScore() >= 16 || gp.blackJack.botScore() >= 20)) {
+            if(gp.ui.commandNum == 1 && (gp.blackJack.playerScore() >= 15 || gp.blackJack.botScore() >= 20)) {
                 if(gp.blackJack.botScore() < 17)
                 {
                     while (gp.blackJack.botScore() < 17) {
                         gp.blackJack.addBotCard();
                     }
+                    gp.playSE(4);
                 } else {
                     gp.blackJack.end();
                 }
