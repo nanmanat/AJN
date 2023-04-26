@@ -24,7 +24,11 @@ public class EventHandler {
     public void checkEvent() {
 
         if (hit(27, 16, "right") == true) { 
-            spike(gp.dialoguePopup);
+            // spike(gp.dialoguePopup);
+            System.out.print("yo ");
+        }
+        if (move(22, 18, "right") == true) { 
+            System.out.print("yo ");
         }
 
     }
@@ -56,5 +60,28 @@ public class EventHandler {
         gp.player.keyH.rightPressed = false;
         gp.ui.currentDialogue = "You got hit by a balls!";
         gp.player.life -= 1;
+    }
+
+    public boolean move(int eventCol, int eventRow, String reqDirection) {
+        eventRect.width = gp.tileSize;
+        eventRect.height = gp.tileSize;
+        boolean move = false;
+        gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+        gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+        eventRect.x = eventCol*gp.tileSize + eventRect.x;
+        eventRect.y = eventRow*gp.tileSize + eventRect.y;
+
+        if(gp.player.solidArea.intersects(eventRect)) {
+            if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+                move = true;
+            }
+        }
+
+        gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+        gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+        eventRect.x = eventRectDefaultX;
+        eventRect.y = eventRectDefaultY;
+
+        return move;
     }
 }

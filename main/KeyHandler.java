@@ -305,6 +305,7 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_C){
             gp.tmpState = gp.miniGameCode;
             gp.gameState = gp.miniGameCode;
+            gp.player.setDefaultPositions(23,23);
         }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
