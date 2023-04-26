@@ -68,10 +68,16 @@ public class KeyHandler implements KeyListener{
     public void optionState(int code) {
         if(code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 3;
+            }
             gp.playSE(1);
         }
         if(code == KeyEvent.VK_DOWN) {
             gp.ui.commandNum++;
+            if(gp.ui.commandNum > 3) {
+                gp.ui.commandNum = 0;
+            }
             gp.playSE(1);
         }
         if(code == KeyEvent.VK_ENTER) {
@@ -246,10 +252,16 @@ public class KeyHandler implements KeyListener{
     public void titleState(int code) {
         if(code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 2;
+            }
             gp.playSE(1);
         }
         if(code == KeyEvent.VK_DOWN) {
             gp.ui.commandNum++;
+            if(gp.ui.commandNum > 2) {
+                gp.ui.commandNum = 0;
+            }
             gp.playSE(1);
         }
         if(code == KeyEvent.VK_ENTER) {
@@ -302,6 +314,20 @@ public class KeyHandler implements KeyListener{
             gp.gameState = gp.miniGameBlackJack;
             gp.blackJack.reset();
             gp.blackJack.addBotCard();
+        }
+        if(code == KeyEvent.VK_SHIFT) {
+            if(gp.player.direction == "up") {
+                gp.player.worldY = gp.player.worldY - (gp.tileSize)/2;
+            }
+            if(gp.player.direction == "down") {
+                gp.player.worldY = gp.player.worldY + (gp.tileSize)/2;
+            }
+            if(gp.player.direction == "left") {
+                gp.player.worldX = gp.player.worldX - (gp.tileSize)/2;
+            }
+            if(gp.player.direction == "right") {
+                gp.player.worldX = gp.player.worldX + (gp.tileSize)/2;
+            }
         }
     }
 
