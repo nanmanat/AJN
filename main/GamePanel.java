@@ -158,6 +158,12 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
+        //OldMan
+        // for (int i = 0; i < npc[1].length; i++) {
+        //     if (npc[currentMap][i] != null) {
+        //         npc[currentMap][i].update();
+        //     }
+        // }
         // projectile
         for (int i = 0; i < projectileList.size(); i++) {
             if (projectileList.get(i) != null) {

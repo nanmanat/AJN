@@ -38,6 +38,7 @@ public class AssetSetter {
     public void setMonster() {
         int mapNum = 0;
 
+        mapNum = 1;
         gp.monster[mapNum][0] = new MON_Dragon(gp);
         gp.monster[mapNum][0].worldX = gp.tileSize * 27;
         gp.monster[mapNum][0].worldY = gp.tileSize * 16;

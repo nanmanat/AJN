@@ -49,14 +49,12 @@ public class EventHandler {
         }
 
         if(canTouchEvent == true) {
-            if (hit(0,25, 25, "any") == true) { 
-                // spike(gp.dialoguePopup);
-                spike(gp.dialoguePopup);
-            }
-            else if (hit(0,14, 16, "any") == true) {
+            //Bj gwakgwak 3000
+            if (hit(0,14, 16, "any") == true) {
                 teleport(5, 24, 34);
             }
             else if (hit(5,24, 34, "any") == true) {
+                gp.player.life = 6;
                 teleport(0, 14, 16);
             }
             else if (hit(5,24, 19, "up") == true) {
