@@ -235,13 +235,12 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ENTER) {
             if(gp.ui.commandNum == 0){
                 //before mini game state
-                gp.gameState = gp.tmpState;
-                gp.retry(1,1);
+                gp.gameState = gp.playState;
+                gp.retry(24,24);
             }
             if(gp.ui.commandNum == 1){
-                gp.gameState = gp.playState;
-                gp.tmpState = gp.playState;
-                gp.retry(23,21);
+                gp.player.life = gp.player.maxLife;
+                gp.gameState = gp.titleState;
             }
         }
     }
@@ -336,11 +335,6 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
             gp.tmpState = gp.playState;
-        }
-        if(code == KeyEvent.VK_J){
-            gp.gameState = gp.miniGameBlackJack;
-            gp.blackJack.reset();
-            gp.blackJack.addBotCard();
         }
         if(code == KeyEvent.VK_SHIFT) {
             if(gp.player.direction == "up") {

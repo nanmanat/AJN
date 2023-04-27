@@ -16,14 +16,15 @@ public class TileManager {
     
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
         tile = new Tile[128];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
+        loadMap();
     }
 
     public void getTileImage() {
@@ -93,7 +94,7 @@ public class TileManager {
         setup(62, "20", false);
         setup(63, "21", false);
         setup(64, "casinoBackSloth", true);
-        setup(65, "casinoDoor", true);
+        setup(65, "casinoDoor", false);
         setup(66, "casinoDown", true);
         setup(67, "casinoRight", true);
         setup(68, "casinoLeft", true);
@@ -101,6 +102,13 @@ public class TileManager {
         setup(70, "casinoLeftDesk", true);
         setup(71, "casinoMiddleDesk", true);
         setup(72, "casinoTile", false);
+        setup(73, "Piskel-2", true);
+        setup(74, "door1", false);
+        setup(75, "door2", false);
+        setup(76, "door3", false);
+        setup(77, "door4", false);
+        setup(78, "door5", false);
+
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -118,7 +126,7 @@ public class TileManager {
         }
     } 
 
-    public void loadMap(String filePath) {
+    public void loadMap(String filePath, int map) {
         try{
 
             InputStream is = new FileInputStream(filePath);
@@ -135,7 +143,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]);
 
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if (col == gp.maxWorldCol) {
@@ -156,7 +164,7 @@ public class TileManager {
 
         while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
@@ -179,26 +187,32 @@ public class TileManager {
         }
     }
 
-    public void update(){
-        if(gp.gameState == gp.playState || gp.tmpState == gp.playState){
-            // loadMap("res/maps/map001.txt");
-            loadMap("res/maps/map001.txt");
-        }
-        else if(gp.gameState == gp.miniGameMaze){
-            loadMap("res/maps/mapMaze.txt");
-        }
-        else if(gp.gameState  == gp.miniGameCode){
-            loadMap("res/maps/mapPlayerStory.txt");
-        }
-        else if(gp.gameState == gp.miniGamePuzzle){
-            loadMap("res/maps/mapAJN.txt");
-        }
-        else if(gp.gameState == gp.miniGamePokemon){
-            loadMap("res/maps/map001.txt");
-        }
-        else if(gp.gameState == gp.miniGameBlackJack){
-            loadMap("res/maps/mapCasino.txt");
-        }
+    public void loadMap(){
+        loadMap("res/maps/map001.txt",0);
+        loadMap("res/maps/mapMaze.txt",1);
+        loadMap("res/maps/mapPlayerStory.txt",2);
+        loadMap("res/maps/mapAJN.txt",3);
+        loadMap("res/maps/mapMill.txt",4);
+        loadMap("res/maps/mapCasino.txt",5);
+        // if(gp.gameState == gp.playState || gp.tmpState == gp.playState){
+        //     // loadMap("res/maps/map001.txt");
+        //     loadMap("res/maps/map001.txt",0);
+        // }
+        // else if(gp.gameState == gp.miniGameMaze){
+        //     loadMap("res/maps/mapMaze.txt",1);
+        // }
+        // else if(gp.gameState  == gp.miniGameCode){
+        //     loadMap("res/maps/mapPlayerStory.txt",2);
+        // }
+        // else if(gp.gameState == gp.miniGamePuzzle){
+        //     loadMap("res/maps/mapAJN.txt",3);
+        // }
+        // else if(gp.gameState == gp.miniGamePokemon){
+        //     loadMap("res/maps/map001.txt",4);
+        // }
+        // else if(gp.gameState == gp.miniGameBlackJack){
+        //     loadMap("res/maps/mapCasino.txt",5);
+        // }
 
     }
 }

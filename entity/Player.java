@@ -242,12 +242,12 @@ public class Player extends Entity{
 
         if (i != 999) {
 
-            String objectName = gp.obj[i].name;
+            String objectName = gp.obj[gp.currentMap][i].name;
 
             switch (objectName) {
                 case "Key":
                     hasKey++;
-                    gp.obj[i] = null;
+                    gp.obj[gp.currentMap][i] = null;
                     System.out.println("Key: " + hasKey);
                     break;
             }
@@ -256,7 +256,7 @@ public class Player extends Entity{
     
     public void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false && gp.monster[i].dying == false) {
+            if (invincible == false && gp.monster[gp.currentMap][i].dying == false) {
                 gp.playSE(3);
                 life -= 1;
                 invincible = true;
@@ -271,19 +271,19 @@ public class Player extends Entity{
             //     life -= 1;
             //     invincible = true;
             // }
-            gp.npc[i].move(direction);
+            gp.npc[gp.currentMap][i].move(direction);
         }
     }
     
     public void damageMonster(int i, int attack) {
         if (i != 999) {
-            if (gp.monster[i].invincible == false) {
-                gp.monster[i].life -= attack;
-                gp.monster[i].invincible = true;
-                gp.monster[i].damageReaction();
+            if (gp.monster[gp.currentMap][i].invincible == false) {
+                gp.monster[gp.currentMap][i].life -= attack;
+                gp.monster[gp.currentMap][i].invincible = true;
+                gp.monster[gp.currentMap][i].damageReaction();
 
-                if (gp.monster[i].life <= 0) {
-                    gp.monster[i].dying = true;
+                if (gp.monster[gp.currentMap][i].life <= 0) {
+                    gp.monster[gp.currentMap][i].dying = true;
                 }
             }
         }

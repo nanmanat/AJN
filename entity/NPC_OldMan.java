@@ -1,5 +1,6 @@
 package entity;
 
+
 import main.GamePanel;
 
 public class NPC_OldMan extends Entity {
@@ -37,6 +38,9 @@ public class NPC_OldMan extends Entity {
         // super.speak();
         gp.ui.currentDialogue = dialogue[dialogueIndex];
         dialogueIndex++;
+    }
+
+    public void setAction() {
     }
 
 }   
