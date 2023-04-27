@@ -179,7 +179,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         }
         //mini game Maze
-        else if(gameState == miniGameMaze || tmpState == miniGameMaze){
+        else if(currentMap == 1){
             tileM.draw(g2);
             entityList.add(player);
             for (int i = 0; i < monster[1].length; i++) {
