@@ -16,9 +16,12 @@ public class AssetSetter {
     public void setObject() {
         int mapNum = 0;
 
-        gp.obj[mapNum][0] = new OBJ_Key(gp);
-        gp.obj[mapNum][0].worldX = 17 * gp.tileSize;
-        gp.obj[mapNum][0].worldY = 18 * gp.tileSize;
+        if(gp.blackJack.getElfLife() == 0) {
+            mapNum = 5;
+            gp.obj[mapNum][0] = new OBJ_Key(gp);
+            gp.obj[mapNum][0].worldX = 24 * gp.tileSize;
+            gp.obj[mapNum][0].worldY = 31 * gp.tileSize;
+        }
     }
 
     public void setNPC() {

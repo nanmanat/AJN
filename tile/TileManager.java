@@ -104,7 +104,7 @@ public class TileManager {
         setup(72, "casinoTile", false);
         setup(73, "Piskel-2", true);
         setup(74, "door1", false);
-        setup(75, "door2", false);
+        setup(75, "door6", false);
         setup(76, "door3", false);
         setup(77, "door4", false);
         setup(78, "door5", false);
