@@ -42,8 +42,14 @@ public class CodeGame {
         return image;
     }
     
-    public void addMove(int direction , int count, boolean move){
-        codeMove[direction][count] = move;
+    public void addMove(int direction , int index, boolean move){
+        codeMove[direction][index] = move;
+    }
+
+    public void clearMove(int index){
+        for (int i = 0; i < 4; i++) {
+            codeMove[i][index] = false;
+        }
     }
 
     public void movePlayer(){

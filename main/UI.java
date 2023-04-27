@@ -16,12 +16,12 @@ public class UI {
     private BufferedImage heart_full, heart_half, heart_blank;
     public int subState = 0;
     public int bjState = 0;
+    public int subCommandNum = 0;
     public int commandNum = 0;
     public String text;
     public boolean showDialog = false;
     public String currentDialogue;
     public int indexCodeGame = 0;
-    public boolean error = false;
     public int worldX;
     public int worldY;
     
@@ -188,11 +188,16 @@ public class UI {
         g2.drawImage(gp.code.up1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         if(commandNum <= 0) {
             g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2 );
-            if(indexCodeGame>=1){
+            if(indexCodeGame>=1 && indexCodeGame<=9){
                 int y2 = y - 20;
                 int x2 = x + (gp.tileSize / 2) + 15;
                 text = String.format("%d",indexCodeGame);
                 g2.drawString(text, x2, y2);
+            }
+            else if(indexCodeGame!=0 && indexCodeGame==10){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 5;
+                g2.drawString("Full", x2, y2);
             }
             commandNum = 0;
         }
@@ -201,11 +206,16 @@ public class UI {
         g2.drawImage(gp.code.down1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         if(commandNum == 1) {
             g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
-            if(indexCodeGame>=1){
+            if(indexCodeGame>=1 && indexCodeGame<=9){
                 int y2 = y - 20;
                 int x2 = x + (gp.tileSize / 2) + 15;
                 text = String.format("%d",indexCodeGame);
                 g2.drawString(text, x2, y2);
+            }
+            else if(indexCodeGame!=0 && indexCodeGame==10){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 5;
+                g2.drawString("Full", x2, y2);
             }
         }
 
@@ -213,11 +223,16 @@ public class UI {
         g2.drawImage(gp.code.left1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         if(commandNum == 2) {
             g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
-            if(indexCodeGame>=1){
+            if(indexCodeGame>=1 && indexCodeGame<=9){
                 int y2 = y - 20;
                 int x2 = x + (gp.tileSize / 2) + 15;
                 text = String.format("%d",indexCodeGame);
                 g2.drawString(text, x2, y2);
+            }
+            else if(indexCodeGame!=0 && indexCodeGame==10){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 5;
+                g2.drawString("Full", x2, y2);
             }
         }
 
@@ -225,29 +240,40 @@ public class UI {
         g2.drawImage(gp.code.right1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         if(commandNum == 3) {
             g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize*2);
-            if(indexCodeGame>=1){
+            if(indexCodeGame>=1 && indexCodeGame<=9){
                 int y2 = y - 20;
                 int x2 = x + (gp.tileSize / 2) + 15;
                 text = String.format("%d",indexCodeGame);
                 g2.drawString(text, x2, y2);
             }
+            else if(indexCodeGame!=0 && indexCodeGame==10){
+                int y2 = y - 20;
+                int x2 = x + (gp.tileSize / 2) + 5;
+                g2.drawString("Full", x2, y2);
+            }
         }
 
         x += gp.tileSize*3;
-        g2.drawString("Enter", x+(gp.tileSize/2)-5, y+(gp.tileSize)+10);
-        if(indexCodeGame>9){
-            int y2 = y - 20;
-            int x2 = x + (gp.tileSize / 2) + 8;
-            g2.drawString("full", x2, y2);
-        }
-        if(error){
-            int y2 = y - 20;
-            int x2 = x + (gp.tileSize / 2);
-            g2.drawString("put here", x2, y2);
-        }
-        if(commandNum >= 4) {
-            g2.drawRect(x, y+(gp.tileSize/2),gp.tileSize*2 , gp.tileSize);
+        g2.drawString("Enter", x+(gp.tileSize/2)-5, y+(gp.tileSize/2)+3);
+        if(commandNum >= 4 && subCommandNum <= 0) {
+            g2.drawRect(x, y,gp.tileSize*2 , gp.tileSize-10);
+            subCommandNum = 0;
             commandNum = 4;
+        }
+
+        g2.drawString("Clear", x+(gp.tileSize/2)-5, y+(gp.tileSize*2)-10);
+        if(commandNum >= 4 && subCommandNum >=1) {
+            g2.drawRect(x, y+gp.tileSize+10,gp.tileSize*2 , gp.tileSize-10);
+            commandNum = 4;
+            subCommandNum = 1;
+        }
+    }
+
+    public void drawMove(boolean move){
+        if(move){
+            System.out.println("move");
+            if(gp.player.direction.equals("up"))
+                g2.drawImage(gp.code.enter, gp.player.worldX , gp.player.worldY , gp.tileSize , gp.tileSize , null);
         }
     }
 

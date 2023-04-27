@@ -395,6 +395,7 @@ public class Player extends Entity{
             this.direction = direction;
             worldX += gp.tileSize;
         }
+        gp.ui.drawMove(gp.eHandler.checkMove());
         // }
     }
 }

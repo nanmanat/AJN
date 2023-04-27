@@ -164,6 +164,14 @@ public class KeyHandler implements KeyListener{
             gp.ui.commandNum++;
             gp.playSE(1);
         }
+        if(code == KeyEvent.VK_UP){
+            gp.ui.subCommandNum--;
+            gp.playSE(1);
+        }
+        if(code == KeyEvent.VK_DOWN){
+            gp.ui.subCommandNum++;
+            gp.playSE(1);
+        }
         if(code == KeyEvent.VK_ENTER){
             if(gp.ui.indexCodeGame <= 9){
                 if(gp.ui.commandNum == 0) {
@@ -178,20 +186,38 @@ public class KeyHandler implements KeyListener{
                 if(gp.ui.commandNum == 3) {
                     gp.code.addMove(3, gp.ui.indexCodeGame, true);
                 }
-                gp.ui.indexCodeGame++;
                 if(gp.ui.commandNum == 4) {
-                    // gp.code.print();
-                    gp.code.movePlayer();
-                    gp.code.resetMove();
-                    gp.ui.indexCodeGame = 0;
+                    if(gp.ui.subCommandNum == 0){
+                        // gp.code.print();
+                        gp.code.movePlayer();
+                        gp.code.resetMove();
+                        gp.ui.indexCodeGame = 0;
+                    }
+                    else {
+                        if(gp.ui.indexCodeGame > 0){
+                            gp.ui.indexCodeGame--;
+                            gp.code.clearMove(gp.ui.indexCodeGame);
+                            System.out.println("clear");
+                        }
+                    }
                 }
+                else gp.ui.indexCodeGame++;
             }
             else {
                 if(gp.ui.commandNum == 4) {
-                    // gp.code.print();
-                    gp.code.movePlayer();
-                    gp.code.resetMove();
-                    gp.ui.indexCodeGame = 0;
+                    if(gp.ui.subCommandNum == 0){
+                        // gp.code.print();
+                        gp.code.movePlayer();
+                        gp.code.resetMove();
+                        gp.ui.indexCodeGame = 0;
+                    }
+                    else {
+                        if(gp.ui.indexCodeGame > 0){
+                            gp.ui.indexCodeGame--;
+                            gp.code.clearMove(gp.ui.indexCodeGame);
+                            System.out.println("clear");
+                        }
+                    }
                 }
             }
         }
@@ -305,7 +331,7 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_C){
             gp.tmpState = gp.miniGameCode;
             gp.gameState = gp.miniGameCode;
-            gp.player.setDefaultPositions(23,23);
+            gp.player.setDefaultPositions(21,18);
         }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
