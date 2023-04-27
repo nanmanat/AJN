@@ -37,8 +37,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 24;
+        worldY = gp.tileSize * 24;
         speed = 4;
         direction = "down";
 
@@ -172,6 +172,12 @@ public class Player extends Entity{
 
         if (shotAvailableCounter < 30) {
             shotAvailableCounter++;
+        }
+
+        if(life <= 0 && gp.gameState != gp.gameOverState) {
+            gp.gameState = gp.gameOverState;
+            gp.ui.commandNum = -1;
+            gp.playSE(2);
         }
 
     }

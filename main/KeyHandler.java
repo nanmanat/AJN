@@ -344,9 +344,7 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_ENTER) {
             gp.playSE(1);
             if (gp.player.life == 0) {
-                gp.playSE(2);
-                gp.gameState = gp.gameOverState;
-                gp.gameState = gp.playState;
+                
             } else if (gp.blackJack.getElfLife() == 0) {
                 gp.gameState = gp.playState;
                 gp.gameState = gp.dialoguePopup;

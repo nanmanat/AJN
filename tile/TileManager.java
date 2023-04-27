@@ -20,7 +20,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[64];
+        tile = new Tile[128];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -30,7 +30,7 @@ public class TileManager {
 
         setup(0, "Piskel-4", false);
         setup(1, "Piskel-3", false);
-        setup(2, "Piskel-29", false);
+        setup(2, "Piskel-29", true);
         setup(3, "Piskel-41", false);
         setup(4, "Piskel-13", true);
         setup(5, "Piskel-20", false);
@@ -53,18 +53,18 @@ public class TileManager {
         setup(22, "Piskel-39", false);
         setup(23, "Piskel-10", false);
         setup(24, "Piskel-42", false);
-        setup(25, "Piskel-7", false);
-        setup(26, "Piskel-6", false);
-        setup(27, "Piskel-5", false);
-        setup(28, "Piskel-25", false);
-        setup(29, "Piskel-28", false);
-        setup(30, "Piskel-26", false);
-        setup(31, "Piskel-27", false);
+        setup(25, "Piskel-7", true);
+        setup(26, "Piskel-6", true);
+        setup(27, "Piskel-5", true);
+        setup(28, "Piskel-25", true);
+        setup(29, "Piskel-28", true);
+        setup(30, "Piskel-26", true);
+        setup(31, "Piskel-27", true);
         setup(32, "Piskel-32", false);
         setup(33, "Piskel-34", false);
         setup(34, "Piskel-35", false);
         setup(35, "Piskel-40", false);
-        setup(36, "Piskel-30", false);
+        setup(36, "Piskel-30", true);
         setup(37, "Piskel-31", false);
         setup(38, "Piskel-39", false);
         setup(39, "Piskel-40", false);
@@ -92,6 +92,15 @@ public class TileManager {
         setup(61, "19", false);
         setup(62, "20", false);
         setup(63, "21", false);
+        setup(64, "casinoBackSloth", true);
+        setup(65, "casinoDoor", true);
+        setup(66, "casinoDown", true);
+        setup(67, "casinoRight", true);
+        setup(68, "casinoLeft", true);
+        setup(69, "casinoUp", true);
+        setup(70, "casinoLeftDesk", true);
+        setup(71, "casinoMiddleDesk", true);
+        setup(72, "casinoTile", false);
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -173,7 +182,7 @@ public class TileManager {
     public void update(){
         if(gp.gameState == gp.playState || gp.tmpState == gp.playState){
             // loadMap("res/maps/map001.txt");
-            loadMap("res/maps/mapMill.txt");
+            loadMap("res/maps/map001.txt");
         }
         else if(gp.gameState == gp.miniGameMaze){
             loadMap("res/maps/mapMaze.txt");
