@@ -209,13 +209,12 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ENTER) {
             if(gp.ui.commandNum == 0){
                 //before mini game state
-                gp.gameState = gp.tmpState;
-                gp.retry(1,1);
+                gp.gameState = gp.playState;
+                gp.retry(24,24);
             }
             if(gp.ui.commandNum == 1){
-                gp.gameState = gp.playState;
-                gp.tmpState = gp.playState;
-                gp.retry(23,21);
+                gp.player.life = gp.player.maxLife;
+                gp.gameState = gp.titleState;
             }
         }
     }

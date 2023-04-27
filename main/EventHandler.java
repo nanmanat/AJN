@@ -53,22 +53,28 @@ public class EventHandler {
                 // spike(gp.dialoguePopup);
                 spike(gp.dialoguePopup);
             }
-            else if (hit(0,14, 12, "any") == true) {
+            else if (hit(0,14, 16, "any") == true) {
                 teleport(5, 24, 34);
             }
             else if (hit(5,24, 34, "any") == true) {
-                teleport(0, 14, 12);
+                teleport(0, 14, 16);
             }
             else if (hit(5,24, 19, "up") == true) {
                 gp.gameState = gp.miniGameBlackJack;
                 gp.blackJack.reset();
                 gp.blackJack.addBotCard();
             }
-            else if (hit(5,24, 22, "up") == true) {
+            else if (hit(5,24, 20, "up") == true) {
                 gp.player.keyH.upPressed = false;
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "Hoffman: Welcome Traveller.";
                 canTouchEvent = false;
+            }
+            else if (hit(0,14, 14, "any") == true) {
+                teleport(4, 24, 37);
+            }
+            else if (hit(4,24, 37, "any") == true) {
+                teleport(0, 14, 14);
             }
             // if (move(27, 14, "right") == true) { 
             //     System.out.print("ye ");

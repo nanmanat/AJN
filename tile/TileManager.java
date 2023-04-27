@@ -102,6 +102,13 @@ public class TileManager {
         setup(70, "casinoLeftDesk", true);
         setup(71, "casinoMiddleDesk", true);
         setup(72, "casinoTile", false);
+        setup(73, "Piskel-2", true);
+        setup(74, "door1", false);
+        setup(75, "door2", false);
+        setup(76, "door3", false);
+        setup(77, "door4", false);
+        setup(78, "door5", false);
+
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -185,8 +192,8 @@ public class TileManager {
         loadMap("res/maps/mapMaze.txt",1);
         loadMap("res/maps/mapPlayerStory.txt",2);
         loadMap("res/maps/mapAJN.txt",3);
-        loadMap("res/maps/map001.txt",4);
-        loadMap("res/maps/mapTest.txt",5);
+        loadMap("res/maps/mapMill.txt",4);
+        loadMap("res/maps/mapCasino.txt",5);
         // if(gp.gameState == gp.playState || gp.tmpState == gp.playState){
         //     // loadMap("res/maps/map001.txt");
         //     loadMap("res/maps/map001.txt",0);
