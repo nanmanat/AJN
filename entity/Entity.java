@@ -22,6 +22,7 @@ public class Entity {
     public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1,
     attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
     public String direction = "down";
+    public static String plateDirection = "down";
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
@@ -40,6 +41,7 @@ public class Entity {
     public int mana;
     public int useCost;
     public int attack;
+    public Entity linkedEntity;
 
     // counter
     public int invincibleCounter = 0;

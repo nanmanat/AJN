@@ -109,9 +109,24 @@ public class TileManager {
         setup(77, "door4", false);
         setup(78, "door5", false);
         setup(79, "casinoRoullete", true);
-        setup(80, "casinoRedTiles", true);
+        setup(80, "casinoRedTiles", false);
         setup(81, "casinoSloth", true);
         setup(82, "casinoDeskRight", true);
+        setup(83, "Gate3", false);
+        setup(84, "Gate3Down", false);
+        setup(85, "Gate3Left", false);
+        setup(86, "Gate3Right", false);
+        setup(87, "Gate4", false);
+        setup(88, "GateA", false);
+        setup(89, "GateB", false);
+        setup(90, "GateC", false);
+        setup(91, "GateH", false);
+        setup(92, "GateLeftDown", false);
+        setup(93, "GateLeftUp", false);
+        setup(94, "GateOver", false);
+        setup(95, "GateRightDown", false);
+        setup(96, "GateRightUp", false);
+        setup(97, "GateStraight", false);
 
 
     }
@@ -198,25 +213,6 @@ public class TileManager {
         loadMap("res/maps/mapAJN.txt",3);
         loadMap("res/maps/mapMill.txt",4);
         loadMap("res/maps/mapCasino.txt",5);
-        // if(gp.gameState == gp.playState || gp.tmpState == gp.playState){
-        //     // loadMap("res/maps/map001.txt");
-        //     loadMap("res/maps/map001.txt",0);
-        // }
-        // else if(gp.gameState == gp.miniGameMaze){
-        //     loadMap("res/maps/mapMaze.txt",1);
-        // }
-        // else if(gp.gameState  == gp.miniGameCode){
-        //     loadMap("res/maps/mapPlayerStory.txt",2);
-        // }
-        // else if(gp.gameState == gp.miniGamePuzzle){
-        //     loadMap("res/maps/mapAJN.txt",3);
-        // }
-        // else if(gp.gameState == gp.miniGamePokemon){
-        //     loadMap("res/maps/map001.txt",4);
-        // }
-        // else if(gp.gameState == gp.miniGameBlackJack){
-        //     loadMap("res/maps/mapCasino.txt",5);
-        // }
-
+        loadMap("res/maps/map001.txt",6);
     }
 }

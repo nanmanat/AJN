@@ -75,10 +75,16 @@ public class EventHandler {
             }
             //Millgame
             else if (hit(0,22, 28, "up") == true) {
-                teleport(4, 24, 37);
+                teleport(4, 24, 39);
             }
-            else if (hit(4,24, 37, "any") == true) {
+            else if (hit(4,24, 39, "down") == true) {
                 teleport(0, 22, 28);
+            }
+            else if (hit(4,24, 38, "up") == true && gp.player.gateScore < 3) {
+                gp.player.keyH.upPressed = false;
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "Elf: Easy And-Or-Not gate puzzle.";
+                canTouchEvent = false;
             }
             //Newgame
             else if (hit(0,26, 28, "up") == true) {

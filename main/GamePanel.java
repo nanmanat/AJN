@@ -13,6 +13,7 @@ import entity.Entity;
 import entity.Player;
 import environment.EnvironmentManager;
 import tile.TileManager;
+import tile_interactive.InteractiveTile;
 import game.BlackJack;
 import game.CodeGame;
 
@@ -77,6 +78,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity obj[][] = new Entity[maxMap][10];
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity monster[][] = new Entity[maxMap][20];
+    public InteractiveTile iTile[][] = new InteractiveTile[maxMap][5];
     public ArrayList<Entity> projectileList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -101,9 +103,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
         aSetter.setObject();
         aSetter.setMonster();
+        aSetter.setInteractiveTile();
         gameState = titleState;
-        // if(gameState == titleState)
-        //     playMusic(0);
         eManager.setup();
     }
 
@@ -158,13 +159,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        //OldMan
-        // for (int i = 0; i < npc[1].length; i++) {
-        //     if (npc[currentMap][i] != null) {
-        //         npc[currentMap][i].update();
-        //     }
-        // }
-        // projectile
         for (int i = 0; i < projectileList.size(); i++) {
             if (projectileList.get(i) != null) {
                 if (projectileList.get(i).alive == true) {
@@ -173,6 +167,16 @@ public class GamePanel extends JPanel implements Runnable {
                 if (projectileList.get(i).alive == false) {
                     projectileList.remove(i);
                 }
+            }
+        }
+        for (int i = 0; i < iTile[1].length; i++) {
+            if (iTile[currentMap][i] != null) {
+                iTile[currentMap][i].update();
+            }
+        }
+        for (int i = 0; i < obj[1].length; i++) {
+            if (obj[currentMap][i] != null) {
+                obj[currentMap][i].update();
             }
         }
     }
@@ -229,7 +233,16 @@ public class GamePanel extends JPanel implements Runnable {
             g2.dispose();
         }
         else if(gameState == playState || tmpState == playState){
+            //Tile
             tileM.draw(g2);
+
+            //Interactive Tile
+            for (int i = 0; i < iTile[1].length; i++) {
+                if(iTile[currentMap][i] != null) {
+                    iTile[currentMap][i].draw(g2);
+                }
+            }
+
             // add entities to entity list
             entityList.add(player);
             for (int i = 0; i < npc[1].length; i++) {
@@ -271,11 +284,6 @@ public class GamePanel extends JPanel implements Runnable {
             // empty entity list
             entityList.clear();
             //UI
-            ui.draw(g2);
-            g2.dispose();
-        }
-        else if(gameState == miniGameBlackJack || gameState == blackjackScore){
-            tileM.draw(g2);
             ui.draw(g2);
             g2.dispose();
         }

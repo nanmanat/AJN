@@ -4,14 +4,14 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import main.GamePanel;
-import tile_interactive.IT_AndPlate;
+import tile_interactive.IT_NotPlate;
 import tile_interactive.InteractiveTile;
 
-public class NPC_BigRock extends Entity {
+public class NPC_RockNot extends Entity {
 
-    public static final String npcName = "Big Rock";
+    public static final String npcName = "Not Rock";
     
-    public NPC_BigRock (GamePanel gp) {
+    public NPC_RockNot (GamePanel gp) {
         super(gp);
 
         name = npcName;
@@ -31,14 +31,14 @@ public class NPC_BigRock extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        up2 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        down1 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        down2 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        left1 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        left2 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        right1 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
-        right2 = setup("/res/npc/27", gp.tileSize, gp.tileSize);
+        up1 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        up2 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        down2 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        left1 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        left2 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        right1 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
+        right2 = setup("/res/npc/23", gp.tileSize, gp.tileSize);
     }
 
     public void setAction() {
@@ -82,7 +82,7 @@ public class NPC_BigRock extends Entity {
         for (int i = 0; i < gp.iTile[1].length; i++) {
 
             if(gp.iTile[gp.currentMap][i] != null &&
-                    gp.iTile[gp.currentMap][i].name.equals(IT_AndPlate.itName)) {
+                    gp.iTile[gp.currentMap][i].name.equals(IT_NotPlate.itName)) {
                 plateList.add(gp.iTile[gp.currentMap][i]);
             }
         }
@@ -90,7 +90,7 @@ public class NPC_BigRock extends Entity {
         for (int i = 0; i < gp.npc[1].length; i++) {
 
             if(gp.npc[gp.currentMap][i] != null &&
-                    gp.npc[gp.currentMap][i].name.equals(NPC_BigRock.npcName)) {
+                    gp.npc[gp.currentMap][i].name.equals(NPC_RockNot.npcName)) {
                 rockList.add(gp.npc[gp.currentMap][i]);
             }
         }
@@ -107,10 +107,12 @@ public class NPC_BigRock extends Entity {
                 
                 if(linkedEntity == null) {
                     linkedEntity = plateList.get(i);
+                    gp.player.gateScore++;
                     gp.playSE(3);
                 }
             } else {
                 if(linkedEntity == plateList.get(i)) {
+                    gp.player.gateScore--;
                     linkedEntity = null;
                 }
             }
@@ -119,14 +121,12 @@ public class NPC_BigRock extends Entity {
         //scan the rock list
         for (int i = 0; i < rockList.size(); i++) {
             if (rockList.get(i).linkedEntity != null) {
-                System.out.println(count);
-                System.out.println("Size"+rockList.size());
                 count++;
             }
         }
         //if all rock on plates
         if(count == rockList.size()) {
-            System.out.println("nice!");
+            System.out.println(gp.player.gateScore);
             gp.playSE(3);
         }
     }
