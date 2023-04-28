@@ -57,7 +57,7 @@ public class EventHandler {
                 gp.player.life = 6;
                 teleport(0, 20, 28);
             }
-            else if (hit(5,24, 19, "up") == true) {
+            else if (hit(5,24, 28, "up") == true) {
                 if (gp.blackJack.getElfLife() > 0){
                     gp.gameState = gp.miniGameBlackJack;
                     gp.blackJack.reset();
@@ -67,7 +67,7 @@ public class EventHandler {
                     gp.ui.currentDialogue = "Hoffman: I'm already dead remember?";
                 }
             }
-            else if (hit(5,24, 20, "up") == true && gp.blackJack.getElfLife() > 0) {
+            else if (hit(5,24, 29, "up") == true && gp.blackJack.getElfLife() > 0) {
                 gp.player.keyH.upPressed = false;
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "Hoffman: Welcome Traveller.";

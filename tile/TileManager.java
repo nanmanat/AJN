@@ -111,6 +111,7 @@ public class TileManager {
         setup(79, "casinoRoullete", true);
         setup(80, "casinoRedTiles", true);
         setup(81, "casinoSloth", true);
+        setup(82, "casinoDeskRight", true);
 
 
     }
