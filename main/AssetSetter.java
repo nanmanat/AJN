@@ -2,6 +2,8 @@ package main;
 
 import entity.NPC_BigRock;
 import entity.NPC_OldMan;
+import entity.NPC_RockAnd;
+import entity.NPC_RockOr;
 import monster.MON_Dragon;
 import object.OBJ_Key;
 
@@ -29,11 +31,11 @@ public class AssetSetter {
 
         //Gate
         mapNum = 4;
-        gp.npc[mapNum][1] = new NPC_BigRock(gp);
+        gp.npc[mapNum][1] = new NPC_RockAnd(gp);
         gp.npc[mapNum][1].worldX = gp.tileSize * 24;
         gp.npc[mapNum][1].worldY = gp.tileSize * 32;
 
-        gp.npc[mapNum][2] = new NPC_BigRock(gp);
+        gp.npc[mapNum][2] = new NPC_RockOr(gp);
         gp.npc[mapNum][2].worldX = gp.tileSize * 24;
         gp.npc[mapNum][2].worldY = gp.tileSize * 30;
 
