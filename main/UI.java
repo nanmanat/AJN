@@ -554,9 +554,9 @@ public class UI {
 
     public void drawDialogueScreen(String text){
         int x = gp.tileSize * 2;
-        int y = gp.tileSize * 6; 
+        int y = gp.tileSize * 7; 
         int width = gp.screenWidth - (gp.tileSize*4);
-        int height = gp.tileSize * 5;
+        int height = gp.tileSize * 4;
         drawSubWindow(x, y, width, height);
 
         x += gp.tileSize;

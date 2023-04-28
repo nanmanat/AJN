@@ -87,6 +87,12 @@ public class EventHandler {
             else if (hit(1,1, 1, "any") == true) {
                 teleport(0, 26, 28);
             }
+            //PuayStatue
+            else if (hit(0,24, 21, "up") == true) {
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "PuayTheStatue: ...";
+            }
+            
         }
 
     }
