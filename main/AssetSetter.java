@@ -27,11 +27,21 @@ public class AssetSetter {
     public void setNPC() {
         int mapNum = 0;
 
+        //Gate
         mapNum = 4;
         gp.npc[mapNum][1] = new NPC_BigRock(gp);
-        gp.npc[mapNum][1].worldX = gp.tileSize * 25;
-        gp.npc[mapNum][1].worldY = gp.tileSize * 31;
+        gp.npc[mapNum][1].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][1].worldY = gp.tileSize * 32;
 
+        gp.npc[mapNum][2] = new NPC_BigRock(gp);
+        gp.npc[mapNum][2].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][2].worldY = gp.tileSize * 30;
+
+        gp.npc[mapNum][3] = new NPC_BigRock(gp);
+        gp.npc[mapNum][3].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][3].worldY = gp.tileSize * 28;
+
+        //Casino
         mapNum = 5;
         gp.npc[mapNum][0] = new NPC_OldMan(gp);
         gp.npc[mapNum][0].worldX = gp.tileSize * 24;

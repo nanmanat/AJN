@@ -57,8 +57,9 @@ public class NPC_BigRock extends Entity {
         this.direction = d;
         
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
+        int contactObj = gp.cChecker.checkEntity(this, gp.npc);
 
-        if (!contactPlayer) {
+        if (!contactPlayer && contactObj == 999) {
             
             switch (direction) {
                 case "up":
