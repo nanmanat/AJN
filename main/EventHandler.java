@@ -50,12 +50,12 @@ public class EventHandler {
 
         if(canTouchEvent == true) {
             //Bj gwakgwak 3000
-            if (hit(0,19, 11, "up") == true) {
+            if (hit(0,20, 28, "up") == true) {
                 teleport(5, 24, 34);
             }
             else if (hit(5,24, 34, "down") == true) {
                 gp.player.life = 6;
-                teleport(0, 19, 11);
+                teleport(0, 20, 28);
             }
             else if (hit(5,24, 19, "up") == true) {
                 if (gp.blackJack.getElfLife() > 0){
@@ -74,18 +74,18 @@ public class EventHandler {
                 canTouchEvent = false;
             }
             //Millgame
-            else if (hit(0,21, 11, "up") == true) {
+            else if (hit(0,22, 28, "up") == true) {
                 teleport(4, 24, 37);
             }
             else if (hit(4,24, 37, "any") == true) {
-                teleport(0, 21, 11);
+                teleport(0, 22, 28);
             }
             //Newgame
-            else if (hit(0,27, 11, "up") == true) {
+            else if (hit(0,26, 28, "up") == true) {
                 teleport(1, 1, 1);
             }
             else if (hit(1,1, 1, "any") == true) {
-                teleport(0, 27, 11);
+                teleport(0, 26, 28);
             }
         }
 

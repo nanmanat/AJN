@@ -33,7 +33,7 @@ public class TileManager {
         setup(1, "Piskel-3", false);
         setup(2, "Piskel-29", true);
         setup(3, "Piskel-41", false);
-        setup(4, "Piskel-13", true);
+        setup(4, "Piskel-13", false);
         setup(5, "Piskel-20", false);
         setup(6, "Piskel-19", false);
         setup(7, "Piskel-16", false);
@@ -192,7 +192,7 @@ public class TileManager {
     }
 
     public void loadMap(){
-        loadMap("res/maps/map001.txt",0);
+        loadMap("res/maps/mapTest.txt",0);
         loadMap("res/maps/mapMaze.txt",1);
         loadMap("res/maps/mapPlayerStory.txt",2);
         loadMap("res/maps/mapAJN.txt",3);
