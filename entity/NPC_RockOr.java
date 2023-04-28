@@ -29,14 +29,14 @@ public class NPC_RockOr extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        up2 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        down1 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        down2 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        left1 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        left2 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        right1 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
-        right2 = setup("/res/npc/31", gp.tileSize*2, gp.tileSize*2);
+        up1 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        up2 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        down1 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        down2 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        left1 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        left2 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        right1 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
+        right2 = setup("/res/npc/31", gp.tileSize+20, gp.tileSize+20);
     }
 
     @Override
