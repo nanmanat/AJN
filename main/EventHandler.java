@@ -210,10 +210,10 @@ public class EventHandler {
             else if (hit(7,24, 24, "down") == true) {
                 teleport(0, 24, 28);
             }
-            else if (hit(7,24, 20, "up") == true && gp.pingPong.poList.get(2).life > 0) {
+            else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life > 0) {
                 gp.gameState = gp.miniGamePokemon;
                 gp.pingPong.reset();
-            } else if (hit(7,24, 20, "up") == true && gp.pingPong.poList.get(2).life <= 0) {
+            } else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life <= 0) {
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }

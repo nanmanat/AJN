@@ -136,6 +136,14 @@ public class TileManager {
         setup(104, "New104", false);
         setup(105, "New105", true);
         setup(106, "New106", false);
+        setup(107, "107", false);
+        setup(108, "108", false);
+        setup(109, "109", false);
+        setup(110, "110", false);
+        setup(111, "111", false);
+        setup(112, "112", false);
+        setup(113, "113", true);
+        setup(114, "114", false);
 
     }
     public void setup(int index, String imagePath, boolean collision) {

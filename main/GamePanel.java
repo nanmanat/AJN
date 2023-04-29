@@ -186,9 +186,9 @@ public class GamePanel extends JPanel implements Runnable {
             gate.checkDrop(24,36);
             player.gateScore = 4;
         }
-        if(pingPong.poList.get(3).life <= 0 && pingPong.poList.get(3).life != -5) {
-            pingPong.checkDrop(24,22);
-            pingPong.poList.get(3).life = -5;
+        if(pingPong.poList.get(2).life <= 0 && pingPong.poList.get(2).life != -5) {
+            pingPong.checkDrop(24,18);
+            pingPong.poList.get(2).life = -5;
         }
     }
     
