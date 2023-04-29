@@ -75,6 +75,10 @@ public class UI {
             drawDialogueCode();
             drawPoint();
         }
+        else if(gp.gameState == gp.miniGamePokemon){
+            drawPokemon();
+            drawPlayerLife();
+        }
         if(gp.gameState == gp.gameOverState){
             drawGameOverScreen();
         }
@@ -287,6 +291,58 @@ public class UI {
         g2.drawString("Y: " + gp.player.worldY, x , y); y+=lineHeight;
         g2.drawString("Col: " + (gp.player.worldX+gp.player.solidArea.x)/gp.tileSize, x , y); y+=lineHeight;
         g2.drawString("Row: " + (gp.player.worldY+gp.player.solidArea.y)/gp.tileSize, x , y); y+=lineHeight;
+    }
+
+    public void drawPokemon(){
+
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
+        
+        //SUB WINDOW
+        int frameX = gp.tileSize*2;
+        int frameY = gp.tileSize;
+        int framWidth = gp.tileSize*16;
+        int framHeight = gp.tileSize*10;
+        Color background = new Color(179, 240, 255);
+        drawSubWindow(frameX, frameY, framWidth, framHeight, background);
+
+        switch(bjState) {
+            case 0: pokemon_top(frameX, frameY); break;
+            case 1: break;
+        }
+    }
+
+    public void pokemon_top(int frameX, int frameY) {
+        int textX, textY;
+        //TITLE
+        String text = "PINGPONGMON";
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.setColor(Color.BLACK);
+        g2.drawString(text, textX, textY);
+        //Enemy
+        int x = (gp.screenWidth/2) + (gp.screenWidth/6);
+        int y = gp.tileSize*3;
+        g2.drawImage(gp.blackJack.getCard(0), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        //Player
+        x = (gp.screenWidth/5);
+        y += gp.tileSize*4;
+        g2.drawImage(gp.blackJack.getCard(0), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        //hit
+        g2.setFont(g2.getFont().deriveFont(25F));
+        g2.setColor(Color.black);
+        textY += gp.tileSize*7;
+        textX = frameX + gp.tileSize*11;
+        g2.drawString("Poke.", textX, textY);
+        if(commandNum == 0) {
+            g2.drawString(">", textX-25, textY);
+        }
+        //stay
+        textY += gp.tileSize;
+        g2.drawString("FalconPunch.", textX, textY);
+        if(commandNum == 1) {
+            g2.drawString(">", textX-25, textY);
+        }
     }
 
     public void drawBlackJack(){

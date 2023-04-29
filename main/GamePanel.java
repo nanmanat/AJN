@@ -17,7 +17,6 @@ import tile_interactive.InteractiveTile;
 import game.BlackJack;
 import game.CodeGame;
 import game.Gate;
-import object.OBJ_Key;
 
 public class GamePanel extends JPanel implements Runnable {
     

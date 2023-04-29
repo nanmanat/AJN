@@ -214,5 +214,6 @@ public class TileManager {
         loadMap("res/maps/mapMill.txt",4);
         loadMap("res/maps/mapCasino.txt",5);
         loadMap("res/maps/map001.txt",6);
+        loadMap("res/maps/mapPokemon.txt",7);
     }
 }

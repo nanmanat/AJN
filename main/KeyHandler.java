@@ -57,6 +57,9 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.miniGameCode){
             miniGameCode(code);
         }
+        else if(gp.gameState == gp.miniGamePokemon) {
+            miniGamePokemon(code);
+        }
     }
 
     public void dialogueState (int code) {
@@ -423,4 +426,23 @@ public class KeyHandler implements KeyListener{
         }
     }
     
+    public void miniGamePokemon(int code){
+        if(code == KeyEvent.VK_UP){
+            gp.ui.commandNum++;
+            gp.playSE(1);
+            if(gp.ui.commandNum > 1) {
+                gp.ui.commandNum = 0;
+            }
+        }
+        if(code == KeyEvent.VK_DOWN){
+            gp.ui.commandNum--;
+            gp.playSE(1);
+            if(gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 1;
+            }
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.playState;
+        }
+    }
 }
