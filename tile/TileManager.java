@@ -20,7 +20,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[128];
+        tile = new Tile[256];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -127,6 +127,7 @@ public class TileManager {
         setup(95, "GateRightDown", false);
         setup(96, "GateRightUp", false);
         setup(97, "GateStraight", false);
+<<<<<<< Updated upstream
         setup(98, "New98", true);
         setup(99, "New99", false);
         setup(100, "New100", true);
@@ -136,6 +137,17 @@ public class TileManager {
         setup(104, "New104", false);
         setup(105, "New105", true);
         setup(106, "New106", false);
+=======
+        setup(98, "98", false);
+        setup(99, "99", false);
+        setup(100, "100", false);
+        setup(101, "101", false);
+        setup(102, "102", false);
+        setup(103, "103", false);
+        setup(104, "104", false);
+        setup(105, "105", false);
+        setup(106, "106", false);
+>>>>>>> Stashed changes
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -223,6 +235,7 @@ public class TileManager {
         loadMap("res/maps/mapCasino.txt",5);
         loadMap("res/maps/map001.txt",6);
         loadMap("res/maps/mapPokemon.txt",7);
+        loadMap("res/maps/mapPath.txt",8);
     }
 
 }

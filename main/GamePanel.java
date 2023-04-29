@@ -16,8 +16,14 @@ import tile.TileManager;
 import tile_interactive.InteractiveTile;
 import game.BlackJack;
 import game.CodeGame;
+<<<<<<< Updated upstream
 import game.Gate;
 import object.OBJ_Key;
+=======
+import entity.Gate;
+import game.Room;
+import game.Pingpongmon;
+>>>>>>> Stashed changes
 
 public class GamePanel extends JPanel implements Runnable {
     
@@ -75,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Thread gameThread;
     public EnvironmentManager eManager = new EnvironmentManager(this);
     public BlackJack blackJack = new BlackJack(this);
+    public Pingpongmon pingPong = new Pingpongmon(this);
     public Gate gate = new Gate(this);
     public CodeGame code = new CodeGame(this);
     public Player player = new Player(this, keyH);
@@ -135,7 +142,10 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+<<<<<<< Updated upstream
             // System.out.println(gameState + " " + currentMap);
+=======
+>>>>>>> Stashed changes
 
         }
     }

@@ -1,6 +1,5 @@
-package game;
+package entity;
 
-import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Key;
 

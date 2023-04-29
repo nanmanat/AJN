@@ -441,5 +441,14 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.playState;
         }
+        if(code == KeyEvent.VK_ENTER) {
+            if(gp.ui.commandNum == 0) {
+                gp.pingPong.attack1();
+                gp.pingPong.attackPo();
+            } else {
+                gp.pingPong.attack2();
+                gp.pingPong.attackPo();
+            }
+        }
     }
 }

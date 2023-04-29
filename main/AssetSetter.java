@@ -6,7 +6,6 @@ import entity.NPC_RockAnd;
 import entity.NPC_RockNot;
 import entity.NPC_RockOr;
 import monster.MON_Dragon;
-import object.OBJ_Key;
 import tile_interactive.IT_AndPlate;
 import tile_interactive.IT_NotPlate;
 import tile_interactive.IT_OrPlate;
@@ -20,8 +19,8 @@ public class AssetSetter {
     }
 
     public void setObject() {
-        int mapNum = 0;
-        int i = 0;
+        // int mapNum = 0;
+        // int i = 0;
 
         // mapNum = 5;
         // gp.obj[mapNum][i] = new OBJ_Key(gp);

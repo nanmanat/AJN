@@ -19,6 +19,7 @@ public class Entity {
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13;
+    public BufferedImage poImage;
     public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1,
     attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
     public String direction = "down";
