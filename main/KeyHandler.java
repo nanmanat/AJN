@@ -449,6 +449,7 @@ public class KeyHandler implements KeyListener{
                 gp.pingPong.attack2();
                 gp.pingPong.attackPo();
             }
+            gp.pingPong.end();
         }
     }
 }

@@ -8,6 +8,7 @@ import monster.MON_1;
 import monster.MON_2;
 import monster.MON_3;
 import monster.MON_4;
+import object.OBJ_Key;
 import main.GamePanel;
 
 public class Pingpongmon extends Entity {
@@ -130,4 +131,19 @@ public class Pingpongmon extends Entity {
         playerAttack = true;
     }
 
+    public void end() {
+        if (poList.get(2).life <= 0) {
+            gp.gameState = gp.playState;
+            gp.gameState = gp.dialoguePopup;
+            gp.ui.currentDialogue = "You won!";
+        } else if (poList.get(3).life <= 0) {
+            gp.gameState = gp.playState;
+            gp.gameState = gp.dialoguePopup;
+            gp.ui.currentDialogue = "You lose lmao";
+        }
+    }
+
+    public void checkDrop(int x, int y) {
+        dropItem(new OBJ_Key(gp),x,y);
+    }
 }
