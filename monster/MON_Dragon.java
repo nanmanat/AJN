@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Key;
 
 public class MON_Dragon extends Entity {
     GamePanel gp;
@@ -66,5 +67,8 @@ public class MON_Dragon extends Entity {
         direction = gp.player.direction;
     }
     
+    public void checkDrop() {
+        dropItem(new OBJ_Key(gp));
+    }
     
 }

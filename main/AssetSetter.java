@@ -21,12 +21,21 @@ public class AssetSetter {
 
     public void setObject() {
         int mapNum = 0;
+        int i = 0;
 
-        mapNum = 5;
-        gp.obj[mapNum][0] = new OBJ_Key(gp);
-        gp.obj[mapNum][0].worldX = 24 * gp.tileSize;
-        gp.obj[mapNum][0].worldY = 31 * gp.tileSize;     
-
+        // mapNum = 5;
+        // gp.obj[mapNum][i] = new OBJ_Key(gp);
+        // gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
+        // gp.obj[mapNum][i].worldY = 31 * gp.tileSize;  
+        // i++;  
+        // gp.obj[mapNum][i] = new OBJ_Key(gp);
+        // gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
+        // gp.obj[mapNum][i].worldY = 33 * gp.tileSize;  
+        // i++;  
+        // gp.obj[mapNum][i] = new OBJ_Key(gp);
+        // gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
+        // gp.obj[mapNum][i].worldY = 29 * gp.tileSize;  
+        // i++;  
     }
 
     public void setNPC() {
@@ -69,6 +78,11 @@ public class AssetSetter {
         int mapNum = 0;
 
         mapNum = 1;
+        gp.monster[mapNum][0] = new MON_Dragon(gp);
+        gp.monster[mapNum][0].worldX = gp.tileSize * 27;
+        gp.monster[mapNum][0].worldY = gp.tileSize * 16;
+
+        mapNum = 0;
         gp.monster[mapNum][0] = new MON_Dragon(gp);
         gp.monster[mapNum][0].worldX = gp.tileSize * 27;
         gp.monster[mapNum][0].worldY = gp.tileSize * 16;

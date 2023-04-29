@@ -4,11 +4,14 @@ import main.GamePanel;
 
 public class OBJ_Key extends Entity {
 
+    GamePanel gp;
+
     public OBJ_Key(GamePanel gp) {
         super(gp);
+        this.gp = gp;
+
         name = "Key";
 
         down1 = setup("/res/objects/key", gp.tileSize, gp.tileSize);
     }
-    
 }

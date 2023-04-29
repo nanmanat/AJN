@@ -16,7 +16,7 @@ public class NPC_RockAnd extends Entity {
 
         name = npcName;
 
-        speed = 4;
+        speed = 3;
         collision = true;
 
         solidArea = new Rectangle();

@@ -426,7 +426,9 @@ public class UI {
         //Elflife
         y += gp.tileSize;
         text = "Hoffman Life: %s";
-        g2.drawString(String.format(text, gp.blackJack.getElfLife()), getXforCenteredText(text), y);
+        int elfLife = gp.blackJack.getElfLife();
+        if (elfLife < 0) elfLife = 0;
+        g2.drawString(String.format(text, elfLife), getXforCenteredText(text), y);
         //back
         text = "Back";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));

@@ -236,7 +236,11 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 0){
                 //before mini game state
                 gp.gameState = gp.playState;
-                gp.retry(24,24);
+                if(gp.currentMap == 5) {
+                    gp.retry(24,35);
+                } else {
+                    gp.retry(24,24);
+                }
             }
             if(gp.ui.commandNum == 1){
                 gp.player.life = gp.player.maxLife;
@@ -366,7 +370,7 @@ public class KeyHandler implements KeyListener{
             gp.playSE(1);
             if (gp.player.life == 0) {
                 
-            } else if (gp.blackJack.getElfLife() == 0) {
+            } else if (gp.blackJack.getElfLife() <= 0) {
                 gp.gameState = gp.playState;
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = " Oh no I'm dead! *dead elf sound* ";

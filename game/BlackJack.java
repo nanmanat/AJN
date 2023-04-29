@@ -6,6 +6,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Key;
 
 public class BlackJack extends Entity {
     private GamePanel gp;
@@ -201,5 +202,9 @@ public class BlackJack extends Entity {
         for (int i = 1; i <= 13; i++) {
             deckList.add(i);
         }
+    }
+
+    public void checkDrop(int x, int y) {
+        dropItem(new OBJ_Key(gp),x,y);
     }
 }

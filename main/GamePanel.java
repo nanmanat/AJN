@@ -16,6 +16,8 @@ import tile.TileManager;
 import tile_interactive.InteractiveTile;
 import game.BlackJack;
 import game.CodeGame;
+import game.Gate;
+import object.OBJ_Key;
 
 public class GamePanel extends JPanel implements Runnable {
     
@@ -73,9 +75,10 @@ public class GamePanel extends JPanel implements Runnable {
     public Thread gameThread;
     public EnvironmentManager eManager = new EnvironmentManager(this);
     public BlackJack blackJack = new BlackJack(this);
+    public Gate gate = new Gate(this);
     public CodeGame code = new CodeGame(this);
     public Player player = new Player(this, keyH);
-    public Entity obj[][] = new Entity[maxMap][10];
+    public Entity obj[][] = new Entity[maxMap][20];
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity monster[][] = new Entity[maxMap][20];
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][5];
@@ -145,7 +148,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        // tileM.update();
         // player
         player.update();
         //monster
@@ -155,6 +157,7 @@ public class GamePanel extends JPanel implements Runnable {
                     monster[currentMap][i].update();
                 }
                 if (monster[currentMap][i].alive == false) {
+                    // monster[currentMap][i].checkDrop();
                     monster[currentMap][i] = null;
                 }
             }
@@ -174,10 +177,13 @@ public class GamePanel extends JPanel implements Runnable {
                 iTile[currentMap][i].update();
             }
         }
-        for (int i = 0; i < obj[1].length; i++) {
-            if (obj[currentMap][i] != null) {
-                obj[currentMap][i].update();
-            }
+        if(blackJack.getElfLife() == 0) {
+            blackJack.checkDrop(24,31);
+            blackJack.hurtElf();
+        }
+        if(player.gateScore == 3) {
+            gate.checkDrop(24,36);
+            player.gateScore = 4;
         }
     }
     

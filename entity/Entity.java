@@ -41,6 +41,7 @@ public class Entity {
     public int mana;
     public int useCost;
     public int attack;
+    public int value;
     public Entity linkedEntity;
 
     // counter
@@ -65,6 +66,32 @@ public class Entity {
     }
 
     public void damageReaction() {
+    }
+
+    public void checkDrop() {}  
+
+    public void checkDrop(int x, int y) {}
+
+    public void dropItem(Entity droppedItem) {
+        for (int i = 0; i < gp.obj[1].length; i++) {
+            if(gp.obj[gp.currentMap][i] == null) {
+                gp.obj[gp.currentMap][i] = droppedItem;
+                gp.obj[gp.currentMap][i].worldX = worldX;
+                gp.obj[gp.currentMap][i].worldY = worldY;
+                break;
+            }
+        }
+    }
+
+    public void dropItem(Entity droppedItem, int x, int y) {
+        for (int i = 0; i < gp.obj[1].length; i++) {
+            if(gp.obj[gp.currentMap][i] == null) {
+                gp.obj[gp.currentMap][i] = droppedItem;
+                gp.obj[gp.currentMap][i].worldX = gp.tileSize * x;
+                gp.obj[gp.currentMap][i].worldY = gp.tileSize * y;
+                break;
+            }
+        }
     }
     
     public void move(String direction) {
