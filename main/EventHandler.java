@@ -90,13 +90,27 @@ public class EventHandler {
             else if (hit(0,26, 28, "up") == true) {
                 teleport(1, 1, 1);
             }
-            else if (hit(1,1, 1, "any") == true) {
+            else if (hit(1,1, 1, "up") == true) {
                 teleport(0, 26, 28);
             }
             //PuayStatue
             else if (hit(0,24, 21, "up") == true) {
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "PuayTheStatue: ...";
+            }
+            //Mookgame
+            else if(hit(0,28,28,"up") == true) {
+                teleport(2, 19, 18);
+            }
+            else if(hit(2,28,28,"up") == true) {
+                teleport(0, 28, 28);
+            }
+            else if(hit(2,21,18,"any") == true) {
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "Your ready!";
+            }
+            if(hit(2,25,20,"down") == true) {
+                gp.gameState = gp.playState;
             }
             
         }
@@ -142,13 +156,19 @@ public class EventHandler {
     
 
     public boolean checkMove(){
-        if (hit(0 , 22, 18,"any") == true) { 
+        if (hit(2 , 22, 18,"any") == true) {
             return true;
         }
-        if (hit(0,23, 18, "any") == true) { 
+        else if (hit(2,23, 18, "any") == true) { 
             return true;
         }
-        if (hit(0,24, 18, "any") == true) { 
+        else if (hit(2,24, 18, "any") == true) { 
+            return true;
+        }
+        else if (hit(2,25, 18, "any") == true) { 
+            return true;
+        }
+        else if (hit(2,25, 19, "any") == true) { 
             return true;
         }
         else return false;
@@ -162,26 +182,4 @@ public class EventHandler {
         canTouchEvent = false;
     }
 
-    // public boolean move(int eventCol, int eventRow, String reqDirection) {
-    //     eventRect.width = gp.tileSize;
-    //     eventRect.height = gp.tileSize;
-    //     boolean move = false;
-    //     gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
-    //     gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-    //     eventRect.x = eventCol*gp.tileSize + eventRect.x;
-    //     eventRect.y = eventRow*gp.tileSize + eventRect.y;
-
-    //     if(gp.player.solidArea.intersects(eventRect)) {
-    //         if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-    //             move = true;
-    //         }
-    //     }
-
-    //     gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-    //     gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-    //     eventRect.x = eventRectDefaultX;
-    //     eventRect.y = eventRectDefaultY;
-
-    //     return move;
-    // }
 }

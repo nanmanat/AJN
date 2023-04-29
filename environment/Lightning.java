@@ -21,6 +21,7 @@ public class Lightning {
         darknessFilter = new BufferedImage(gp.screenWidth, gp.screenHeight, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g2 = (Graphics2D) darknessFilter.createGraphics();
 
+
         //create a screen size rectangle area
         Area screenArea = new Area(new Rectangle2D.Double(0, 0, gp.screenWidth, gp.screenHeight));
 
@@ -66,9 +67,6 @@ public class Lightning {
         //Draw the light circle
         g2.fill(lightArea);
     
-        //set a color (black) to draw the rectangle
-        // g2.setColr(new Color(0, 0 , 0, 0.95F));
-
         //Draw the screen rectangle without the light circle area
         g2.fill(screenArea);
 

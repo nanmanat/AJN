@@ -12,6 +12,7 @@ public class CodeGame {
     public boolean codeMove[][] = new boolean[4][10];
     private GamePanel gp;
     public BufferedImage up1, down1,  left1,  right1 , enter;
+    public boolean endPoint = false;
     // up 0 down 1 left 2 right 3
 
     public CodeGame(GamePanel gp){

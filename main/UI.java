@@ -46,10 +46,9 @@ public class UI {
         else if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
         }
-        else if(gp.gameState == gp.miniGameMaze){
+        else if(gp.currentMap == 1){
             drawPlayerLife();
             if(gp.player.life <= 0){
-                gp.tmpState = gp.miniGameMaze;
                 gp.gameState = gp.gameOverState;
                 gp.playSE(2);
             }
@@ -72,6 +71,7 @@ public class UI {
             drawPlayerLife();
         }
         else if(gp.gameState == gp.miniGameCode){
+            drawPlayerLife();
             drawDialogueCode();
             drawPoint();
         }
@@ -178,12 +178,12 @@ public class UI {
 
     public void drawDialogueCode(){
         int x = gp.tileSize *2;
-        int y = gp.tileSize * 6; 
+        int y = gp.tileSize * 7 + (gp.tileSize / 2) - 10; 
         int width = gp.screenWidth - (gp.tileSize*4);
-        int height = gp.tileSize * 5;
+        int height = gp.tileSize * 4;
         drawSubWindow(x, y, width, height);
 
-        y += gp.tileSize*2;
+        y += gp.tileSize + 20;
         x += gp.tileSize;
         g2.drawImage(gp.code.up1, x, y , gp.tileSize*2 , gp.tileSize*2 , null);
         if(commandNum <= 0) {

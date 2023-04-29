@@ -374,34 +374,40 @@ public class Player extends Entity{
     }
 
     public void setDialogue() {
-        dialogue[0] = "Hello PiggyBooBoo0";
-        dialogue[1] = "Hello PiggyBooBoo1";
-        dialogue[2] = "Hello PiggyBooBoo2";
-        dialogue[3] = "Hello PiggyBooBoo3";
-        dialogue[4] = "Hello PiggyBooBoo4";
-        
+        dialogue[0] = " ";
     }
 
     public void setMove(String direction){
-        // this.direction = direction;
         // if (collisionOn == false) {
-        if(direction.equals("up")){
-            this.direction = direction;
-            worldY -= gp.tileSize;
-        }
-        if(direction.equals("down")){
-            this.direction = direction;
-            worldY += gp.tileSize;
-        }
-        if(direction.equals("left")){
-            this.direction = direction;
-            worldX -= gp.tileSize;
-        }
-        if(direction.equals("right")){
-            this.direction = direction;
-            worldX += gp.tileSize;
-        }
-        gp.ui.drawMove(gp.eHandler.checkMove());
+            if(direction.equals("up")){
+                this.direction = direction;
+                worldY -= gp.tileSize;
+            }
+            if(direction.equals("down")){
+                this.direction = direction;
+                worldY += gp.tileSize;
+            }
+            if(direction.equals("left")){
+                this.direction = direction;
+                worldX -= gp.tileSize;
+            }
+            if(direction.equals("right")){
+                this.direction = direction;
+                worldX += gp.tileSize;
+            }
+            gp.ui.drawMove(gp.eHandler.checkMove());
         // }
+        // else gp.player.life--;
+    }
+
+    public int checkPlayer(){
+        int x = (worldX+solidArea.x)/gp.tileSize;
+        int y = (worldY+gp.player.solidArea.y)/gp.tileSize;
+
+        if( x < 10 && y < 10) return 1;
+        else if( x < 20 && y < 10) return 2;
+        else if( x < 10 && y < 20) return 5;
+        else if( x < 20 && y < 20) return 6;
+        else return 0;
     }
 }

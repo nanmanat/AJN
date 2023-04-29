@@ -173,6 +173,7 @@ public class KeyHandler implements KeyListener{
             gp.playSE(1);
         }
         if(code == KeyEvent.VK_ENTER){
+            gp.playSE(1);
             if(gp.ui.indexCodeGame <= 9){
                 if(gp.ui.commandNum == 0) {
                     gp.code.addMove(0, gp.ui.indexCodeGame, true);
@@ -238,6 +239,8 @@ public class KeyHandler implements KeyListener{
                 gp.gameState = gp.playState;
                 if(gp.currentMap == 5) {
                     gp.retry(24,35);
+                } else if (gp.currentMap == 1) {
+                    gp.retry(1, 2);
                 } else {
                     gp.retry(24,24);
                 }
@@ -327,16 +330,6 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = true;
         }
-        if(code == KeyEvent.VK_M){
-            gp.gameState = gp.miniGameMaze;
-            gp.tmpState = gp.miniGameMaze;
-            gp.retry(1,1);
-        }
-        if(code == KeyEvent.VK_C){
-            gp.tmpState = gp.miniGameCode;
-            gp.gameState = gp.miniGameCode;
-            gp.player.setDefaultPositions(21,18);
-        }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
             gp.tmpState = gp.playState;
@@ -361,6 +354,10 @@ public class KeyHandler implements KeyListener{
     public void popUp(int code){
         if(code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
+            if(gp.currentMap==2) { gp.gameState = gp.miniGameCode; gp.eHandler.teleport(2, 22, 18); }
+        }
+        if(gp.currentMap == 2) {
+
         }
     }
 
