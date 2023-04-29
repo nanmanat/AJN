@@ -113,6 +113,16 @@ public class EventHandler {
                 gp.gameState = gp.playState;
             }
             
+            //Pokemon
+            else if (hit(0,24, 28, "up") == true) {
+                teleport(7, 24, 24);
+            }
+            else if (hit(7,24, 24, "down") == true) {
+                teleport(0, 24, 28);
+            }
+            else if (hit(7,24, 20, "up") == true) {
+                gp.gameState = gp.miniGamePokemon;
+            }
         }
 
     }

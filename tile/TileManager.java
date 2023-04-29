@@ -214,6 +214,7 @@ public class TileManager {
         loadMap("res/maps/mapMill.txt",4);
         loadMap("res/maps/mapCasino.txt",5);
         loadMap("res/maps/map001.txt",6);
+        loadMap("res/maps/mapPokemon.txt",7);
     }
 
     public void draw(Graphics2D g2, int x1 , int y1, int x2, int y2) {
