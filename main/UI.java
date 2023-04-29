@@ -48,6 +48,7 @@ public class UI {
         }
         else if(gp.currentMap == 1){
             drawPlayerLife();
+            drawPoint();
             if(gp.player.life <= 0){
                 gp.gameState = gp.gameOverState;
                 gp.playSE(2);
@@ -270,14 +271,6 @@ public class UI {
             g2.drawRect(x, y+gp.tileSize+10,gp.tileSize*2 , gp.tileSize-10);
             commandNum = 4;
             subCommandNum = 1;
-        }
-    }
-
-    public void drawMove(boolean move){
-        if(move){
-            System.out.println("move");
-            if(gp.player.direction.equals("up"))
-                g2.drawImage(gp.code.enter, gp.player.worldX , gp.player.worldY , gp.tileSize , gp.tileSize , null);
         }
     }
 

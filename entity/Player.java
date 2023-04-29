@@ -395,19 +395,8 @@ public class Player extends Entity{
                 this.direction = direction;
                 worldX += gp.tileSize;
             }
-            gp.ui.drawMove(gp.eHandler.checkMove());
         // }
         // else gp.player.life--;
     }
 
-    public int checkPlayer(){
-        int x = (worldX+solidArea.x)/gp.tileSize;
-        int y = (worldY+gp.player.solidArea.y)/gp.tileSize;
-
-        if( x < 10 && y < 10) return 1;
-        else if( x < 20 && y < 10) return 2;
-        else if( x < 10 && y < 20) return 5;
-        else if( x < 20 && y < 20) return 6;
-        else return 0;
-    }
 }

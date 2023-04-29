@@ -127,7 +127,15 @@ public class TileManager {
         setup(95, "GateRightDown", false);
         setup(96, "GateRightUp", false);
         setup(97, "GateStraight", false);
-
+        setup(98, "New98", true);
+        setup(99, "New99", false);
+        setup(100, "New100", true);
+        setup(101, "New101", true);
+        setup(102, "New102", false);
+        setup(103, "New103", false);
+        setup(104, "New104", false);
+        setup(105, "New105", true);
+        setup(106, "New106", false);
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -217,33 +225,4 @@ public class TileManager {
         loadMap("res/maps/mapPokemon.txt",7);
     }
 
-    public void draw(Graphics2D g2, int x1 , int y1, int x2, int y2) {
-        
-        int worldCol = x1;
-        int worldRow = y1;
-
-        while(worldCol < x2 && worldRow < y2) {
-
-            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
-
-            int worldX = worldCol * gp.tileSize;
-            int worldY = worldRow * gp.tileSize;
-            int screenX = worldX - gp.player.worldX + gp.player.screenX;
-            int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
-            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY ) {
-                    g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-                }
-
-            worldCol++;
-
-            if (worldCol  == x2) {
-                worldCol  = x1;
-                worldRow ++;
-            }
-        }
-    }
 }

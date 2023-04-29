@@ -17,7 +17,6 @@ import tile_interactive.InteractiveTile;
 import game.BlackJack;
 import game.CodeGame;
 import game.Gate;
-import game.Room;
 import object.OBJ_Key;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -77,7 +76,6 @@ public class GamePanel extends JPanel implements Runnable {
     public EnvironmentManager eManager = new EnvironmentManager(this);
     public BlackJack blackJack = new BlackJack(this);
     public Gate gate = new Gate(this);
-    public Room room = new Room(this);
     public CodeGame code = new CodeGame(this);
     public Player player = new Player(this, keyH);
     public Entity obj[][] = new Entity[maxMap][20];
@@ -137,7 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(gameState + " " + currentMap);
+            // System.out.println(gameState + " " + currentMap);
 
         }
     }
@@ -198,8 +196,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         //mini game Maze
         else if(currentMap == 1){
-            room.checkRoom(g2);
-            // tileM.draw(g2, 10, 10);
+            tileM.draw(g2);
             entityList.add(player);
             for (int i = 0; i < monster[1].length; i++) {
                 if (monster[currentMap][i] != null) {
@@ -218,7 +215,7 @@ public class GamePanel extends JPanel implements Runnable {
             // empty entity list
             entityList.clear();
             // Enviroment (lightning)
-            // eManager.draw(g2);
+            eManager.draw(g2);
             //UI
             ui.draw(g2);
             g2.dispose();
