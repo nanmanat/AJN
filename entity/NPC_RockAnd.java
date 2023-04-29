@@ -95,7 +95,6 @@ public class NPC_RockAnd extends Entity {
             }
         }
 
-        int count = 0;
         //Scan the plate list
         for (int i = 0; i < plateList.size(); i++) {
             int xDistance = Math.abs(worldX - plateList.get(i).worldX);
@@ -114,13 +113,6 @@ public class NPC_RockAnd extends Entity {
                     linkedEntity = null;
                     gp.player.gateScore--;
                 }
-            }
-        }
-
-        //scan the rock list
-        for (int i = 0; i < rockList.size(); i++) {
-            if (rockList.get(i).linkedEntity != null) {
-                count++;
             }
         }
     }

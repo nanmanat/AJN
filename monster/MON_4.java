@@ -14,7 +14,7 @@ public class MON_4 extends Entity {
 
         type = 2;
         name = "MON_3";
-        maxLife = 80;
+        maxLife = 65;
         life = maxLife;
 
         direction = "down";

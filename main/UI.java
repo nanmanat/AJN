@@ -349,7 +349,7 @@ public class UI {
         textY = (frameY + gp.tileSize) + gp.tileSize*8;
         textX = frameX + gp.tileSize*2;
         g2.setFont(g2.getFont().deriveFont(18F));
-        g2.drawString(String.format("PeePool: %s/80", gp.pingPong.poList.get(3).life), textX, textY);
+        g2.drawString(String.format("PeePool: %s/65", gp.pingPong.poList.get(3).life), textX, textY);
         //player missed
         g2.setFont(g2.getFont().deriveFont(22F));
         g2.setColor(Color.white);

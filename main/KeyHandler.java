@@ -241,7 +241,7 @@ public class KeyHandler implements KeyListener{
                 //before mini game state
                 gp.gameState = gp.playState;
                 if(gp.currentMap == 5) {
-                    gp.retry(24,35);
+                    gp.retry(24,32);
                 } else if (gp.currentMap == 1) {
                     gp.retry(1, 2);
                 } else {

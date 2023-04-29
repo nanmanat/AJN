@@ -42,21 +42,21 @@ public class Pingpongmon extends Entity {
         double random = Math.random(); // generate random number between 0 and 1
 
         if (poList.get(0).life > 0) {
-            if (random < 0.7) { // 70% chance
+            if (random < 0.65) { // 65% chance
                 (poList.get(0)).life -= 5; // subtract 5 from target Pokemon's life
                 playerAttack = false;
             } else {
                 playerCheck();
             }
         } else if (poList.get(1).life > 0) {
-            if (random < 0.7) { // 70% chance
+            if (random < 0.65) { // 65% chance
                 (poList.get(1)).life -= 5; // subtract 5 from target Pokemon's life
                 playerAttack = false;
             } else {
                 playerCheck();
             }
         } else if (poList.get(2).life > 0) {
-            if (random < 0.7) { // 70% chance
+            if (random < 0.65) { // 65% chance
                 (poList.get(2)).life -= 5; // subtract 5 from target Pokemon's life
                 playerAttack = false;
             } else {
@@ -114,7 +114,7 @@ public class Pingpongmon extends Entity {
     public void reset() {
         for (int i = 0; i < poList.size(); i++) {
             if(i == 3 ) {
-                poList.get(i).life = 80;
+                poList.get(i).life = 65;
             } else {
                 poList.get(i).life = 20;
             }
