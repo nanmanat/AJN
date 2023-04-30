@@ -74,7 +74,7 @@ public class EventHandler {
             else if (hit(5,24, 29, "up") == true && gp.blackJack.getElfLife() > 0) {
                 gp.player.keyH.upPressed = false;
                 gp.gameState = gp.dialoguePopup;
-                gp.ui.currentDialogue = "Hoffman: Welcome Traveller.";
+                gp.ui.currentDialogue = "Hoffman: Come! join me at the table.";
                 canTouchEvent = false;
             }
             //Millgame
@@ -134,22 +134,33 @@ public class EventHandler {
             //Mookgame
             else if(hit(0,28,28,"up") == true) {
                 teleport(2, 23, 25);
+            } 
+            else if(hit(2,24,23,"up") == true && gp.code.endPoint != true) {
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "Hortense Hoo-Ha: Here is the key bye.";
             }
+            else if(hit(2,27,24,"right") == true) {
+                teleport(8, 19, 25);
+                gp.keyH.rightPressed = false;
+                gp.player.worldX = 912;
+                gp.player.worldY = 1200-10;
+                gp.player.direction = "right";    
 
-            if(gp.code.endGame == true){
-                if(hit(2,27,24,"any") == true) {
-                    teleport(0,28,28);
-                    gp.player.direction = "down";
+                if(gp.code.endGame == true){
+                    if(hit(2,27,24,"any") == true) {
+                        teleport(0,28,28);
+                        gp.player.direction = "down";
+                    }
                 }
-            }
-            else {
-                if(hit(2,27,24,"right") == true) {
-                    teleport(8, 19, 25);
-                    gp.player.worldX = 912;
-                    gp.player.worldY = 1200-10;
-                    gp.player.direction = "right";
+                else {
+                    if(hit(2,27,24,"right") == true) {
+                        teleport(8, 19, 25);
+                        gp.player.worldX = 912;
+                        gp.player.worldY = 1200-10;
+                        gp.player.direction = "right";
+                    }
                 }
-            }
+            } 
             
             //Pokemon
             if (hit(0,24, 28, "up") == true) {
@@ -162,6 +173,12 @@ public class EventHandler {
                 gp.playMusic(0);
                 teleport(0, 24, 28);
             }
+            else if (hit(7,24, 16, "up") == true && gp.pingPong.poList.get(2).life > 0) {
+                gp.keyH.upPressed = false;
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "Babushka: You can't defeat me weakling!";
+                canTouchEvent = false;
+            }
             else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life > 0) {
                 gp.gameState = gp.miniGamePokemon;
                 gp.pingPong.reset();
@@ -169,10 +186,10 @@ public class EventHandler {
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }
-            
-        }
 
+        }
     }
+
 
     public boolean hit(int map, int col, int row, String reqDirection) {
         boolean hit = false;
