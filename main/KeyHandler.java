@@ -41,9 +41,9 @@ public class KeyHandler implements KeyListener{
             dialogueState(code);
         }
         // mini game Maze
-        else if(gp.gameState == gp.miniGameMaze){
-            miniGameMaze(code);
-        }
+        // else if(gp.gameState == gp.miniGameMaze){
+        //     miniGameMaze(code);
+        // }
         // over state
         else if(gp.gameState == gp.gameOverState){
             gameOverState(code);
