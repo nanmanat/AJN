@@ -109,8 +109,15 @@ public class EventHandler {
             else if (hit(1,31, 38, "down") == true) teleport(1, 25, 9);
             else if (hit(1,19, 9, "up") == true) teleport(1, 25, 38);
             
+            // check tile new map
+            int playerX = ( gp.player.worldX + gp.player.solidArea.x ) / gp.tileSize;
+            int playerY = ( gp.player.worldY + gp.player.solidArea.y ) / gp.tileSize;
+            int tileNum = gp.tileM.mapTileNum[gp.currentMap][playerX][playerY];
+            if(tileNum == 102) spike(gp.playState);
+            else if(tileNum == 104 || tileNum == 106) gp.player.life = gp.player.maxLife;
+
             //New end
-            else if (hit(1,37, 38, "down") == true) {
+            if (hit(1,37, 38, "down") == true) {
                 teleport(0, 26, 28);
             }
             //PuayStatue
@@ -122,15 +129,24 @@ public class EventHandler {
             else if(hit(0,28,28,"up") == true) {
                 teleport(2, 23, 25);
             }
-            else if(hit(2,27,24,"right") == true) {
-                teleport(8, 19, 25);
-                gp.player.worldX = 912;
-                gp.player.worldY = 1200-10;
-                gp.player.direction = "right";
+
+            if(gp.code.endGame == true){
+                if(hit(2,27,24,"any") == true) {
+                    teleport(0,28,28);
+                    gp.player.direction = "down";
+                }
+            }
+            else {
+                if(hit(2,27,24,"right") == true) {
+                    teleport(8, 19, 25);
+                    gp.player.worldX = 912;
+                    gp.player.worldY = 1200-10;
+                    gp.player.direction = "right";
+                }
             }
             
             //Pokemon
-            else if (hit(0,24, 28, "up") == true) {
+            if (hit(0,24, 28, "up") == true) {
                 gp.stopMusic();
                 gp.playMusic(7);
                 teleport(7, 24, 24);
@@ -147,6 +163,7 @@ public class EventHandler {
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }
+            
         }
 
     }
@@ -180,10 +197,10 @@ public class EventHandler {
 
     public void spike(int gameStates) {
         gp.gameState = gameStates;
-        // System.out.println(gp.gameState);
-
         gp.player.keyH.rightPressed = false;
-        gp.ui.currentDialogue = "You got hit by a balls!";
+        gp.player.keyH.leftPressed = false;
+        gp.player.keyH.upPressed = false;
+        gp.player.keyH.downPressed = false;
         gp.player.life -= 1;
     }
 
@@ -197,7 +214,8 @@ public class EventHandler {
             gp.player.direction = "right";
         }
         if(hit(10,31,27,"right") == true) {
-            teleport(2, 23, 20);
+            teleport(0, 28, 28);
+            gp.code.endGame = true;
             gp.player.direction = "down";
         }
     }
