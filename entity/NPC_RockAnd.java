@@ -41,9 +41,6 @@ public class NPC_RockAnd extends Entity {
         right2 = setup("/res/npc/31", gp.tileSize, gp.tileSize);
     }
 
-    public void setAction() {
-    }
-
     public void update() {
     }
     
@@ -51,10 +48,12 @@ public class NPC_RockAnd extends Entity {
 
         this.direction = d;
         
-        boolean contactPlayer = gp.cChecker.checkPlayer(this);
-        int contactObj = gp.cChecker.checkEntity(this, gp.npc);
+        collisionOn = false;
+        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkTile(this);
 
-        if (!contactPlayer && contactObj == 999) {
+        if (collisionOn == false) {
             
             switch (direction) {
                 case "up":

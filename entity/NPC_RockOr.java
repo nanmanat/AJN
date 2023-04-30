@@ -51,10 +51,12 @@ public class NPC_RockOr extends Entity {
 
         this.direction = d;
         
-        boolean contactPlayer = gp.cChecker.checkPlayer(this);
-        int contactObj = gp.cChecker.checkEntity(this, gp.npc);
+        collisionOn = false;
+        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkTile(this);
 
-        if (!contactPlayer && contactObj == 999) {
+        if (collisionOn == false) {
             
             switch (direction) {
                 case "up":
