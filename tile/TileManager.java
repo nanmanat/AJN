@@ -186,6 +186,7 @@ public class TileManager {
         setup(153, "153", false);
         setup(154, "114", true);
         setup(155, "155", false);
+        setup(156, "156", false);
     }
     public void setup(int index, String imagePath, boolean collision) {
 

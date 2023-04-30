@@ -9,6 +9,7 @@ import entity.NPC_Elfnew;
 import entity.NPC_RockAnd;
 import entity.NPC_RockNot;
 import entity.NPC_RockOr;
+import entity.NPC_dog;
 import monster.MON_Dragon;
 import object.OBJ_Key;
 import tile_interactive.IT_AndPlate;
@@ -43,22 +44,29 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
+        //dog
+        mapNum = 0;
+        gp.npc[mapNum][0] = new NPC_dog(gp);
+        gp.npc[mapNum][0].worldX = gp.tileSize * 16;
+        gp.npc[mapNum][0].worldY = gp.tileSize * 24;
+
         //Gate
         mapNum = 4;
-        gp.npc[mapNum][i] = new NPC_RockAnd(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 24;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 28;
-        i++;
+        gp.npc[mapNum][0] = new NPC_RockAnd(gp);
+        gp.npc[mapNum][0].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][0].worldY = gp.tileSize * 28;
 
-        gp.npc[mapNum][i] = new NPC_RockOr(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 24;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 30;
-        i++;
+        gp.npc[mapNum][1] = new NPC_RockOr(gp);
+        gp.npc[mapNum][1].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][1].worldY = gp.tileSize * 30;
 
-        gp.npc[mapNum][i] = new NPC_RockNot(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 24;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 32;
-        i++;
+        gp.npc[mapNum][2] = new NPC_RockNot(gp);
+        gp.npc[mapNum][2].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][2].worldY = gp.tileSize * 32;
+
+        gp.npc[mapNum][3] = new NPC_Elfmill(gp);
+        gp.npc[mapNum][3].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][3].worldY = gp.tileSize * 35;
 
         //ELF 
         //Casino
@@ -66,11 +74,7 @@ public class AssetSetter {
         gp.npc[mapNum][0] = new NPC_Elfarm(gp);
         gp.npc[mapNum][0].worldX = gp.tileSize * 24;
         gp.npc[mapNum][0].worldY = gp.tileSize * 26;
-        //Gate
-        mapNum = 4;
-        gp.npc[mapNum][3] = new NPC_Elfmill(gp);
-        gp.npc[mapNum][3].worldX = gp.tileSize * 24;
-        gp.npc[mapNum][3].worldY = gp.tileSize * 35;
+        
         //Pokemomn
         mapNum = 7;
         gp.npc[mapNum][i] = new NPC_Elfnew(gp);
