@@ -44,13 +44,13 @@ public class UI {
             drawTitleScreen();
         }
         else if(gp.currentMap == 1){
-            drawPlayerLife();
             drawPoint();
             if(gp.player.life <= 0){
                 gp.gameState = gp.gameOverState;
-                gp.playSE(2);
+                gp.tmpState = gp.playState;
             }
             gp.eManager.draw(g2);
+            drawPlayerLife();
         }
         else if(gp.gameState == gp.playState){
             gp.tmpState = gp.playState;

@@ -30,6 +30,11 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Key(gp);
         gp.obj[mapNum][i].worldX = 38 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 36 * gp.tileSize;  
+
+        // mapNum = 2;
+        // gp.obj[mapNum][i] = new OBJ_Key(gp);
+        // gp.obj[mapNum][i].worldX = 30 * gp.tileSize;
+        // gp.obj[mapNum][i].worldY = 27 * gp.tileSize;  
         
     }
 

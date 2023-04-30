@@ -396,7 +396,9 @@ public class Player extends Entity{
                 worldX += gp.tileSize;
             }
         }
-        else gp.player.life--;
+        else {
+            gp.player.life--;
+        }
     }
 
 }
