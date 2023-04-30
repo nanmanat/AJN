@@ -50,6 +50,7 @@ public class UI {
                 gp.gameState = gp.gameOverState;
                 gp.playSE(2);
             }
+            gp.eManager.draw(g2);
         }
         else if(gp.gameState == gp.playState){
             gp.tmpState = gp.playState;

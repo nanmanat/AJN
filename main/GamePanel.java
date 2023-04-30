@@ -82,7 +82,9 @@ public class GamePanel extends JPanel implements Runnable {
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][5];
     public ArrayList<Entity> projectileList = new ArrayList<>();
     public PathFinder pFinder = new PathFinder(this);
-    ArrayList<Entity> entityList = new ArrayList<>();
+    public ArrayList<Entity> entityList = new ArrayList<>();
+    public Graphics2D g2;
+
 
     public CollisionChecker cChecker = new CollisionChecker(this);
     
@@ -196,7 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState  == titleState){
             ui.draw(g2);
         }
-        if(gameState == playState || tmpState == playState){
+        if(gameState == playState){
             //Tile
             tileM.draw(g2);
 
@@ -247,11 +249,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             // empty entity list
             entityList.clear();
-
-            if(currentMap == 1){
-                // Enviroment (lightning)
-                eManager.draw(g2);
-            }
 
             //UI
             ui.draw(g2);

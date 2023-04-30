@@ -289,7 +289,6 @@ public class TileManager {
         loadMap("res/maps/mapMook1.txt",8);
         loadMap("res/maps/mapMook2.txt",9);
         loadMap("res/maps/mapMook3.txt",10);
-        loadMap("res/maps/mapMaze.txt",11);
 
     }
 
