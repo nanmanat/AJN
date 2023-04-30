@@ -88,10 +88,10 @@ public class EventHandler {
                 gp.playMusic(0);
                 teleport(0, 22, 28);
             }
-            else if (hit(4,24, 38, "up") == true && gp.player.gateScore < 3) {
+            else if (hit(4,24, 36, "up") == true && gp.player.gateScore < 3) {
                 gp.player.keyH.upPressed = false;
                 gp.gameState = gp.dialoguePopup;
-                gp.ui.currentDialogue = "Elf: Easy And-Or-Not gate puzzle.";
+                gp.ui.currentDialogue = "Albert Tripledore: A=F, B=T, C=T";
                 canTouchEvent = false;
             }
             //Newgame
