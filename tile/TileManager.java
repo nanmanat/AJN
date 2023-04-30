@@ -1,5 +1,6 @@
 package tile;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -187,6 +188,11 @@ public class TileManager {
         setup(154, "114", true);
         setup(155, "155", false);
         setup(156, "156", false);
+        setup(157, "AJN1", false);
+        setup(158, "AJN2", true);
+        setup(159, "AJN3", true);
+        setup(160, "AJN4", true);
+        setup(161, "AJN5", false);
     }
     public void setup(int index, String imagePath, boolean collision) {
 
@@ -263,18 +269,18 @@ public class TileManager {
             }
         }
 
-        // if(drawPath == true) {
-        //     g2.setColor(new Color(255, 0, 0, 70));
+        if(drawPath == true) {
+            g2.setColor(new Color(255, 0, 0, 70));
 
-        //     for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
-        //         int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
-        //         int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
-        //         int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        //         int screenY = worldY - gp.player.worldY + gp.player.screenY;
+            for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
+                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
+                int screenX = worldX - gp.player.worldX + gp.player.screenX;
+                int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-        //         g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
-        //     }
-        // }
+                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+            }
+        }
 
     }
 

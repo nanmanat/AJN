@@ -10,6 +10,7 @@ import entity.NPC_RockAnd;
 import entity.NPC_RockNot;
 import entity.NPC_RockOr;
 import entity.NPC_dog;
+import monster.MON_AJN;
 import monster.MON_Dragon;
 import object.OBJ_Key;
 import tile_interactive.IT_AndPlate;
@@ -123,6 +124,11 @@ public class AssetSetter {
         gp.monster[mapNum][6] = new MON_Dragon(gp);
         gp.monster[mapNum][6].worldX = gp.tileSize * 36;
         gp.monster[mapNum][6].worldY = gp.tileSize * 23;
+
+        mapNum = 3;
+        gp.monster[mapNum][7] = new MON_AJN(gp);
+        gp.monster[mapNum][7].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][7].worldY = gp.tileSize * 20;
     }
 
     public void setInteractiveTile() {

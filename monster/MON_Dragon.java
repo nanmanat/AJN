@@ -18,9 +18,11 @@ public class MON_Dragon extends Entity {
 
         type = 2;
         name = "Dragon";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 4;
         life = maxLife;
+        attack = 2;
         direction = "down";
         
         solidArea = new Rectangle();
@@ -112,7 +114,6 @@ public class MON_Dragon extends Entity {
     
     public void damageReaction() {
         actionLockCounter = 0;
-        // direction = gp.player.direction;
         onPath = true;
     }
     

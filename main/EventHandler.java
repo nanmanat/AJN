@@ -187,6 +187,10 @@ public class EventHandler {
                 gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }
 
+            else if(hit(0,24,19, "down") == true){
+                teleport(3, 25, 25);
+            }
+
         }
     }
 

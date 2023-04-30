@@ -278,6 +278,7 @@ public class Player extends Entity{
     public void damageMonster(int i, int attack) {
         if (i != 999) {
             if (gp.monster[gp.currentMap][i].invincible == false) {
+                knockBack(gp.monster[gp.currentMap][i]);
                 gp.monster[gp.currentMap][i].life -= attack;
                 gp.monster[gp.currentMap][i].invincible = true;
                 gp.monster[gp.currentMap][i].damageReaction();
@@ -371,6 +372,12 @@ public class Player extends Entity{
         //reset alpha
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         
+    }
+
+    public void knockBack( Entity entity){
+        entity.direction = direction;
+        entity.speed += 10;
+        entity.knockBack = true;
     }
 
     public void setDialogue() {

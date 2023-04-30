@@ -15,7 +15,7 @@ import main.UtilityTool;
 public class Entity {
     GamePanel gp;
     public int worldX, worldY;
-    public int speed;
+    public int speed , defaultSpeed;
 
     public BufferedImage up1, up2, up3, down1, down2 , down3, left1, left2, left3, left4, right1, right2, right3, right4;
     public BufferedImage card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13;
@@ -37,6 +37,7 @@ public class Entity {
     public boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
+    public boolean knockBack = false;
     public Projectile projectile;
     public int maxMana;
     public int mana;
@@ -50,7 +51,8 @@ public class Entity {
     public int actionLockCounter = 0;
     public int spriteCounter = 0;
     public int shotAvailableCounter = 0;
-    int dyingCounter = 0;
+    public int dyingCounter = 0;
+    public int knockBackCounter = 0;
 
     public int dialogueIndex = 0;
     public String dialogue[] = new String[20];
@@ -120,26 +122,51 @@ public class Entity {
     }
 
     public void update() {
+        if(knockBack == true){
+            checkCollision();
 
-        setAction();
-        checkCollision();
-
-        if (collisionOn == false) {
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
+            if(collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if(collisionOn == false ){
+                switch (gp.player.direction) {
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
+            }
+            knockBackCounter++;
+            if(knockBackCounter == 5){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
             }
         }
+        else {
+            setAction();
+            checkCollision();
+
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+        }
+        
 
         spriteCounter++;
         if (spriteCounter > 12) {
