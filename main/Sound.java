@@ -13,13 +13,15 @@ public class Sound {
     float volume;
 
     public Sound(){
-        soundURL[0] = getClass().getResource("/res/sound/BlueBoyAdventure.wav");
+        soundURL[0] = getClass().getResource("/res/sound/lobby1.wav");
         soundURL[1] = getClass().getResource("/res/sound/cursor.wav");
         soundURL[2] = getClass().getResource("/res/sound/gameover.wav");
         soundURL[3] = getClass().getResource("/res/sound/receivedamage.wav");
         soundURL[4] = getClass().getResource("/res/sound/card.wav");
         soundURL[5] = getClass().getResource("/res/sound/hitmonster.wav");
         soundURL[6] = getClass().getResource("/res/sound/casino.wav");
+        soundURL[7] = getClass().getResource("/res/sound/ballin.wav");
+        soundURL[8] = getClass().getResource("/res/sound/Gate.wav");
     }
 
     public void setFile(int i){
