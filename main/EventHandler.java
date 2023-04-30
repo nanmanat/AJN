@@ -112,14 +112,12 @@ public class EventHandler {
             else if (hit(1,33, 24, "right") == true) teleport(1, 35, 24);
             else if (hit(1,35, 24, "left") == true) teleport(1, 33, 24);
 
-            else if (hit(1,15, 30, "right") == true) teleport(1, 17, 30);
             else if (hit(1,17, 30, "left") == true) teleport(1, 15, 30);
             else if (hit(1,21, 30, "right") == true) teleport(1, 23, 30);
             else if (hit(1,27, 30, "right") == true) teleport(1, 29, 30);
             else if (hit(1,29, 30, "left") == true) teleport(1, 27, 30);
             else if (hit(1,33, 30, "right") == true) teleport(1, 35, 30);
 
-            else if (hit(1,15, 36, "right") == true) teleport(1, 17, 36);
             else if (hit(1,17, 36, "left") == true) teleport(1, 15, 36);
             else if (hit(1,21, 36, "right") == true) teleport(1, 23, 36);
             else if (hit(1,23, 36, "left") == true) teleport(1, 21, 36);
@@ -132,6 +130,7 @@ public class EventHandler {
             else if (hit(1,13, 16, "up") == true) teleport(1, 13, 14);
             else if (hit(1,13, 22, "up") == true) teleport(1, 13, 20);
             else if (hit(1,13, 26, "down") == true) teleport(1, 13, 28);
+            else if (hit(1,13, 28, "up") == true) teleport(1, 13, 26);
             else if (hit(1,13, 32, "down") == true) teleport(1, 13, 34);
             else if (hit(1,13, 34, "up") == true) teleport(1, 13, 32);
 
@@ -164,7 +163,7 @@ public class EventHandler {
             else if (hit(1,37, 28, "up") == true) teleport(1, 37, 26);
             else if (hit(1,37, 34, "up") == true) teleport(1, 25, 32);
             //New end
-            else if (hit(1,37, 37, "right") == true) {
+            else if (hit(1,38, 37, "right") == true) {
                 teleport(0, 26, 28);
             }
             //PuayStatue
@@ -174,17 +173,13 @@ public class EventHandler {
             }
             //Mookgame
             else if(hit(0,28,28,"up") == true) {
-                teleport(2, 19, 18);
+                teleport(2, 23, 25);
             }
-            else if(hit(2,28,28,"up") == true) {
-                teleport(0, 28, 28);
-            }
-            else if(hit(2,21,18,"any") == true) {
-                gp.gameState = gp.dialoguePopup;
-                gp.ui.currentDialogue = "Your ready!";
-            }
-            if(hit(2,25,20,"down") == true) {
-                gp.gameState = gp.playState;
+            else if(hit(2,25,24,"right") == true) {
+                teleport(8, 19, 25);
+                gp.player.worldX-=10;
+                gp.player.worldY = 1200;
+                gp.player.direction = "right";
             }
             
             //Pokemon
@@ -241,23 +236,19 @@ public class EventHandler {
         gp.player.life -= 1;
     }
 
-    public boolean checkMove(){
-        if (hit(2 , 22, 18,"any") == true) {
-            return true;
+    public void checkMove(){
+        if(hit(8,31,24,"right") == true) {
+            teleport(9, 20, 19);
+            gp.player.direction = "down";
         }
-        else if (hit(2,23, 18, "any") == true) { 
-            return true;
+        if(hit(9,30,27,"right") == true) {
+            teleport(10, 18, 17);
+            gp.player.direction = "right";
         }
-        else if (hit(2,24, 18, "any") == true) { 
-            return true;
+        if(hit(10,31,26,"right") == true) {
+            teleport(2, 23, 20);
+            gp.player.direction = "down";
         }
-        else if (hit(2,25, 18, "any") == true) { 
-            return true;
-        }
-        else if (hit(2,25, 19, "any") == true) { 
-            return true;
-        }
-        else return false;
     }
     public void teleport(int map, int col, int row) {
         gp.currentMap = map;

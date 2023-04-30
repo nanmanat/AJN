@@ -43,9 +43,6 @@ public class UI {
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
         }
-        else if(gp.gameState == gp.optionsState){
-            drawOptionsScreen();
-        }
         else if(gp.currentMap == 1){
             drawPlayerLife();
             drawPoint();
@@ -71,14 +68,18 @@ public class UI {
             drawBlackJackScore();
             drawPlayerLife();
         }
-        else if(gp.gameState == gp.miniGameCode){
-            drawPlayerLife();
-            drawDialogueCode();
-            drawPoint();
-        }
         else if(gp.gameState == gp.miniGamePokemon){
             drawPokemon();
             drawPlayerLife();
+        }
+        if(gp.gameState == gp.optionsState){
+            drawOptionsScreen();
+        }
+        else if(gp.currentMap == 8 || gp.currentMap == 9 || gp.currentMap == 10){
+            drawPlayerLife();
+            drawDialogueCode();
+            drawPoint();
+            gp.eHandler.checkMove();
         }
         if(gp.gameState == gp.gameOverState){
             drawGameOverScreen();
@@ -182,6 +183,9 @@ public class UI {
     }
 
     public void drawDialogueCode(){
+        g2.setColor(Color.white);
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
         int x = gp.tileSize *2;
         int y = gp.tileSize * 7 + (gp.tileSize / 2) - 10; 
         int width = gp.screenWidth - (gp.tileSize*4);

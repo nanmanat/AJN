@@ -378,7 +378,7 @@ public class Player extends Entity{
     }
 
     public void setMove(String direction){
-        // if (collisionOn == false) {
+        if (collisionOn == false) {
             if(direction.equals("up")){
                 this.direction = direction;
                 worldY -= gp.tileSize;
@@ -395,8 +395,8 @@ public class Player extends Entity{
                 this.direction = direction;
                 worldX += gp.tileSize;
             }
-        // }
-        // else gp.player.life--;
+        }
+        else gp.player.life--;
     }
 
 }

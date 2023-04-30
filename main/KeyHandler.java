@@ -24,6 +24,14 @@ public class KeyHandler implements KeyListener{
         if(gp.gameState == gp.titleState){
             titleState(code);
         }
+        // option state
+        else if(gp.gameState == gp.optionsState){
+            optionState(code);
+        }
+        // map mook
+        else if((gp.currentMap == 8 || gp.currentMap == 9 || gp.currentMap == 10)){
+            miniGameCode(code);
+        }
         // Play State
         else if(gp.gameState == gp.playState){
             playState(code);
@@ -40,10 +48,6 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.gameOverState){
             gameOverState(code);
         }
-        // option state
-        else if(gp.gameState == gp.optionsState){
-            optionState(code);
-        }
         //dialoge popUp
         else if(gp.gameState == gp.dialoguePopup){
             popUp(code);
@@ -53,9 +57,6 @@ public class KeyHandler implements KeyListener{
         }
         else if (gp.gameState == gp.blackjackScore) {
             blackJackScore(code);
-        }
-        else if(gp.gameState == gp.miniGameCode){
-            miniGameCode(code);
         }
         else if(gp.gameState == gp.miniGamePokemon) {
             miniGamePokemon(code);
@@ -121,7 +122,7 @@ public class KeyHandler implements KeyListener{
                 System.exit(0);
             }
             if(gp.ui.commandNum == 3){
-                gp.gameState = gp.tmpState;
+                gp.gameState = gp.playState;
             }
         }
     }
@@ -161,7 +162,6 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
-            gp.tmpState = gp.miniGameCode;
         }
         if(code == KeyEvent.VK_RIGHT){
             gp.ui.commandNum++;
@@ -201,7 +201,6 @@ public class KeyHandler implements KeyListener{
                         if(gp.ui.indexCodeGame > 0){
                             gp.ui.indexCodeGame--;
                             gp.code.clearMove(gp.ui.indexCodeGame);
-                            System.out.println("clear");
                         }
                     }
                 }
@@ -210,7 +209,6 @@ public class KeyHandler implements KeyListener{
             else {
                 if(gp.ui.commandNum == 4) {
                     if(gp.ui.subCommandNum == 0){
-                        // gp.code.print();
                         gp.code.movePlayer();
                         gp.code.resetMove();
                         gp.ui.indexCodeGame = 0;
@@ -219,7 +217,6 @@ public class KeyHandler implements KeyListener{
                         if(gp.ui.indexCodeGame > 0){
                             gp.ui.indexCodeGame--;
                             gp.code.clearMove(gp.ui.indexCodeGame);
-                            System.out.println("clear");
                         }
                     }
                 }
@@ -251,6 +248,8 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 1){
                 gp.player.life = gp.player.maxLife;
                 gp.gameState = gp.titleState;
+                gp.currentMap = 0;
+                gp.retry(24, 24);
             }
         }
     }
@@ -303,6 +302,7 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 0){
                 gp.playMusic(0);
                 gp.gameState = gp.playState;
+                gp.currentMap = 0;
                 enterPressed = false;
             }
             if(gp.ui.commandNum == 1){

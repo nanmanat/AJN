@@ -1,6 +1,5 @@
 package tile;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -18,7 +17,6 @@ public class TileManager {
     GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][][];
-    boolean drawPath = true;
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -136,7 +134,7 @@ public class TileManager {
         setup(102, "New102", false);
         setup(103, "New103", false);
         setup(104, "New104", false);
-        setup(105, "New105", true);
+        setup(105, "New105", false);
         setup(106, "New106", false);
         setup(107, "107", false);
         setup(108, "108", false);
@@ -168,6 +166,17 @@ public class TileManager {
         setup(134, "134", false);
         setup(135, "135", false);
         setup(136, "136", false);
+        setup(137, "Mook1", false);
+        setup(138, "Mook2", false);
+        setup(139, "Mook3", false);
+        setup(140, "Mook4", false);
+        setup(141, "Mook5", false);
+        setup(142, "Mook6", false);
+        setup(143, "Mook7", false);
+        setup(144, "Mook8", false);
+        setup(145, "Mook9", false);
+        setup(146, "Mook10", false);
+        setup(147, "Mook11", false);
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -245,30 +254,20 @@ public class TileManager {
             }
         }
 
-        if(drawPath == true) {
-            g2.setColor(new Color(255, 0, 0, 70));
-
-            for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
-                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
-                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
-                int screenX = worldX - gp.player.worldX + gp.player.screenX;
-                int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
-                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
-            }
-        }
     }
 
     public void loadMap(){
         loadMap("res/maps/mapTest.txt",0);
         loadMap("res/maps/mapMaze.txt",1);
-        loadMap("res/maps/mapPlayerStory.txt",2);
+        loadMap("res/maps/mapMook0.txt",2);
         loadMap("res/maps/mapAJN.txt",3);
         loadMap("res/maps/mapMill.txt",4);
         loadMap("res/maps/mapCasino.txt",5);
         loadMap("res/maps/map001.txt",6);
         loadMap("res/maps/mapPokemon.txt",7);
-        loadMap("res/maps/mapPath.txt",8);
+        loadMap("res/maps/mapMook1.txt",8);
+        loadMap("res/maps/mapMook2.txt",9);
+        loadMap("res/maps/mapMook3.txt",10);
     }
 
 }

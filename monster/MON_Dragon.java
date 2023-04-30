@@ -107,7 +107,5 @@ public class MON_Dragon extends Entity {
     public void checkDrop() {
         dropItem(new OBJ_Key(gp));
     }
-
-
     
 }
