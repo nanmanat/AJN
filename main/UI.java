@@ -296,7 +296,7 @@ public class UI {
         int frameY = gp.tileSize;
         int framWidth = gp.tileSize*16;
         int framHeight = gp.tileSize*10;
-        Color background = new Color(179, 240, 255);
+        Color background = new Color(56, 156, 181);
         drawSubWindow(frameX, frameY, framWidth, framHeight, background);
 
         switch(bjState) {
@@ -315,24 +315,72 @@ public class UI {
         g2.drawString(text, textX, textY);
         //Enemy
         int x = (gp.screenWidth/2) + (gp.screenWidth/6);
-        int y = gp.tileSize*3;
-        g2.drawImage(gp.blackJack.getCard(0), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
+        int y = gp.tileSize*2;
+        if ((gp.pingPong.poList.get(0)).life > 0) {
+            g2.drawImage(gp.pingPong.getPo(0), x, y , gp.tileSize*4 , gp.tileSize*4 , null);
+        } else if ((gp.pingPong.poList.get(1)).life > 0) {
+            g2.drawImage(gp.pingPong.getPo(1), x, y , gp.tileSize*4 , gp.tileSize*4 , null);
+        } else if ((gp.pingPong.poList.get(2)).life > 0) {
+            g2.drawImage(gp.pingPong.getPo(2), x, y , gp.tileSize*4 , gp.tileSize*4 , null);
+        }
+        //Enemy Health
+        g2.setColor(Color.white);
+        textY = frameY + gp.tileSize*6;
+        textX = (getXforCenteredText(text)*2) - gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(18F));
+        if ((gp.pingPong.poList.get(0)).life > 0) {
+            g2.drawString(String.format("Pie: %s/20", (gp.pingPong.poList.get(0)).life), textX, textY);
+        } else if ((gp.pingPong.poList.get(1)).life > 0) {
+            textX = (getXforCenteredText(text)*2) - gp.tileSize*4;
+            g2.drawString(String.format("ThreeManDown: %s/20", (gp.pingPong.poList.get(1)).life), textX, textY);
+        } else if ((gp.pingPong.poList.get(2)).life > 0) {
+            g2.drawString(String.format("GigaMind: %s/20", (gp.pingPong.poList.get(2)).life), textX, textY);
+        }
+
         //Player
         x = (gp.screenWidth/5);
-        y += gp.tileSize*4;
-        g2.drawImage(gp.blackJack.getCard(0), x, y , gp.tileSize*2 , gp.tileSize*2 , null);
-        //hit
+        y += gp.tileSize*3;
+        if ((gp.pingPong.poList.get(3)).life > 0) {
+            g2.drawImage(gp.pingPong.getPo(3), x, y , gp.tileSize*4 , gp.tileSize*4 , null);
+        }
+        g2.drawImage(gp.pingPong.getPo(3), x, y , gp.tileSize*4 , gp.tileSize*4 , null);
+        //Player health
+        g2.setColor(Color.white);
+        textY = (frameY + gp.tileSize) + gp.tileSize*8;
+        textX = frameX + gp.tileSize*2;
+        g2.setFont(g2.getFont().deriveFont(18F));
+        g2.drawString(String.format("PeePool: %s/65", gp.pingPong.poList.get(3).life), textX, textY);
+        //player missed
+        g2.setFont(g2.getFont().deriveFont(22F));
+        g2.setColor(Color.white);
+        textY = frameY + gp.tileSize*2;
+        textX = (getXforCenteredText(text)*2) - gp.tileSize*2;
+        g2.setFont(g2.getFont().deriveFont(22F));
+        if(gp.pingPong.playerAttack == true) {
+            g2.drawString(String.format("MISSED"), textX, textY);
+        }  
+        //enemy missed
+        g2.setColor(Color.white);
+        textY = frameY + gp.tileSize*6;
+        textX = frameX + gp.tileSize*3;
+        if(gp.pingPong.monAttack == true) {
+            g2.drawString(String.format("MISSED"), textX, textY);
+        }  
+        
+        //Poke
+        g2.setFont(g2.getFont().deriveFont(18F));
         g2.setFont(g2.getFont().deriveFont(25F));
         g2.setColor(Color.black);
-        textY += gp.tileSize*7;
-        textX = frameX + gp.tileSize*11;
-        g2.drawString("Poke.", textX, textY);
+        textY = (frameY + gp.tileSize) + gp.tileSize*7;
+        textX = frameX + gp.tileSize*12;
+        g2.drawString("Pocket Sand.", textX, textY);
         if(commandNum == 0) {
             g2.drawString(">", textX-25, textY);
         }
-        //stay
+        //FalconPunch
+        textX = frameX + gp.tileSize*7;
         textY += gp.tileSize;
-        g2.drawString("FalconPunch.", textX, textY);
+        g2.drawString("Cursed of The three legs Moneky.", textX, textY);
         if(commandNum == 1) {
             g2.drawString(">", textX-25, textY);
         }

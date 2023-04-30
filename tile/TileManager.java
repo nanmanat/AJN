@@ -22,7 +22,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[128];
+        tile = new Tile[256];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -138,6 +138,36 @@ public class TileManager {
         setup(104, "New104", false);
         setup(105, "New105", true);
         setup(106, "New106", false);
+        setup(107, "107", false);
+        setup(108, "108", false);
+        setup(109, "109", false);
+        setup(110, "110", false);
+        setup(111, "111", false);
+        setup(112, "112", false);
+        setup(113, "113", true);
+        setup(114, "114", false);
+        setup(115, "115", false);
+        setup(116, "116", false);
+        setup(117, "117", false);
+        setup(118, "118", false);
+        setup(119, "119", false);
+        setup(120, "120", false);
+        setup(121, "121", false);
+        setup(122, "122", false);
+        setup(123, "123", false);
+        setup(124, "124", false);
+        setup(125, "125", false);
+        setup(126, "126", false);
+        setup(127, "127", false);
+        setup(128, "128", false);
+        setup(129, "129", false);
+        setup(130, "130", false);
+        setup(131, "131", false);
+        setup(132, "132", false);
+        setup(133, "133", false);
+        setup(134, "134", false);
+        setup(135, "135", false);
+        setup(136, "136", false);
 
     }
     public void setup(int index, String imagePath, boolean collision) {
@@ -238,6 +268,7 @@ public class TileManager {
         loadMap("res/maps/mapCasino.txt",5);
         loadMap("res/maps/map001.txt",6);
         loadMap("res/maps/mapPokemon.txt",7);
+        loadMap("res/maps/mapPath.txt",8);
     }
 
 }

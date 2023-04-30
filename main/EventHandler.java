@@ -51,9 +51,13 @@ public class EventHandler {
         if(canTouchEvent == true) {
             //Bj gwakgwak 3000
             if (hit(0,20, 28, "up") == true) {
+                gp.stopMusic();
+                gp.playMusic(6);
                 teleport(5, 24, 34);
             }
             else if (hit(5,24, 34, "down") == true) {
+                gp.stopMusic();
+                gp.playMusic(0);
                 gp.player.life = 6;
                 teleport(0, 20, 28);
             }
@@ -191,8 +195,12 @@ public class EventHandler {
             else if (hit(7,24, 24, "down") == true) {
                 teleport(0, 24, 28);
             }
-            else if (hit(7,24, 20, "up") == true) {
+            else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life > 0) {
                 gp.gameState = gp.miniGamePokemon;
+                gp.pingPong.reset();
+            } else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life <= 0) {
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }
         }
 

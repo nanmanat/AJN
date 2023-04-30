@@ -17,8 +17,9 @@ import tile.TileManager;
 import tile_interactive.InteractiveTile;
 import game.BlackJack;
 import game.CodeGame;
-import game.Gate;
-import object.OBJ_Key;
+import entity.Gate;
+import game.Pingpongmon;
+
 
 public class GamePanel extends JPanel implements Runnable {
     
@@ -71,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Thread gameThread;
     public EnvironmentManager eManager = new EnvironmentManager(this);
     public BlackJack blackJack = new BlackJack(this);
+    public Pingpongmon pingPong = new Pingpongmon(this);
     public Gate gate = new Gate(this);
     public CodeGame code = new CodeGame(this);
     public Player player = new Player(this, keyH);
@@ -132,7 +134,6 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // System.out.println(gameState + " " + currentMap);
 
         }
     }
@@ -181,6 +182,10 @@ public class GamePanel extends JPanel implements Runnable {
         if(player.gateScore == 3) {
             gate.checkDrop(24,36);
             player.gateScore = 4;
+        }
+        if(pingPong.poList.get(2).life <= 0 && pingPong.poList.get(2).life != -5) {
+            pingPong.checkDrop(24,18);
+            pingPong.poList.get(2).life = -5;
         }
     }
     
@@ -306,15 +311,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void playSE(int i){
         se.setFile(i);
         se.play();
-    }
-
-    public void wait(int i) {
-        try {
-            Thread.sleep(i);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 }
 

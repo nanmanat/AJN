@@ -6,7 +6,6 @@ import entity.NPC_RockAnd;
 import entity.NPC_RockNot;
 import entity.NPC_RockOr;
 import monster.MON_Dragon;
-import object.OBJ_Key;
 import tile_interactive.IT_AndPlate;
 import tile_interactive.IT_NotPlate;
 import tile_interactive.IT_OrPlate;
@@ -20,8 +19,8 @@ public class AssetSetter {
     }
 
     public void setObject() {
-        int mapNum = 0;
-        int i = 0;
+        // int mapNum = 0;
+        // int i = 0;
 
         // mapNum = 5;
         // gp.obj[mapNum][i] = new OBJ_Key(gp);
@@ -63,7 +62,7 @@ public class AssetSetter {
         mapNum = 7;
         gp.npc[mapNum][i] = new NPC_OldMan(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 24;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 19;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 14;
 
         // gp.npc[mapNum][4] = new NPC_BigRock(gp);
         // gp.npc[mapNum][4].worldX = gp.tileSize * 24;

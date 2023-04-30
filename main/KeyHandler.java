@@ -241,7 +241,7 @@ public class KeyHandler implements KeyListener{
                 //before mini game state
                 gp.gameState = gp.playState;
                 if(gp.currentMap == 5) {
-                    gp.retry(24,35);
+                    gp.retry(24,32);
                 } else if (gp.currentMap == 1) {
                     gp.retry(11, 10);
                 } else {
@@ -301,8 +301,8 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_ENTER) {
             if(gp.ui.commandNum == 0){
-                gp.gameState = gp.playState;
                 gp.playMusic(0);
+                gp.gameState = gp.playState;
                 enterPressed = false;
             }
             if(gp.ui.commandNum == 1){
@@ -440,6 +440,16 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.playState;
+        }
+        if(code == KeyEvent.VK_ENTER) {
+            if(gp.ui.commandNum == 0) {
+                gp.pingPong.attack1();
+                gp.pingPong.attackPo();
+            } else {
+                gp.pingPong.attack2();
+                gp.pingPong.attackPo();
+            }
+            gp.pingPong.end();
         }
     }
 }
