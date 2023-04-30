@@ -67,14 +67,14 @@ public class AssetSetter {
         gp.npc[mapNum][3].worldY = gp.tileSize * 35;
         //Pokemomn
         mapNum = 7;
-        gp.npc[mapNum][i] = new NPC_Elfbig(gp);
+        gp.npc[mapNum][i] = new NPC_Elfnew(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 24;
         gp.npc[mapNum][i].worldY = gp.tileSize * 14;
         //Maze
         mapNum = 1;
-        gp.npc[mapNum][i] = new NPC_Elfnew(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 12;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 11;
+        gp.npc[mapNum][i] = new NPC_Elfbig(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 13;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 10;
         //Mook
         // mapNum = 1;
         // gp.npc[mapNum][i] = new NPC_Elfmook(gp);
