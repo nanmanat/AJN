@@ -182,11 +182,10 @@ public class TileManager {
         setup(149, "New101", false);
         setup(150, "Mook13", false);
         setup(151, "Mook16", false);
-        setup(152, "Mook16", false);
-        setup(153, "Mook16", false);
-
-
-
+        setup(152, "152", false);
+        setup(153, "153", false);
+        setup(154, "114", true);
+        setup(155, "155", false);
     }
     public void setup(int index, String imagePath, boolean collision) {
 

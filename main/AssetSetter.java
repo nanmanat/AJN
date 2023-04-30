@@ -4,6 +4,7 @@ package main;
 import entity.NPC_Elfarm;
 import entity.NPC_Elfbig;
 import entity.NPC_Elfmill;
+import entity.NPC_Elfmook;
 import entity.NPC_Elfnew;
 import entity.NPC_RockAnd;
 import entity.NPC_RockNot;
@@ -31,10 +32,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 38 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 36 * gp.tileSize;  
 
-        // mapNum = 2;
-        // gp.obj[mapNum][i] = new OBJ_Key(gp);
-        // gp.obj[mapNum][i].worldX = 30 * gp.tileSize;
-        // gp.obj[mapNum][i].worldY = 27 * gp.tileSize;  
+        mapNum = 2;
+        gp.obj[mapNum][i] = new OBJ_Key(gp);
+        gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 22 * gp.tileSize;  
         
     }
 
@@ -80,11 +81,11 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Elfbig(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 13;
         gp.npc[mapNum][i].worldY = gp.tileSize * 10;
-        //Mook
-        // mapNum = 1;
-        // gp.npc[mapNum][i] = new NPC_Elfmook(gp);
-        // gp.npc[mapNum][i].worldX = gp.tileSize * 12;
-        // gp.npc[mapNum][i].worldY = gp.tileSize * 11;
+        // Mook
+        mapNum = 2;
+        gp.npc[mapNum][i] = new NPC_Elfmook(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 22;
     }
     
     public void setMonster() {
