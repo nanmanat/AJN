@@ -61,8 +61,25 @@ public class CodeGame {
                     else if(i==1) gp.player.setMove("down");
                     else if(i==2) gp.player.setMove("left");
                     else if(i==3) gp.player.setMove("right");
+                    // gp.cChecker.checkTile(gp.player);
+                    // System.out.println(gp.player.collisionOn);
+                    // if(gp.player.collisionOn == true){
+                    //     resetMove();
+                    //     gp.player.life--;
+                    //     gp.eHandler.teleport(8, 19, 25);
+                    //     gp.player.worldY = 1200-15;
+                    //     gp.player.direction = "right";
+                    // }
                 }
             }
+                // else if (gp.player.collisionOn == true && codeMove[i][j] == true){
+                //     gp.currentMap = 8;
+                //     gp.eHandler.teleport(8, 19, 25);
+                //     gp.player.worldY = 1200-15;
+                //     gp.player.direction = "right";
+                //     gp.player.life--;
+                //     resetMove();
+                // }
         }
     }
 

@@ -378,7 +378,11 @@ public class Player extends Entity{
     }
 
     public void setMove(String direction){
-        if (collisionOn == false) {
+        int playerX = ( worldX + solidArea.x ) / gp.tileSize;
+        int playerY = ( worldY + solidArea.y ) / gp.tileSize;
+        int tileNum = gp.tileM.mapTileNum[gp.currentMap][playerX][playerY];
+        
+        if (tileNum == 138 || tileNum == 150 || tileNum == 141 || tileNum == 139 || tileNum == 144 || tileNum == 142 || tileNum == 145) {
             if(direction.equals("up")){
                 this.direction = direction;
                 worldY -= gp.tileSize;
@@ -397,7 +401,11 @@ public class Player extends Entity{
             }
         }
         else {
+            gp.code.resetMove();
             gp.player.life--;
+            gp.eHandler.teleport(8, 19, 25);
+            gp.player.worldY = 1200-15;
+            gp.player.direction = "right";
         }
     }
 
