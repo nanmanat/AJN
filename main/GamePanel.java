@@ -196,51 +196,7 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState  == titleState){
             ui.draw(g2);
         }
-        //mini game Maze
-        else if(currentMap == 1){
-            tileM.draw(g2);
-            entityList.add(player);
-            for (int i = 0; i < monster[1].length; i++) {
-                if (monster[currentMap][i] != null) {
-                    entityList.add(monster[currentMap][i]);
-                }
-            }
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    entityList.add(projectileList.get(i));
-                }
-            }
-            // draw entity
-            for (int i = 0; i < entityList.size(); i++) {
-                entityList.get(i).draw(g2);
-            }
-            // empty entity list
-            entityList.clear();
-            // Enviroment (lightning)
-            // eManager.draw(g2);
-            //UI
-            ui.draw(g2);
-            g2.dispose();
-        }
-        else if(currentMap == 2){
-            tileM.draw(g2);
-            entityList.add(player);
-            for (int i = 0; i < obj[1].length; i++) {
-                if (obj[currentMap][i] != null) {
-                    entityList.add(obj[currentMap][i]);
-                }
-            }
-            // draw entity
-            for (int i = 0; i < entityList.size(); i++) {
-                entityList.get(i).draw(g2);
-            }
-            // empty entity list
-            entityList.clear();
-            //UI
-            ui.draw(g2);
-            g2.dispose();
-        }
-        else if(gameState == playState || tmpState == playState){
+        if(gameState == playState || tmpState == playState){
             //Tile
             tileM.draw(g2);
 
@@ -291,6 +247,12 @@ public class GamePanel extends JPanel implements Runnable {
             }
             // empty entity list
             entityList.clear();
+
+            if(currentMap == 1){
+                // Enviroment (lightning)
+                eManager.draw(g2);
+            }
+
             //UI
             ui.draw(g2);
             g2.dispose();

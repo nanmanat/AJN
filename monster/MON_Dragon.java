@@ -71,11 +71,10 @@ public class MON_Dragon extends Entity {
 
     public void setAction() {
         if(onPath == true){
-            // System.out.println(onPath);
             int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
             int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
             searchPath(goalCol,goalRow);
-            System.out.println(shotAvailableCounter + " " + projectile.alive);
+            
             if(projectile.alive == false && shotAvailableCounter == 180 ){
                 projectile.set(worldX, worldY, direction, true, this);
                 gp.projectileList.add(projectile);

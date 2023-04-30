@@ -98,6 +98,7 @@ public class EventHandler {
             else if (hit(0,26, 28, "up") == true) {
                 teleport(1, 11, 10);
             }
+            
             else if (hit(1,10, 24, "left") == true) teleport(1, 39, 12);
             else if (hit(1,39, 18, "right") == true) teleport(1, 10, 36);
             else if (hit(1,39, 24, "right") == true) teleport(1, 10, 30);
@@ -106,10 +107,10 @@ public class EventHandler {
             else if (hit(1,13, 38, "down") == true) teleport(1, 37, 9);
             else if (hit(1,19, 38, "down") == true) teleport(1, 31, 9);
             else if (hit(1,31, 38, "down") == true) teleport(1, 25, 9);
-            else if (hit(1,37, 38, "down") == true) teleport(1, 13, 9);
             else if (hit(1,19, 9, "up") == true) teleport(1, 25, 38);
+            
             //New end
-            else if (hit(1,38, 37, "right") == true) {
+            else if (hit(1,37, 38, "down") == true) {
                 teleport(0, 26, 28);
             }
             //PuayStatue
@@ -123,8 +124,8 @@ public class EventHandler {
             }
             else if(hit(2,25,24,"right") == true) {
                 teleport(8, 19, 25);
-                gp.player.worldX-=10;
-                gp.player.worldY = 1200-15;
+                gp.player.worldX = 912;
+                gp.player.worldY = 1200-10;
                 gp.player.direction = "right";
             }
             

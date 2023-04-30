@@ -357,10 +357,6 @@ public class KeyHandler implements KeyListener{
     public void popUp(int code){
         if(code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
-            if(gp.currentMap==2) { gp.gameState = gp.miniGameCode; gp.eHandler.teleport(2, 22, 18); }
-        }
-        if(gp.currentMap == 2) {
-
         }
     }
 
