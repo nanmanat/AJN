@@ -17,11 +17,11 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
-    public BufferedImage up1, up2, down1, down2, left1, left2, left3, right1, right2, right3;
+    public BufferedImage up1, up2, up3, down1, down2 , down3, left1, left2, left3, left4, right1, right2, right3, right4;
     public BufferedImage card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13;
     public BufferedImage poImage;
-    public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1,
-    attackLeft2, attackLeft3, attackRight1, attackRight2, attackRight3;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5, attackDown1, attackDown2, attackDown3, attackDown4, attackDown5, 
+    attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5, attackRight1, attackRight2, attackRight3, attackRight4, attackRight5;
     public String direction = "down";
     public static String plateDirection = "down";
     public int spriteNum = 1;
