@@ -75,7 +75,6 @@ public class NPC_RockNot extends Entity {
         }
         detectPlate();
     }
-
     public void detectPlate() {
         ArrayList<InteractiveTile> plateList = new ArrayList<InteractiveTile>();
         ArrayList<Entity> rockList = new ArrayList<Entity>();
