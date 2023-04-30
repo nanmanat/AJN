@@ -9,6 +9,7 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
 import environment.EnvironmentManager;
@@ -38,11 +39,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = tileSize * maxWorldRow;
     public final int maxMap = 10;
     public int currentMap = 0;
-
-    //for full Screen
-    public int screenWidth2 = screenWidth;
-    public int screenHeight2 = screenHeight;
-    public Graphics2D g2;
 
     //FPS
     final int FPS = 60;
@@ -85,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity monster[][] = new Entity[maxMap][20];
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][5];
     public ArrayList<Entity> projectileList = new ArrayList<>();
+    public PathFinder pFinder = new PathFinder(this);
     ArrayList<Entity> entityList = new ArrayList<>();
 
     public CollisionChecker cChecker = new CollisionChecker(this);

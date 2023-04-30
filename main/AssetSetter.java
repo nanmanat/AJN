@@ -80,13 +80,32 @@ public class AssetSetter {
 
         mapNum = 1;
         gp.monster[mapNum][0] = new MON_Dragon(gp);
-        gp.monster[mapNum][0].worldX = gp.tileSize * 27;
-        gp.monster[mapNum][0].worldY = gp.tileSize * 16;
+        gp.monster[mapNum][0].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][0].worldY = gp.tileSize * 24;
 
-        mapNum = 0;
-        gp.monster[mapNum][0] = new MON_Dragon(gp);
-        gp.monster[mapNum][0].worldX = gp.tileSize * 27;
-        gp.monster[mapNum][0].worldY = gp.tileSize * 16;
+        gp.monster[mapNum][1] = new MON_Dragon(gp);
+        gp.monster[mapNum][1].worldX = gp.tileSize * 19;
+        gp.monster[mapNum][1].worldY = gp.tileSize * 12;
+
+        gp.monster[mapNum][2] = new MON_Dragon(gp);
+        gp.monster[mapNum][2].worldX = gp.tileSize * 13;
+        gp.monster[mapNum][2].worldY = gp.tileSize * 30;
+
+        gp.monster[mapNum][3] = new MON_Dragon(gp);
+        gp.monster[mapNum][3].worldX = gp.tileSize * 19;
+        gp.monster[mapNum][3].worldY = gp.tileSize * 35;
+
+        gp.monster[mapNum][4] = new MON_Dragon(gp);
+        gp.monster[mapNum][4].worldX = gp.tileSize * 31;
+        gp.monster[mapNum][4].worldY = gp.tileSize * 18;
+
+        gp.monster[mapNum][5] = new MON_Dragon(gp);
+        gp.monster[mapNum][5].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][5].worldY = gp.tileSize * 35;
+
+        gp.monster[mapNum][6] = new MON_Dragon(gp);
+        gp.monster[mapNum][6].worldX = gp.tileSize * 36;
+        gp.monster[mapNum][6].worldY = gp.tileSize * 23;
     }
 
     public void setInteractiveTile() {

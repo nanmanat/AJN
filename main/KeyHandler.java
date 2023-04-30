@@ -243,7 +243,7 @@ public class KeyHandler implements KeyListener{
                 if(gp.currentMap == 5) {
                     gp.retry(24,32);
                 } else if (gp.currentMap == 1) {
-                    gp.retry(1, 2);
+                    gp.retry(11, 10);
                 } else {
                     gp.retry(24,24);
                 }
