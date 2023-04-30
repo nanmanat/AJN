@@ -122,7 +122,7 @@ public class EventHandler {
             else if(hit(0,28,28,"up") == true) {
                 teleport(2, 23, 25);
             }
-            else if(hit(2,25,24,"right") == true) {
+            else if(hit(2,27,24,"right") == true) {
                 teleport(8, 19, 25);
                 gp.player.worldX = 912;
                 gp.player.worldY = 1200-10;
