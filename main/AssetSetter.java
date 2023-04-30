@@ -102,6 +102,10 @@ public class AssetSetter {
         gp.monster[mapNum][5] = new MON_Dragon(gp);
         gp.monster[mapNum][5].worldX = gp.tileSize * 25;
         gp.monster[mapNum][5].worldY = gp.tileSize * 35;
+
+        gp.monster[mapNum][6] = new MON_Dragon(gp);
+        gp.monster[mapNum][6].worldX = gp.tileSize * 36;
+        gp.monster[mapNum][6].worldY = gp.tileSize * 23;
     }
 
     public void setInteractiveTile() {

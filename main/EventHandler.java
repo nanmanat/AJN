@@ -115,7 +115,6 @@ public class EventHandler {
             else if (hit(1,15, 30, "right") == true) teleport(1, 17, 30);
             else if (hit(1,17, 30, "left") == true) teleport(1, 15, 30);
             else if (hit(1,21, 30, "right") == true) teleport(1, 23, 30);
-            else if (hit(1,23, 30, "left") == true) teleport(1, 21, 30);
             else if (hit(1,27, 30, "right") == true) teleport(1, 29, 30);
             else if (hit(1,29, 30, "left") == true) teleport(1, 27, 30);
             else if (hit(1,33, 30, "right") == true) teleport(1, 35, 30);
@@ -124,6 +123,7 @@ public class EventHandler {
             else if (hit(1,17, 36, "left") == true) teleport(1, 15, 36);
             else if (hit(1,21, 36, "right") == true) teleport(1, 23, 36);
             else if (hit(1,23, 36, "left") == true) teleport(1, 21, 36);
+            else if (hit(1,27, 36, "right") == true) teleport(1, 29, 36);
             else if (hit(1,29, 36, "left") == true) teleport(1, 27, 36);
             else if (hit(1,33, 36, "right") == true) teleport(1, 35, 36);
             else if (hit(1,35, 36, "left") == true) teleport(1, 33, 36);
@@ -149,7 +149,6 @@ public class EventHandler {
             else if (hit(1,25, 22, "up") == true) teleport(1, 25, 20);
             else if (hit(1,25, 26, "down") == true) teleport(1, 25, 28);
             else if (hit(1,25, 28, "up") == true) teleport(1, 25, 26);
-            else if (hit(1,25, 32, "down") == true) teleport(1, 25, 34);
             else if (hit(1,25, 34, "up") == true) teleport(1, 25, 32);
 
             else if (hit(1,31, 14, "down") == true) teleport(1, 31, 16);
