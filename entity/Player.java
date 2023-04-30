@@ -378,26 +378,32 @@ public class Player extends Entity{
     }
 
     public void setMove(String direction){
-        if (collisionOn == false) {
-            if(direction.equals("up")){
-                this.direction = direction;
-                worldY -= gp.tileSize;
-            }
-            if(direction.equals("down")){
-                this.direction = direction;
-                worldY += gp.tileSize;
-            }
-            if(direction.equals("left")){
-                this.direction = direction;
-                worldX -= gp.tileSize;
-            }
-            if(direction.equals("right")){
-                this.direction = direction;
-                worldX += gp.tileSize;
-            }
+        if(direction.equals("up")){
+            this.direction = direction;
+            worldY -= gp.tileSize;
         }
-        else {
+        if(direction.equals("down")){
+            this.direction = direction;
+            worldY += gp.tileSize;
+        }
+        if(direction.equals("left")){
+            this.direction = direction;
+            worldX -= gp.tileSize;
+        }
+        if(direction.equals("right")){
+            this.direction = direction;
+            worldX += gp.tileSize;
+        }
+        int playerX = ( worldX + solidArea.x ) / gp.tileSize;
+        int playerY = ( worldY + solidArea.y ) / gp.tileSize;
+        int tileNum = gp.tileM.mapTileNum[gp.currentMap][playerX][playerY];
+        System.out.println(tileNum);
+        if(tileNum == 137 || tileNum == 140 || tileNum == 146 || tileNum == 143 || tileNum == 147){
+            gp.code.resetMove();
             gp.player.life--;
+            gp.eHandler.teleport(8, 19, 25);
+            gp.player.worldY = 1200-15;
+            gp.player.direction = "right";
         }
     }
 
