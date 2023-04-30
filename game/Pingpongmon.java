@@ -44,6 +44,7 @@ public class Pingpongmon extends Entity {
         if (poList.get(0).life > 0) {
             if (random < 0.65) { // 65% chance
                 (poList.get(0)).life -= 5; // subtract 5 from target Pokemon's life
+                gp.playSE(5);
                 playerAttack = false;
             } else {
                 playerCheck();
@@ -51,6 +52,7 @@ public class Pingpongmon extends Entity {
         } else if (poList.get(1).life > 0) {
             if (random < 0.65) { // 65% chance
                 (poList.get(1)).life -= 5; // subtract 5 from target Pokemon's life
+                gp.playSE(5);
                 playerAttack = false;
             } else {
                 playerCheck();
@@ -58,6 +60,7 @@ public class Pingpongmon extends Entity {
         } else if (poList.get(2).life > 0) {
             if (random < 0.65) { // 65% chance
                 (poList.get(2)).life -= 5; // subtract 5 from target Pokemon's life
+                gp.playSE(5);
                 playerAttack = false;
             } else {
                 playerCheck();
@@ -71,6 +74,7 @@ public class Pingpongmon extends Entity {
         if (poList.get(0).life > 0) {
             if (random < 0.9) { // 90% chance
                 (poList.get(0)).life -= 3; // subtract 5 from target Pokemon's life
+                gp.playSE(5);
                 playerAttack = false;
             } else {
                 playerCheck();
@@ -78,6 +82,7 @@ public class Pingpongmon extends Entity {
         } else if (poList.get(1).life > 0) {
             if (random < 0.9) { // 90% chance
                 (poList.get(1)).life -= 3; // subtract 5 from target Pokemon's life
+                gp.playSE(5);
                 playerAttack = false;
             } else {
                 playerCheck();
@@ -85,6 +90,7 @@ public class Pingpongmon extends Entity {
         } else if (poList.get(2).life > 0) {
             if (random < 0.9) { // 90% chance
                 (poList.get(2)).life -= 3; // subtract 5 from target Pokemon's life
+                gp.playSE(5);
                 playerAttack = false;
             } else {
                 playerCheck();
@@ -106,6 +112,7 @@ public class Pingpongmon extends Entity {
                 (poList.get(3)).life -= 5; // subtract 5 from target Pokemon's life
                 monAttack = false;
             }
+            gp.playSE(3);
         } else {
             monCheck();
         }

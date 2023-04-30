@@ -51,9 +51,13 @@ public class EventHandler {
         if(canTouchEvent == true) {
             //Bj gwakgwak 3000
             if (hit(0,20, 28, "up") == true) {
+                gp.stopMusic();
+                gp.playMusic(6);
                 teleport(5, 24, 34);
             }
             else if (hit(5,24, 34, "down") == true) {
+                gp.stopMusic();
+                gp.playMusic(0);
                 gp.player.life = 6;
                 teleport(0, 20, 28);
             }
