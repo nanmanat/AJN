@@ -98,74 +98,17 @@ public class EventHandler {
             else if (hit(0,26, 28, "up") == true) {
                 teleport(1, 11, 10);
             }
-            else if (hit(1,17, 12, "left") == true) teleport(1, 15, 12);
-            else if (hit(1,21, 12, "right") == true) teleport(1, 23, 12);
-            else if (hit(1,23, 12, "left") == true) teleport(1, 21, 12);
-            else if (hit(1,27, 12, "right") == true) teleport(1, 29, 12);
-            else if (hit(1,35, 12, "left") == true) teleport(1, 33, 12);
+            else if (hit(1,10, 24, "left") == true) teleport(1, 39, 12);
+            else if (hit(1,39, 18, "right") == true) teleport(1, 10, 36);
+            else if (hit(1,39, 24, "right") == true) teleport(1, 10, 30);
+            else if (hit(1,39, 30, "right") == true) teleport(1, 10, 18);
 
-            else if (hit(1,15, 18, "right") == true) teleport(1, 17, 18);
-            else if (hit(1,17, 18, "left") == true) teleport(1, 15, 18);
-            else if (hit(1,23, 18, "left") == true) teleport(1, 21, 18);
-            else if (hit(1,29, 18, "left") == true) teleport(1, 27, 18);
-            else if (hit(1,33, 18, "right") == true) teleport(1, 35, 18);
+            else if (hit(1,13, 38, "down") == true) teleport(1, 37, 9);
+            else if (hit(1,19, 38, "down") == true) teleport(1, 31, 9);
+            else if (hit(1,31, 38, "down") == true) teleport(1, 25, 9);
+            else if (hit(1,37, 38, "down") == true) teleport(1, 13, 9);
+            else if (hit(1,19, 9, "up") == true) teleport(1, 25, 38);
 
-            else if (hit(1,17, 24, "left") == true) teleport(1, 15, 24);
-            else if (hit(1,23, 24, "left") == true) teleport(1, 21, 24);
-            else if (hit(1,29, 24, "left") == true) teleport(1, 27, 24);
-            else if (hit(1,33, 24, "right") == true) teleport(1, 35, 24);
-            else if (hit(1,35, 24, "left") == true) teleport(1, 33, 24);
-
-            else if (hit(1,17, 30, "left") == true) teleport(1, 15, 30);
-            else if (hit(1,21, 30, "right") == true) teleport(1, 23, 30);
-            else if (hit(1,27, 30, "right") == true) teleport(1, 29, 30);
-            else if (hit(1,29, 30, "left") == true) teleport(1, 27, 30);
-            else if (hit(1,33, 30, "right") == true) teleport(1, 35, 30);
-
-            else if (hit(1,17, 36, "left") == true) teleport(1, 15, 36);
-            else if (hit(1,21, 36, "right") == true) teleport(1, 23, 36);
-            else if (hit(1,23, 36, "left") == true) teleport(1, 21, 36);
-            else if (hit(1,27, 36, "right") == true) teleport(1, 29, 36);
-            else if (hit(1,29, 36, "left") == true) teleport(1, 27, 36);
-            else if (hit(1,33, 36, "right") == true) teleport(1, 35, 36);
-            else if (hit(1,35, 36, "left") == true) teleport(1, 33, 36);
-
-            else if (hit(1,13, 14, "down") == true) teleport(1, 13, 16);
-            else if (hit(1,13, 16, "up") == true) teleport(1, 13, 14);
-            else if (hit(1,13, 22, "up") == true) teleport(1, 13, 20);
-            else if (hit(1,13, 26, "down") == true) teleport(1, 13, 28);
-            else if (hit(1,13, 28, "up") == true) teleport(1, 13, 26);
-            else if (hit(1,13, 32, "down") == true) teleport(1, 13, 34);
-            else if (hit(1,13, 34, "up") == true) teleport(1, 13, 32);
-
-            else if (hit(1,19, 14, "down") == true) teleport(1, 19, 16);
-            else if (hit(1,19, 16, "up") == true) teleport(1, 19, 14);
-            else if (hit(1,19, 20, "down") == true) teleport(1, 19, 22);
-            else if (hit(1,19, 22, "up") == true) teleport(1, 19, 20);
-            else if (hit(1,19, 26, "down") == true) teleport(1, 19, 28);
-            else if (hit(1,19, 28, "up") == true) teleport(1, 19, 26);
-            else if (hit(1,19, 32, "down") == true) teleport(1, 19, 34);
-            else if (hit(1,19, 34, "up") == true) teleport(1, 19, 32);
-
-            else if (hit(1,25, 16, "up") == true) teleport(1, 25, 14);
-            else if (hit(1,25, 20, "down") == true) teleport(1, 25, 22);
-            else if (hit(1,25, 22, "up") == true) teleport(1, 25, 20);
-            else if (hit(1,25, 26, "down") == true) teleport(1, 25, 28);
-            else if (hit(1,25, 28, "up") == true) teleport(1, 25, 26);
-            else if (hit(1,25, 34, "up") == true) teleport(1, 25, 32);
-
-            else if (hit(1,31, 14, "down") == true) teleport(1, 31, 16);
-            else if (hit(1,31, 16, "up") == true) teleport(1, 31, 14);
-            else if (hit(1,31, 22, "up") == true) teleport(1, 31, 20);
-            else if (hit(1,31, 26, "down") == true) teleport(1, 31, 28);
-            else if (hit(1,31, 28, "up") == true) teleport(1, 31, 26);
-            else if (hit(1,31, 34, "up") == true) teleport(1, 31, 32);
-
-            else if (hit(1,37, 16, "up") == true) teleport(1, 37, 14);
-            else if (hit(1,37, 22, "up") == true) teleport(1, 37, 20);
-            else if (hit(1,37, 26, "down") == true) teleport(1, 37, 28);
-            else if (hit(1,37, 28, "up") == true) teleport(1, 37, 26);
-            else if (hit(1,37, 34, "up") == true) teleport(1, 25, 32);
             //New end
             else if (hit(1,38, 37, "right") == true) {
                 teleport(0, 26, 28);

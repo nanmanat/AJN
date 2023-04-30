@@ -28,9 +28,7 @@ public class NPC_OldMan extends Entity {
 
     @Override
     public void setDialogue() {
-        dialogue[0] = "Hello PiggyBooBoo";
-        dialogue[1] = "Egy Chop Pen Sa-Goy";
-        dialogue[2] = "Pai Gub Pu Boi Pu Pa Pai Skrt!";
+        dialogue[0] = "Hello";
     }
 
     @Override
