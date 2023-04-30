@@ -25,13 +25,26 @@ public class Projectile extends Entity {
 
         if (user == gp.player) {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
             if (monsterIndex != 999) {
                 gp.player.damageMonster(monsterIndex, attack);
                 alive = false;
             }
+            if(collisionOn == true){
+                alive = false;
+            }
         }
         if (user != gp.player) {
-            
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            if (gp.cChecker.checkPlayer(this)) {
+                gp.player.life-=2;
+                alive = false;
+            }
+            if(collisionOn == true){
+                alive = false;
+            }
         }
 
         switch (direction) {

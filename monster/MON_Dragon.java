@@ -1,5 +1,6 @@
 package monster;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import entity.Entity;
@@ -21,6 +22,14 @@ public class MON_Dragon extends Entity {
         maxLife = 4;
         life = maxLife;
         direction = "down";
+        
+        solidArea = new Rectangle();
+        solidArea.x = 2;
+        solidArea.y = 6;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 44;
+        solidArea.height = 40;
 
         projectile = new OBJ_Fireball(gp);
 
@@ -29,7 +38,7 @@ public class MON_Dragon extends Entity {
     }
     
     public void getImage() {
-        int i = 2;
+        int i = 1;
         up1 = setup("/res/monster/mon_7", gp.tileSize*i, gp.tileSize*i);
         up2 = setup("/res/monster/mon_8", gp.tileSize*i, gp.tileSize*i);
         down1 = setup("/res/monster/mon_9", gp.tileSize*i, gp.tileSize*i);
@@ -49,7 +58,7 @@ public class MON_Dragon extends Entity {
         int yDistance = Math.abs(worldY - gp.player.worldY);
         int tileDistance =  (xDistance + yDistance) / gp.tileSize;
         
-        if(onPath == false && tileDistance < 8){
+        if(onPath == false && tileDistance < 5){
             int i = new Random().nextInt(100)+1;
             if( i > 50){
                 onPath = true;
@@ -62,15 +71,19 @@ public class MON_Dragon extends Entity {
 
     public void setAction() {
         if(onPath == true){
+            // System.out.println(onPath);
             int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
             int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
             searchPath(goalCol,goalRow);
-            // int i = new Random().nextInt(200)+1;
-            // if(i>150 && projectile.alive == true && shotAvailableCounter == 30){
-            //     projectile.set(worldX, worldY, direction, true, this);
-            //     gp.projectileList.add(projectile);
-            //     shotAvailableCounter = 0;
-            // }
+            System.out.println(shotAvailableCounter + " " + projectile.alive);
+            if(projectile.alive == false && shotAvailableCounter == 180 ){
+                projectile.set(worldX, worldY, direction, true, this);
+                gp.projectileList.add(projectile);
+                shotAvailableCounter = 0;
+            }
+            if (shotAvailableCounter < 180) {
+                shotAvailableCounter++;
+            }
         } 
         else {
 
@@ -100,7 +113,7 @@ public class MON_Dragon extends Entity {
     
     public void damageReaction() {
         actionLockCounter = 0;
-        direction = gp.player.direction;
+        // direction = gp.player.direction;
         onPath = true;
     }
     

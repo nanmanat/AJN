@@ -17,7 +17,7 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
 
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage up1, up2, down1, down2, left1, left2, left3, right1, right2, right3;
     public BufferedImage card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13;
     public BufferedImage poImage;
     public BufferedImage attackUp1, attackUp2, attackUp3, attackDown1, attackDown2, attackDown3, attackLeft1,
@@ -299,10 +299,10 @@ public class Entity {
             }
             else if(enTopY >= nextY && enBottomY < nextY + gp.tileSize){
                 // left or right
-                if(enLeftX > nextX){
-                    direction = "Left";
+                if(enLeftX >= nextX){
+                    direction = "left";
                 }
-                if(enLeftX < nextX){
+                if(enLeftX <= nextX){
                     direction = "right";
                 }
             }
@@ -332,20 +332,22 @@ public class Entity {
             }
             else if(enTopY < nextY && enLeftX < nextX) {
                 // down or right
-                direction = "up";
+                direction = "down";
                 checkCollision();
                 if(collisionOn == true){
                     direction = "right";
                 }
             }
 
+            // System.out.println(direction);
+
             
             // If reaches the goal, step the search
-            // int nextCol = gp.pFinder.pathList.get(0).col;
-            // int nextRow = gp.pFinder.pathList.get(0).row;
-            // if(nextCol == goalCol && nextRow == goalRow){
-            //     onPath = false;
-            // }
+            int nextCol = gp.pFinder.pathList.get(0).col;
+            int nextRow = gp.pFinder.pathList.get(0).row;
+            if(nextCol == goalCol && nextRow == goalRow){
+                onPath = false;
+            }
         }
 
     }

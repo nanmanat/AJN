@@ -135,11 +135,11 @@ public class PathFinder {
                 openNode(node[col-1][row]);
             }
             // Open the Down node
-            if(row + 1 >= 0){
+            if(row + 1 < gp.maxWorldRow){
                 openNode(node[col][row+1]);
             }
             // Open the Right node
-            if(col + 1 >= 0){
+            if(col + 1 < gp.maxWorldCol){
                 openNode(node[col+1][row]);
             }
 

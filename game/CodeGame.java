@@ -56,12 +56,16 @@ public class CodeGame {
     public void movePlayer(){
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 4; i++) {
-                if(codeMove[i][j] == true){
-                    if(i==0) gp.player.setMove("up");
-                    else if(i==1) gp.player.setMove("down");
-                    else if(i==2) gp.player.setMove("left");
-                    else if(i==3) gp.player.setMove("right");
+                gp.cChecker.checkTile(gp.player);
+                if(gp.player.collisionOn){
+                    if(codeMove[i][j] == true){
+                        if(i==0) gp.player.setMove("up");
+                        else if(i==1) gp.player.setMove("down");
+                        else if(i==2) gp.player.setMove("left");
+                        else if(i==3) gp.player.setMove("right");
+                    }
                 }
+                else gp.player.life--;
             }
         }
     }

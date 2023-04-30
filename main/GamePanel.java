@@ -217,7 +217,7 @@ public class GamePanel extends JPanel implements Runnable {
             // empty entity list
             entityList.clear();
             // Enviroment (lightning)
-            eManager.draw(g2);
+            // eManager.draw(g2);
             //UI
             ui.draw(g2);
             g2.dispose();

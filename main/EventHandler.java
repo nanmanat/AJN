@@ -108,7 +108,6 @@ public class EventHandler {
             else if (hit(1,31, 38, "down") == true) teleport(1, 25, 9);
             else if (hit(1,37, 38, "down") == true) teleport(1, 13, 9);
             else if (hit(1,19, 9, "up") == true) teleport(1, 25, 38);
-
             //New end
             else if (hit(1,38, 37, "right") == true) {
                 teleport(0, 26, 28);
@@ -125,7 +124,7 @@ public class EventHandler {
             else if(hit(2,25,24,"right") == true) {
                 teleport(8, 19, 25);
                 gp.player.worldX-=10;
-                gp.player.worldY = 1200;
+                gp.player.worldY = 1200-15;
                 gp.player.direction = "right";
             }
             
@@ -196,7 +195,7 @@ public class EventHandler {
             teleport(10, 18, 17);
             gp.player.direction = "right";
         }
-        if(hit(10,31,26,"right") == true) {
+        if(hit(10,31,27,"right") == true) {
             teleport(2, 23, 20);
             gp.player.direction = "down";
         }
