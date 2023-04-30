@@ -98,6 +98,12 @@ public class EventHandler {
             else if (hit(0,26, 28, "up") == true) {
                 teleport(1, 11, 10);
             }
+            else if (hit(1,13, 11, "up") == true) {
+                gp.player.keyH.upPressed = false;
+                gp.gameState = gp.dialoguePopup;
+                gp.ui.currentDialogue = "Alberto Andrey De Anghub: It's a maze.";
+                canTouchEvent = false;
+            }
             
             else if (hit(1,10, 24, "left") == true) teleport(1, 39, 12);
             else if (hit(1,39, 18, "right") == true) teleport(1, 10, 36);
