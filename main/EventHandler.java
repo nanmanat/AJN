@@ -79,9 +79,13 @@ public class EventHandler {
             }
             //Millgame
             else if (hit(0,22, 28, "up") == true) {
+                gp.stopMusic();
+                gp.playMusic(8);
                 teleport(4, 24, 39);
             }
             else if (hit(4,24, 39, "down") == true) {
+                gp.stopMusic();
+                gp.playMusic(0);
                 teleport(0, 22, 28);
             }
             else if (hit(4,24, 38, "up") == true && gp.player.gateScore < 3) {
@@ -209,9 +213,13 @@ public class EventHandler {
             
             //Pokemon
             else if (hit(0,24, 28, "up") == true) {
+                gp.stopMusic();
+                gp.playMusic(7);
                 teleport(7, 24, 24);
             }
             else if (hit(7,24, 24, "down") == true) {
+                gp.stopMusic();
+                gp.playMusic(0);
                 teleport(0, 24, 28);
             }
             else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life > 0) {
