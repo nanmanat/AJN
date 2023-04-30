@@ -1,7 +1,10 @@
 package main;
 
 // import entity.NPC_BigRock;
-import entity.NPC_OldMan;
+import entity.NPC_Elfarm;
+import entity.NPC_Elfbig;
+import entity.NPC_Elfmill;
+import entity.NPC_Elfnew;
 import entity.NPC_RockAnd;
 import entity.NPC_RockNot;
 import entity.NPC_RockOr;
@@ -58,21 +61,32 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldY = gp.tileSize * 32;
         i++;
 
-        //Pokemomn
-        mapNum = 7;
-        gp.npc[mapNum][i] = new NPC_OldMan(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 24;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 14;
-
-        // gp.npc[mapNum][4] = new NPC_BigRock(gp);
-        // gp.npc[mapNum][4].worldX = gp.tileSize * 24;
-        // gp.npc[mapNum][4].worldY = gp.tileSize * 28;
-
+        //ELF 
         //Casino
         mapNum = 5;
-        gp.npc[mapNum][0] = new NPC_OldMan(gp);
+        gp.npc[mapNum][0] = new NPC_Elfarm(gp);
         gp.npc[mapNum][0].worldX = gp.tileSize * 24;
         gp.npc[mapNum][0].worldY = gp.tileSize * 26;
+        //Gate
+        mapNum = 4;
+        gp.npc[mapNum][3] = new NPC_Elfmill(gp);
+        gp.npc[mapNum][3].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][3].worldY = gp.tileSize * 35;
+        //Pokemomn
+        mapNum = 7;
+        gp.npc[mapNum][i] = new NPC_Elfbig(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 24;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 14;
+        //Maze
+        mapNum = 1;
+        gp.npc[mapNum][i] = new NPC_Elfnew(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 11;
+        //Mook
+        // mapNum = 1;
+        // gp.npc[mapNum][i] = new NPC_Elfmook(gp);
+        // gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+        // gp.npc[mapNum][i].worldY = gp.tileSize * 11;
     }
     
     public void setMonster() {

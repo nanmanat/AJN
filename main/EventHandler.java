@@ -96,7 +96,7 @@ public class EventHandler {
             }
             //Newgame
             else if (hit(0,26, 28, "up") == true) {
-                teleport(1, 11, 10);
+                teleport(11, 11, 10);
             }
             else if (hit(1,10, 24, "left") == true) teleport(1, 39, 12);
             else if (hit(1,39, 18, "right") == true) teleport(1, 10, 36);
