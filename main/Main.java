@@ -8,7 +8,7 @@ public class Main {
         window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("เกมโก่วๆ");
+        window.setTitle("CS111");
         window.setUndecorated(false);
 
         GamePanel gamePanel = new GamePanel();
