@@ -96,6 +96,8 @@ public class EventHandler {
             }
             //Newgame
             else if (hit(0,26, 28, "up") == true) {
+                gp.stopMusic();
+                gp.playMusic(11);
                 teleport(1, 11, 10);
             }
             else if (hit(1,13, 11, "up") == true) {
@@ -124,6 +126,8 @@ public class EventHandler {
 
             //New end
             if (hit(1,37, 38, "down") == true) {
+                gp.stopMusic();
+                gp.playMusic(0);
                 teleport(0, 26, 28);
             }
             //PuayStatue
@@ -133,6 +137,8 @@ public class EventHandler {
             }
             //Mookgame
             else if(hit(0,28,28,"up") == true) {
+                gp.stopMusic();
+                gp.playMusic(10);
                 teleport(2, 23, 25);
             } 
             else if(hit(2,24,23,"up") == true && gp.code.endPoint != true) {
@@ -148,6 +154,8 @@ public class EventHandler {
 
                 if(gp.code.endGame == true){
                     if(hit(2,27,24,"any") == true) {
+                        gp.stopMusic();
+                        gp.playMusic(0);
                         teleport(0,28,28);
                         gp.player.direction = "down";
                     }
