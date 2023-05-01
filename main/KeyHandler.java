@@ -28,6 +28,10 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.optionsState){
             optionState(code);
         }
+        // over state
+        else if(gp.gameState == gp.gameOverState){
+            gameOverState(code);
+        }
         // map mook
         else if((gp.currentMap == 8 || gp.currentMap == 9 || gp.currentMap == 10)){
             miniGameCode(code);
@@ -39,10 +43,6 @@ public class KeyHandler implements KeyListener{
         // Show dialoge
         else if(gp.gameState == gp.dialogueState){
             dialogueState(code);
-        }
-        // over state
-        else if(gp.gameState == gp.gameOverState){
-            gameOverState(code);
         }
         //dialoge popUp
         else if(gp.gameState == gp.dialoguePopup){
@@ -204,7 +204,11 @@ public class KeyHandler implements KeyListener{
                     gp.retry(24,32);
                 } else if (gp.currentMap == 1) {
                     gp.retry(11, 10);
-                } else {
+                } else if (gp.currentMap == 8 || gp.currentMap == 9 || gp.currentMap == 10){
+                    gp.retry(23, 25);
+                    gp.eHandler.teleport(2, 23, 25);
+                }
+                else {
                     gp.retry(24,24);
                 }
             }

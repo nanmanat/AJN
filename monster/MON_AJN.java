@@ -97,7 +97,7 @@ public class MON_AJN extends Entity {
                 onPath = true;
             }
         }
-        else if(onPath == true && tileDistance < 4 ){
+        else if(onPath == true && tileDistance < 3 ){
             attacking = true;
             onPath = false;
         }

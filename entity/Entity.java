@@ -207,12 +207,14 @@ public class Entity {
                             image = up1;
                         else if (spriteNum == 2)
                             image = up2;
+                        else image = up1;
                         break;
                     case "down":
                         if (spriteNum == 1)
                             image = down1;
                         else if (spriteNum == 2)
                             image = down2;
+                        else image = down1;
                         break;
                     case "left":
                         if (spriteNum == 1)
@@ -221,6 +223,7 @@ public class Entity {
                             image = left2;
                         else if (spriteNum == 3)
                             image = left3;
+                        else image = left1;
                         break;
                     case "right":
                         if (spriteNum == 1)
@@ -229,6 +232,7 @@ public class Entity {
                             image = right2;
                         else if (spriteNum == 3)
                             image = right3;
+                        else image = right1;
                         break;
                 }
 

@@ -75,14 +75,14 @@ public class UI {
         if(gp.gameState == gp.optionsState){
             drawOptionsScreen();
         }
+        if(gp.gameState == gp.gameOverState){
+            drawGameOverScreen();
+        }
         else if(gp.currentMap == 8 || gp.currentMap == 9 || gp.currentMap == 10){
             drawPlayerLife();
             drawDialogueCode();
             drawPoint();
             gp.eHandler.checkMove();
-        }
-        if(gp.gameState == gp.gameOverState){
-            drawGameOverScreen();
         }
         if(gp.gameState == gp.dialoguePopup){
             drawPlayerLife();
