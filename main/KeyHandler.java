@@ -40,10 +40,6 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.dialogueState){
             dialogueState(code);
         }
-        // mini game Maze
-        // else if(gp.gameState == gp.miniGameMaze){
-        //     miniGameMaze(code);
-        // }
         // over state
         else if(gp.gameState == gp.gameOverState){
             gameOverState(code);
@@ -287,13 +283,13 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
             if(gp.ui.commandNum < 0) {
-                gp.ui.commandNum = 2;
+                gp.ui.commandNum = 1;
             }
             gp.playSE(1);
         }
         if(code == KeyEvent.VK_DOWN) {
             gp.ui.commandNum++;
-            if(gp.ui.commandNum > 2) {
+            if(gp.ui.commandNum > 1) {
                 gp.ui.commandNum = 0;
             }
             gp.playSE(1);
@@ -308,7 +304,7 @@ public class KeyHandler implements KeyListener{
             if(gp.ui.commandNum == 1){
                 //load
             }
-            if(gp.ui.commandNum == 2){
+            if(gp.ui.commandNum == 1){
                 System.exit(0);
             }
         }

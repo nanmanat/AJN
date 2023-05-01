@@ -186,8 +186,8 @@ public class EventHandler {
                 gp.gameState = gp.dialoguePopup;
                 gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }
-
-            else if(hit(0,24,19, "down") == true){
+            //AJN
+            else if(hit(0,24,24, "up") == true && gp.player.hasKey >= 5){
                 teleport(3, 25, 25);
             }
 

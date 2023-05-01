@@ -6,7 +6,6 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Fireball;
-import object.OBJ_Key;
 
 public class MON_Dragon extends Entity {
     GamePanel gp;
@@ -116,9 +115,4 @@ public class MON_Dragon extends Entity {
         actionLockCounter = 0;
         onPath = true;
     }
-    
-    public void checkDrop() {
-        dropItem(new OBJ_Key(gp));
-    }
-    
 }

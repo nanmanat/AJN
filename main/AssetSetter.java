@@ -13,6 +13,7 @@ import entity.NPC_dog;
 import monster.MON_AJN;
 import monster.MON_Dragon;
 import object.OBJ_Key;
+import object.OBJ_Potion;
 import tile_interactive.IT_AndPlate;
 import tile_interactive.IT_NotPlate;
 import tile_interactive.IT_OrPlate;
@@ -39,6 +40,23 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 22 * gp.tileSize;  
         
+        mapNum = 3;
+        gp.obj[mapNum][i] = new OBJ_Potion(gp);
+        gp.obj[mapNum][i].worldX = 13 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Potion(gp);
+        gp.obj[mapNum][i].worldX = 13 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 31 * gp.tileSize; 
+        i++; 
+        gp.obj[mapNum][i] = new OBJ_Potion(gp);
+        gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize; 
+        i++; 
+        gp.obj[mapNum][i] = new OBJ_Potion(gp);
+        gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 32 * gp.tileSize; 
+        i++; 
     }
 
     public void setNPC() {

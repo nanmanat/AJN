@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Paper;
 
 public class MON_AJN extends Entity {
     GamePanel gp;
@@ -17,7 +18,7 @@ public class MON_AJN extends Entity {
         name = "AJN";
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 20;
+        maxLife = 50;
         life = maxLife;
         direction = "down";
         
@@ -147,7 +148,7 @@ public class MON_AJN extends Entity {
     }
     
     public void checkDrop() {
-        // dropItem(new OBJ_Key(gp));
+        dropItem(new OBJ_Paper(gp));
     }
     
 }

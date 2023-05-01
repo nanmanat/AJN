@@ -573,24 +573,15 @@ public class UI {
         g2.drawString(text, x, y);
         if(commandNum<=0){
             g2.drawString(">", x-gp.tileSize  , y);
-            commandNum = 0;
         }
-
-        //load game
-        text = "Load Game";
-        x = getXforCenteredText(text);
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if(commandNum==1) g2.drawString(">", x-gp.tileSize  , y);
 
         //Quit
         text = "Quit";
         x = getXforCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(commandNum>=2) {
+        if(commandNum>=1) {
             g2.drawString(">", x-gp.tileSize  , y);
-            commandNum = 2;
         }
 
     }   
