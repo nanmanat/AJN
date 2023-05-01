@@ -18,7 +18,7 @@ public class MON_AJN extends Entity {
         name = "AJN";
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 50;
+        maxLife = 60;
         life = maxLife;
         direction = "down";
         
@@ -148,6 +148,7 @@ public class MON_AJN extends Entity {
     }
     
     public void checkDrop() {
+        gp.stopMusic();
         dropItem(new OBJ_Paper(gp));
     }
     
