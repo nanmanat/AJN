@@ -521,8 +521,8 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         //title
         g2.setColor(Color.black);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,80F));
-        String text = "A-Jinxed-Nemesis";
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,70F));
+        String text = "AJN's Arcane Odyssey";
         int x = getXforCenteredText(text);
         int y = gp.tileSize*2;
 
