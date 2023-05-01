@@ -122,7 +122,7 @@ public class EventHandler {
             int playerY = ( gp.player.worldY + gp.player.solidArea.y ) / gp.tileSize;
             int tileNum = gp.tileM.mapTileNum[gp.currentMap][playerX][playerY];
             if(tileNum == 102) spike(gp.playState);
-            else if(tileNum == 104 || tileNum == 106) gp.player.life = gp.player.maxLife;
+            else if(tileNum == 106) gp.player.life = gp.player.maxLife;
 
             //New end
             if (hit(1,37, 38, "down") == true) {
@@ -196,6 +196,11 @@ public class EventHandler {
             }
             //AJN
             else if(hit(0,24,24, "up") == true && gp.player.hasKey >= 5){
+                gp.stopMusic();
+                gp.playMusic(9);
+                teleport(3, 25, 25);
+            }
+            else if(hit(0,24,19, "down") == true ){
                 gp.stopMusic();
                 gp.playMusic(9);
                 teleport(3, 25, 25);

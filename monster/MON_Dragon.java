@@ -1,8 +1,6 @@
 package monster;
 
-import java.awt.Rectangle;
 import java.util.Random;
-
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Fireball;
@@ -24,13 +22,14 @@ public class MON_Dragon extends Entity {
         attack = 2;
         direction = "down";
         
-        solidArea = new Rectangle();
-        solidArea.x = 2;
-        solidArea.y = 6;
+        solidArea.x = gp.tileSize/2;
+        solidArea.y = gp.tileSize;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 44;
         solidArea.height = 40;
+        attackArea.width = 48;
+        attackArea.height = 48;
 
         projectile = new OBJ_Fireball(gp);
 
@@ -39,17 +38,17 @@ public class MON_Dragon extends Entity {
     }
     
     public void getImage() {
-        int i = 1;
+        int i = 2;
         up1 = setup("/res/monster/mon_7", gp.tileSize*i, gp.tileSize*i);
         up2 = setup("/res/monster/mon_8", gp.tileSize*i, gp.tileSize*i);
         down1 = setup("/res/monster/mon_9", gp.tileSize*i, gp.tileSize*i);
         down2 = setup("/res/monster/mon_10", gp.tileSize*i, gp.tileSize*i);
         left1 = setup("/res/monster/mon_1", gp.tileSize*i, gp.tileSize*i);
         left2 = setup("/res/monster/mon_2", gp.tileSize*i, gp.tileSize*i);
-        // left3 = setup("/res/monster/mon_3", gp.tileSize*i, gp.tileSize*i);
+        left3 = setup("/res/monster/mon_3", gp.tileSize*i, gp.tileSize*i);
         right1 = setup("/res/monster/mon_4", gp.tileSize*i, gp.tileSize*i);
         right2 = setup("/res/monster/mon_5", gp.tileSize*i, gp.tileSize*i);
-        // right3 = setup("/res/monster/mon_6", gp.tileSize*i, gp.tileSize*i);
+        right3 = setup("/res/monster/mon_6", gp.tileSize*i, gp.tileSize*i);
     }
 
     public void update() {
@@ -77,7 +76,7 @@ public class MON_Dragon extends Entity {
             searchPath(goalCol,goalRow);
             
             if(projectile.alive == false && shotAvailableCounter == 180 ){
-                projectile.set(worldX, worldY, direction, true, this);
+                projectile.set(worldX, worldY+(gp.tileSize/2), direction, true, this);
                 gp.projectileList.add(projectile);
                 shotAvailableCounter = 0;
             }
@@ -108,7 +107,6 @@ public class MON_Dragon extends Entity {
                 actionLockCounter = 0;
             }
         }
-
     }
     
     public void damageReaction() {

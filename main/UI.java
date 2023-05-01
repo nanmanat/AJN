@@ -45,11 +45,10 @@ public class UI {
         }
         else if(gp.currentMap == 1){
             drawPoint();
-            if(gp.player.life <= 0){
-                gp.gameState = gp.gameOverState;
-                gp.tmpState = gp.playState;
-            }
             gp.eManager.draw(g2);
+            drawPlayerLife();
+        }
+        else if(gp.currentMap == 3){
             drawPlayerLife();
         }
         else if(gp.gameState == gp.playState){

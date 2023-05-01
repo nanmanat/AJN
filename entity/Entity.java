@@ -30,7 +30,7 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public boolean invincible = false;
-    public int type; // 0 = player, 1 = npc, 2 = monster
+    public int type; // 0 = player, 1 = npc, 2 = monster , 3 = AJN
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
@@ -118,6 +118,13 @@ public class Entity {
             }
             
         }
+        // if (this.type == 3 && contactPlayer == true) {
+        //     if (gp.player.invincible == false) {
+        //         gp.player.life -= 1;
+        //         gp.player.invincible = true;
+        //     }
+            
+        // }
 
     }
 
@@ -165,17 +172,23 @@ public class Entity {
                         break;
                 }
             }
-        }
-        
 
-        spriteCounter++;
-        if (spriteCounter > 12) {
-            if (spriteNum == 1)
-                spriteNum = 2;
-            else if (spriteNum == 2)
-                spriteNum = 1;
+            spriteCounter++;
+            if (spriteCounter > 12) {
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 3;
+                else if (spriteNum == 3)
+                    spriteNum = 4;
+                else if (spriteNum == 4)
+                    spriteNum = 5;
+                else if (spriteNum == 5)
+                    spriteNum = 1;
             spriteCounter = 0;
         }
+        }
+
 
         if (invincible == true) {
             invincibleCounter++;
