@@ -234,11 +234,10 @@ public class EventHandler {
 
     public void spike(int gameStates) {
         gp.gameState = gameStates;
-        gp.player.keyH.rightPressed = false;
-        gp.player.keyH.leftPressed = false;
-        gp.player.keyH.upPressed = false;
-        gp.player.keyH.downPressed = false;
-        gp.player.life -= 1;
+        if (gp.player.invincible == false){
+            gp.player.invincible = true;
+            gp.player.life -= 1;
+        }
     }
 
     public void checkMove(){
