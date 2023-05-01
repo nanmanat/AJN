@@ -6,7 +6,7 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Fireball;
+import object.OBJ_FireAJN;
 import object.OBJ_Paper;
 
 public class MON_AJN extends Entity {
@@ -34,7 +34,7 @@ public class MON_AJN extends Entity {
         attackArea.width = 48;
         attackArea.height = 48;
 
-        projectile = new OBJ_Fireball(gp);
+        projectile = new OBJ_FireAJN(gp);
 
         getImage();
         getAttackImage();
@@ -122,16 +122,44 @@ public class MON_AJN extends Entity {
         }
         spriteCounter++;
         if (spriteCounter > 12) {
-            if (spriteNum == 1)
-                spriteNum = 2;
-            else if (spriteNum == 2)
-                spriteNum = 3;
-            else if (spriteNum == 3)
-                spriteNum = 4;
-            else if (spriteNum == 4)
-                spriteNum = 5;
-            else if (spriteNum == 5)
-                spriteNum = 1;
+            System.out.println(direction + "  " + attacking);
+
+            if(attacking == false){
+                if(direction == "up" || direction == "down"){
+                    if (spriteNum == 1)
+                        spriteNum = 2;
+                    else if (spriteNum == 2)
+                        spriteNum = 3;
+                    else if (spriteNum == 3)
+                        spriteNum = 1;
+                    else 
+                        spriteNum = 1;
+                }
+                else if (direction == "left" || direction == "right"){
+                    if (spriteNum == 1)
+                        spriteNum = 2;
+                    else if (spriteNum == 2)
+                        spriteNum = 3;
+                    else if (spriteNum == 3)
+                        spriteNum = 4;
+                    else if (spriteNum == 4)
+                        spriteNum = 1;
+                    else 
+                        spriteNum = 1;
+                }
+            }
+            else {
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 3;
+                else if (spriteNum == 3)
+                    spriteNum = 4;
+                else if (spriteNum == 4)
+                    spriteNum = 5;
+                else if (spriteNum == 5)
+                    spriteNum = 1;
+            }
             spriteCounter = 0;
         }
     }
@@ -142,7 +170,9 @@ public class MON_AJN extends Entity {
             int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
             searchPath(goalCol,goalRow);
             if(attacking == false){
-                if(projectile.alive == false && shotAvailableCounter == 180 ){
+                int col = (worldX+solidArea.x)/gp.tileSize;
+                int row = (worldY+solidArea.y)/gp.tileSize;
+                if(projectile.alive == false && shotAvailableCounter == 180 && (col == goalCol || row == goalRow)){
                     projectile.set(worldX+(gp.tileSize/2), worldY+gp.tileSize, direction, true, this);
                     gp.projectileList.add(projectile);
                     shotAvailableCounter = 0;
@@ -203,6 +233,8 @@ public class MON_AJN extends Entity {
                         image = up2;
                     if (spriteNum == 3)
                         image = up3;
+                    if (spriteNum == 4)
+                        image = up1;
                 }
                 if (attacking) {
                     tempScreenY = screenY - up1.getHeight();
@@ -226,6 +258,8 @@ public class MON_AJN extends Entity {
                         image = down2;
                     if (spriteNum == 3)
                         image = down3;
+                    if (spriteNum == 4)
+                        image = down1;
                 }
                 if (attacking) {
                     if (spriteNum == 1)
