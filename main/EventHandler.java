@@ -187,7 +187,7 @@ public class EventHandler {
                 gp.ui.currentDialogue = "My pingpongmon is all dead!";
             }
             //AJN
-            else if(hit(0,24,24, "up") == true ){
+            else if(hit(0,24,24, "up") == true && gp.player.hasKey >= 5){
                 gp.stopMusic();
                 gp.playMusic(9);
                 teleport(3, 25, 25);
