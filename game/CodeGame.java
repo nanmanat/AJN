@@ -75,13 +75,4 @@ public class CodeGame {
             }
         }
     }
-
-    public void print(){
-        for (int i = 0; i < codeMove.length; i++) {
-            for (int j = 0; j < codeMove[i].length; j++) {
-                System.out.print(codeMove[i][j] + "  ");
-            }
-            System.out.println();
-        }
-    }
 }

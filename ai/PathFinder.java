@@ -66,8 +66,6 @@ public class PathFinder {
         
         resetNodes();
 
-        // System.out.println(startCol + " " + startRow + " " + goalCol + " " + goalRow);
-
         // Set Start and Goal node
         startNode = node[startCol][startRow];
         currentNode = startNode;
