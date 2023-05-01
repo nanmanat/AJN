@@ -248,7 +248,6 @@ public class Player extends Entity{
                 case "Key":
                     hasKey++;
                     gp.obj[gp.currentMap][i] = null;
-                    System.out.println("Key: " + hasKey);
                     break;
                 case "Potion":
                     life = 6;

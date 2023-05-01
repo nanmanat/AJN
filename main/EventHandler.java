@@ -200,12 +200,6 @@ public class EventHandler {
                 gp.playMusic(9);
                 teleport(3, 25, 25);
             }
-            else if(hit(0,24,19, "down") == true ){
-                gp.stopMusic();
-                gp.playMusic(9);
-                teleport(3, 25, 25);
-            }
-
         }
     }
 
