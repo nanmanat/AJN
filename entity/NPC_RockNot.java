@@ -127,7 +127,6 @@ public class NPC_RockNot extends Entity {
         }
         //if all rock on plates
         if(count == rockList.size()) {
-            System.out.println(gp.player.gateScore);
             gp.playSE(3);
         }
     }

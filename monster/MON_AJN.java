@@ -21,7 +21,7 @@ public class MON_AJN extends Entity {
         name = "AJN";
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 1;
+        maxLife = 60;
         life = maxLife;
         direction = "down";
         
