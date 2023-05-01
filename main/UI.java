@@ -521,8 +521,8 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         //title
         g2.setColor(Color.black);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
-        String text = "Game Gou Gou";
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,80F));
+        String text = "A-Jinxed-Nemesis";
         int x = getXforCenteredText(text);
         int y = gp.tileSize*2;
 
