@@ -176,7 +176,7 @@ public class EventHandler {
             else if (hit(7,24, 16, "up") == true && gp.pingPong.poList.get(2).life > 0) {
                 gp.keyH.upPressed = false;
                 gp.gameState = gp.dialoguePopup;
-                gp.ui.currentDialogue = "Babushka: You can't defeat me weakling!";
+                gp.ui.currentDialogue = "TinkerDingle: You can't defeat me weakling!";
                 canTouchEvent = false;
             }
             else if (hit(7,24, 15, "up") == true && gp.pingPong.poList.get(2).life > 0) {
