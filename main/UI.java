@@ -135,51 +135,24 @@ public class UI {
         int y = (int)(gp.tileSize*2.5);
         g2.drawString(text, x, y);
 
-        //music volume
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
-        text = "Music";
-        x = frameX + gp.tileSize;
-        y += gp.tileSize*2;
-        g2.drawString(text, x, y);
-        if(commandNum<=0){
-            g2.drawString(">", x-gp.tileSize/2 , y);
-        }
-
-        //SE volume
-        text = "Sound Effect";
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if(commandNum==1) g2.drawString(">", x-gp.tileSize/2 , y);
-
         //exit
         text = "Exit";
-        y += gp.tileSize;
+        y += gp.tileSize*3;
         g2.drawString(text, x, y);
-        if(commandNum==2) g2.drawString(">", x-gp.tileSize/2 , y);
+        if(commandNum<=0) {
+            g2.drawString(">", x-gp.tileSize/2 , y);
+            commandNum = 0;
+        }
 
         //back
         text = "Back";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
-        y += gp.tileSize*2;
+        y += gp.tileSize*3;
         g2.drawString(text, x, y);
-        if(commandNum>=3) {
+        if(commandNum>=1) {
             g2.drawString(">", x-gp.tileSize/2 , y);
-            commandNum = 3;
+            commandNum = 1;
         }
-
-        //music volume
-        x = frameX + gp.tileSize*5;
-        y = frameY + gp.tileSize*3;
-        g2.drawRect(x, y, 120, 24);
-        int volumeWidth = 24 * gp.sound.volumeScale;
-        g2.fillRect(x, y, volumeWidth, 24);
-
-        //SE volume
-        x = frameX + gp.tileSize*5;
-        y += gp.tileSize;
-        g2.drawRect(x, y, 120, 24);
-        // int volumeSEWidth = 24 * gp.se.volumeScale;
-        // g2.fillRect(x, y, volumeSEWidth, 24);
 
     }
 
