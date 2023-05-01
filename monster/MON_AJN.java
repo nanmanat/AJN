@@ -91,7 +91,6 @@ public class MON_AJN extends Entity {
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
         int tileDistance =  (xDistance + yDistance) / gp.tileSize;
-        
         if(onPath == false && tileDistance < 10){
             int i = new Random().nextInt(100)+1;
             if( i > 50){
@@ -163,10 +162,6 @@ public class MON_AJN extends Entity {
             spriteCounter = 0;
         }
 
-        if(life <= 0) {
-            dying = true;
-        }
-        System.out.println(dying + " " + alive);
     }
 
     public void setAction() {
@@ -318,12 +313,6 @@ public class MON_AJN extends Entity {
         if (spriteCounter <= 10) {
             spriteNum = 1;
         }
-        // if (spriteCounter > 5 && spriteCounter <= 10) {
-        //     spriteNum = 2;
-        // }
-        // if (spriteCounter > 10 && spriteCounter <= 15) {
-        //     spriteNum = 3;
-        // }
         if (spriteCounter > 10 && spriteCounter <= 20) {
             spriteNum = 4;
             // Save current worldX, worldY, and solidArea

@@ -53,7 +53,6 @@ public class MON_Dragon extends Entity {
 
     public void update() {
         super.update();
-
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
         int tileDistance =  (xDistance + yDistance) / gp.tileSize;
@@ -67,6 +66,28 @@ public class MON_Dragon extends Entity {
         if(onPath == true && tileDistance > 10){
             onPath = false;
         }
+        spriteCounter++;
+        if (spriteCounter > 12) {
+            if(direction == "up" || direction == "down"){
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 1;
+                else 
+                    spriteNum = 1;
+            }
+            else if (direction == "left" || direction == "right"){
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 3;
+                else if (spriteNum == 3)
+                    spriteNum = 1;
+                else 
+                    spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
     }
 
     public void setAction() {
@@ -76,7 +97,7 @@ public class MON_Dragon extends Entity {
             searchPath(goalCol,goalRow);
             
             if(projectile.alive == false && shotAvailableCounter == 180 ){
-                projectile.set(worldX, worldY+(gp.tileSize/2), direction, true, this);
+                projectile.set(worldX+(gp.tileSize/2), worldY+(gp.tileSize/2), direction, true, this);
                 gp.projectileList.add(projectile);
                 shotAvailableCounter = 0;
             }

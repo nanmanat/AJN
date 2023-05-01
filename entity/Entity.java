@@ -200,41 +200,37 @@ public class Entity {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-
-            switch (direction) {
-                case "up":
-                    if (spriteNum == 1)
-                        image = up1;
-                    else if (spriteNum == 2)
-                        image = up2;
-                    else if (spriteNum == 3)
-                        image = up2;
-                    break;
-                case "down":
-                    if (spriteNum == 1)
-                        image = down1;
-                    else if (spriteNum == 2)
-                        image = down2;
-                    else if (spriteNum == 3)
-                        image = down3;
-                    break;
-                case "left":
-                    if (spriteNum == 1)
-                        image = left1;
-                    else if (spriteNum == 2)
-                        image = left2;
-                    else if (spriteNum == 3)
-                        image = left3;
-                    break;
-                case "right":
-                    if (spriteNum == 1)
-                        image = right1;
-                    else if (spriteNum == 2)
-                        image = right2;
-                    else if (spriteNum == 3)
-                        image = right3;
-                    break;
-            }
+            
+                switch (direction) {
+                    case "up":
+                        if (spriteNum == 1)
+                            image = up1;
+                        else if (spriteNum == 2)
+                            image = up2;
+                        break;
+                    case "down":
+                        if (spriteNum == 1)
+                            image = down1;
+                        else if (spriteNum == 2)
+                            image = down2;
+                        break;
+                    case "left":
+                        if (spriteNum == 1)
+                            image = left1;
+                        else if (spriteNum == 2)
+                            image = left2;
+                        else if (spriteNum == 3)
+                            image = left3;
+                        break;
+                    case "right":
+                        if (spriteNum == 1)
+                            image = right1;
+                        else if (spriteNum == 2)
+                            image = right2;
+                        else if (spriteNum == 3)
+                            image = right3;
+                        break;
+                }
 
             // Monster HP bar
             if (type == 2) {
@@ -243,7 +239,7 @@ public class Entity {
                 double hpBarValue = oneScale * life;
 
                 g2.setColor(new Color(35, 35, 35));
-                g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+                g2.fillRect(screenX-1, screenY - 16, gp.tileSize+2, 12);
 
                 g2.setColor(new Color(255, 0, 30));
                 g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
