@@ -21,7 +21,7 @@ public class MON_AJN extends Entity {
         name = "AJN";
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 60;
+        maxLife = 1;
         life = maxLife;
         direction = "down";
         
@@ -98,14 +98,15 @@ public class MON_AJN extends Entity {
                 onPath = true;
             }
         }
-        if(onPath == true && tileDistance < 3 ){
+        else if(onPath == true && tileDistance < 4 ){
             attacking = true;
-        }
-        if(onPath == true && tileDistance > 3 ){
-            attacking = false;
-        }
-        if(onPath == true && tileDistance > 20){
             onPath = false;
+        }
+        else if(onPath == true && tileDistance > 3 ){
+            attacking = false;
+            if(onPath == true && tileDistance > 20){
+            onPath = false;
+            }
         }
         if(attacking == true){
             attacking();
@@ -122,7 +123,6 @@ public class MON_AJN extends Entity {
         }
         spriteCounter++;
         if (spriteCounter > 12) {
-            System.out.println(direction + "  " + attacking);
 
             if(attacking == false){
                 if(direction == "up" || direction == "down"){
@@ -162,6 +162,11 @@ public class MON_AJN extends Entity {
             }
             spriteCounter = 0;
         }
+
+        if(life <= 0) {
+            dying = true;
+        }
+        System.out.println(dying + " " + alive);
     }
 
     public void setAction() {
@@ -181,34 +186,7 @@ public class MON_AJN extends Entity {
                     shotAvailableCounter++;
                 }
             }
-            else {
-
-            }
         } 
-        else {
-
-            actionLockCounter++;
-
-            if (actionLockCounter == 120) {
-                Random random = new Random();
-                int i = random.nextInt(100) + 1;
-
-                if (i <= 25) {
-                    direction = "up";
-                }
-                if (i > 25 && i <= 50) {
-                    direction = "down";
-                }
-                if (i > 50 && i <= 75) {
-                    direction = "left";
-                }
-                if (i > 75 && i <= 100) {
-                    direction = "right";
-                }
-                actionLockCounter = 0;
-            }
-        }
-
 
         if ( attacking == false) {
             checkAttackOrNot(30, gp.tileSize*2, gp.tileSize);
@@ -377,9 +355,11 @@ public class MON_AJN extends Entity {
             // int monsterIndex = gp.cChecker.checkEntity(gp.player, gp.monster);
             // gp.player.damageMonster(monsterIndex, attack);
 
-            if(gp.cChecker.checkPlayer(this) == true){
+            if(gp.cChecker.checkPlayer(this) == true && gp.player.invincible == false){
                 gp.player.life--;
                 attacking = false;
+                gp.player.invincible = true;
+                
             }
 
             // Set back

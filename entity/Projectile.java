@@ -37,9 +37,10 @@ public class Projectile extends Entity {
         if (user != gp.player) {
             collisionOn = false;
             gp.cChecker.checkTile(this);
-            if (gp.cChecker.checkPlayer(this)) {
+            if (gp.cChecker.checkPlayer(this) && gp.player.invincible == false) {
                 gp.player.life-=2;
                 alive = false;
+                gp.player.invincible = true;
             }
             if(collisionOn == true){
                 alive = false;
