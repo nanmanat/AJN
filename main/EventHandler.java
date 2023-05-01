@@ -196,6 +196,7 @@ public class EventHandler {
             }
             //AJN
             else if(hit(0,24,24, "up") == true && gp.player.hasKey >= 5){
+                gp.player.life = 6;
                 gp.stopMusic();
                 gp.playMusic(9);
                 teleport(3, 25, 25);
