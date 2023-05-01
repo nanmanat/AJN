@@ -44,7 +44,6 @@ public class UI {
             drawTitleScreen();
         }
         else if(gp.currentMap == 1){
-            drawPoint();
             gp.eManager.draw(g2);
             drawPlayerLife();
         }
@@ -58,7 +57,6 @@ public class UI {
                 gp.tmpState = gp.miniGameMaze;
                 gp.gameState = gp.gameOverState;
             }
-            drawPoint();
         }
         else if(gp.gameState == gp.miniGameBlackJack){
             drawBlackJack();
@@ -81,7 +79,6 @@ public class UI {
         else if(gp.currentMap == 8 || gp.currentMap == 9 || gp.currentMap == 10){
             drawPlayerLife();
             drawDialogueCode();
-            drawPoint();
             gp.eHandler.checkMove();
         }
         if(gp.gameState == gp.dialoguePopup){
@@ -249,18 +246,6 @@ public class UI {
             commandNum = 4;
             subCommandNum = 1;
         }
-    }
-
-    public void drawPoint(){
-        g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(20F));
-        int x = 20;
-        int y = 500;
-        int lineHeight = 20;
-        g2.drawString("X: " + gp.player.worldX, x , y); y+=lineHeight;
-        g2.drawString("Y: " + gp.player.worldY, x , y); y+=lineHeight;
-        g2.drawString("Col: " + (gp.player.worldX+gp.player.solidArea.x)/gp.tileSize, x , y); y+=lineHeight;
-        g2.drawString("Row: " + (gp.player.worldY+gp.player.solidArea.y)/gp.tileSize, x , y); y+=lineHeight;
     }
 
     public void drawPokemon(){
