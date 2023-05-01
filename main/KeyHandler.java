@@ -304,20 +304,6 @@ public class KeyHandler implements KeyListener{
             gp.gameState = gp.optionsState;
             gp.tmpState = gp.playState;
         }
-        if(code == KeyEvent.VK_SHIFT) {
-            if(gp.player.direction == "up") {
-                gp.player.worldY = gp.player.worldY - (gp.tileSize)/2;
-            }
-            if(gp.player.direction == "down") {
-                gp.player.worldY = gp.player.worldY + (gp.tileSize)/2;
-            }
-            if(gp.player.direction == "left") {
-                gp.player.worldX = gp.player.worldX - (gp.tileSize)/2;
-            }
-            if(gp.player.direction == "right") {
-                gp.player.worldX = gp.player.worldX + (gp.tileSize)/2;
-            }
-        }
     }
 
 
